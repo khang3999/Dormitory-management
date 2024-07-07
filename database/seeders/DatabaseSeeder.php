@@ -21,6 +21,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+        DB::table('users')->insert([
+            'name' => 'khang',
+            'email' => 'huukhang@gmail.com',
+            'password' => '123',
+        ]);
 
         DB::table('events')->insert([
             'id' => 0,
