@@ -13,7 +13,7 @@
 <body>
     <div class="l-background">
         <div class="box-login">
-            <div class="title-login">Đăng nhập</div>
+            <div class="title-login">Đăng nhập khong xai</div>
             <form class="form-login px-5">
                 <label for="username" class="form-label">Tên đăng nhập</label>
                 <div class="mb-3 d-flex form-custom">

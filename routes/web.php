@@ -38,22 +38,21 @@ Route::get('admin/studentOut', function () {
 Route::get('admin/studentIn', function () {
     return view('admin/student-in');
 })->name('admin.studentIn');
-//Trang login
-Route::get('/myLogin', function () {
-    return view('login');
-})->name('myLogin');
+//Change pass
+Route::get('/changePass', function () {
+    return view('change-password');
+});
 // Trang register
 Route::get('/myRegister', function () {
     return view('registerIn');
 })->name('myRegister');
 
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
+Route::middleware('auth')->group(function () {
+    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.rooms');
 });

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('permission')->default('student');
-            $table->boolean('first_login')->default(true);
+            $table->boolean('first_login')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });
