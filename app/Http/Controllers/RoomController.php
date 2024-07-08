@@ -17,7 +17,9 @@ class RoomController extends Controller
     {
         // $rooms = Room::all();
         $rooms = Room::withCount('students')->get();
-        return view('admin.rooms', compact('rooms'));
+      
+        return view('admin.rooms',["rooms"=> $rooms]);
+          // return view('admin.rooms', compact('rooms'));
     }
 
     /**

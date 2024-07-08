@@ -1,7 +1,8 @@
-html, body {
+html,
+body {
     margin: 0;
     font-size: 18px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 /* Navbar */
@@ -18,19 +19,22 @@ html, body {
     position: absolute;
     inset: 0;
     background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(3px);
     filter: blur(3px);
     z-index: -1;
     transition: all 0.3s ease;
 }
 
 .navbar-before.scrolled {
-    background: rgb(0,155,245);
-    filter: blur(2px);
-    background: linear-gradient(11deg, rgba(0,155,245,1) 0%, rgba(0,255,253,1) 40%, rgba(0,212,255,1) 100%);
+    /* background: rgb(0, 155, 245); */
+    width: 100%;
+    height: 140px;
+    filter: blur(0px);
+    background: linear-gradient(11deg, rgba(0, 155, 245, 1) 0%, rgba(0, 255, 253, 1) 40%, rgba(0, 212, 255, 1) 100%);
 }
 
 .navbar.scrolled {
-    height: 100px;
+    height: 110px;
 }
 
 .logo.scrolled {
@@ -58,8 +62,8 @@ html, body {
 .btn-navigation.scrolled {
     font-size: 18px;
     font-weight: bold;
-    margin: 20px 20px;
-    padding: 10px 30px;
+    margin: 20px 15px;
+    padding: 20px 30px;
     background: #009bf5;
     z-index: 2;
     color: #fff;
@@ -114,8 +118,8 @@ html, body {
 .btn-navigation {
     font-size: 18px;
     font-weight: bold;
-    margin: 40px 20px;
-    padding: 10px 30px;
+    margin: 20px 5px;
+    padding: 20px 30px;
     background: none;
     z-index: 2;
     color: #009bf5;
@@ -130,6 +134,9 @@ html, body {
     color: #fff;
 }
 
+.i-dot.active{
+    opacity: 0.9;
+}
 .i-banner {
     position: relative;
     background-image: url(../images/banner.jpg);
@@ -137,6 +144,7 @@ html, body {
     background-size: cover;
     width: 100%;
     height: 700px;
+    transition: all 0.5s;
 }
 
 .i-pre-image-btn,
@@ -189,6 +197,7 @@ html, body {
     color: #fff;
     opacity: 0.9;
     margin: 5px;
+    font-size: 10px;
 }
 
 .i-dot {
@@ -196,6 +205,8 @@ html, body {
     color: #fff;
     opacity: 0.49;
     margin: 5px;
+    font-size: 10px;
+
 }
 
 .i-title {
@@ -209,6 +220,83 @@ html, body {
     border-radius: 10px 0 0 10px;
     clip-path: polygon(100% 0, 90% 50%, 100% 100%, 0 100%, 0 0);
     background-color: #009bf5;
+}
+
+.personal {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    background-image: url(../images/avatar-default.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+.btn-event-personal {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 10px;
+    height: 10px;
+    font-size: 15px;
+}
+
+.icon-login {
+    font-size: 25px;
+    text-decoration: none;
+}
+
+.btn-login {
+    text-decoration: none;
+    color: #000;
+}
+
+.btn-login:hover {
+    text-decoration: none;
+    color: hsl(202, 100%, 48%);
+}
+.popup-personal::before{
+    position: absolute;
+    top: -10px;
+    right: 28%;
+    width: 20px;
+    height: 10px;
+    content: '';
+    clip-path: polygon(50% 0%, 75% 67%, 100% 100%, 50% 100%, 0 100%, 25% 67%);
+    background-color: #fff;
+
+}
+.popup-personal {
+    display: none;
+    position: absolute;
+    font-size: 15px;
+    padding: 5px 10px;
+    bottom: -105px;
+    text-wrap: nowrap;
+    right: -20px;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    transition: 0.5s;
+}
+
+.popup-personal ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.popup-personal ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.popup-personal ul li a:hover {
+    color: #009bf5;
 }
 
 /* Footer */
@@ -241,42 +329,57 @@ html, body {
     width: 30px;
 }
 
-.nav-link{
-    color: #009bf5!important;
+.nav-link {
+    color: #009bf5 !important;
 }
-.nav-link:hover{
-    color: #fff!important;
+
+.nav-link:hover {
+    color: #fff !important;
 }
-.nav-link.scrolled{
-    color: #fff!important;
+
+.nav-link.scrolled {
+    color: #fff !important;
 }
 
 @media only screen and (max-width: 600px) {
+
+    html,
+    body {
+        font-size: 15px;
+    }
+
     .navbar {
-        height: 150px;
+        height: 100px;
     }
-    .navbar-before{
-        height: 150px;
-    }
+
     .logo {
         width: 80px;
         height: 80px;
         margin: 0;
     }
+
+    .personal {
+        width: 40px;
+        height: 40px;
+    }
+
     .title-home {
         font-size: 30px;
         line-height: 30px;
     }
-    .title-home-hidden{
+
+    .title-home-hidden {
         font-size: 30px;
         line-height: 30px;
         margin-left: 0px;
     }
+
     .btn-navigation {
         font-size: 14px;
         margin: 10px 10px;
         padding: 5px 15px;
     }
+
     .i-pre-image-btn:hover,
     .i-next-image-btn:hover {
         width: 30px;
@@ -284,5 +387,5 @@ html, body {
         top: 10%;
         font-size: 15px;
     }
-    
+
 }

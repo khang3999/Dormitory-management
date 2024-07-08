@@ -129,6 +129,9 @@
                     </button>
                 </div>
                 <div class="modal-body row">
+                    <div class="form-group col-md-12 text-center">
+                        <img  class="student-image " id="student-image" src="" alt="Student Image" class="img-fluid rounded">
+                    </div>
                     <div class="form-group col-md-6">
                         <label for="student-name">Tên:</label>
                         <input type="text" class="form-control" id="student-name" readonly>
@@ -178,12 +181,12 @@
                         <input type="text" class="form-control" id="student-phong" readonly>
                     </div>
                 </div>
-                <div class="modal-footer">
+                {{-- <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-warning" data-dismiss="modal">Edit</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
                     <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -317,6 +320,10 @@
             var studentNote = button.data('student-note');
             var studentTime = button.data('student-time');
             var studentPhong = button.data('student-phong');
+            var studentImage = button.data('student-image');
+                // modal.find('#student-image').attr('src', studentImage ? studentImage :
+                //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxdYCUFoUPaFmn2NytlDMr6_kj2c3bq_3jkA&s'
+                //     );
 
             console.log(studentName, studentMSSV, studentMail, studentGender, studentPhone, studentCCCD,
                 studentBirthday, studentAddress, studentNation, studentNote, studentTime, studentPhong);

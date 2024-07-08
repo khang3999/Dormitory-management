@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Event;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -224,5 +225,18 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
        
+        DB::table('users')->insert([
+            'name' => 'khang',
+            'email' => 'huukhang@gmail.com',
+            'password' => '123',
+        ]);
+
+        DB::table('events')->insert([
+            'id' => 0,
+            'title' => 'Thông báo miễn giảm học phí',
+            'content' => 'latfbnigyiauombaeiuNOm',
+            'img' => 'banner.jpg',
+            'type' => 'none'
+        ]);
     }
 }

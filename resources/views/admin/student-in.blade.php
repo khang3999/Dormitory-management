@@ -74,8 +74,10 @@
                                     <i class="bi bi-app"></i>
                                     <i class="bi bi-pencil-square"></i>
                                     <i class="bi bi-eye" type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#modalStudent" data-student-name="{{ $student->name }}"
-                                        data-student-id="{{ $student->id }}" data-student-mssv="{{ $student->MSSV }}"
+                                        data-target="#modalStudent" 
+                                        data-student-name="{{ $student->name }}"
+                                        data-student-id="{{ $student->id }}" 
+                                        data-student-mssv="{{ $student->MSSV }}"
                                         data-student-mail="{{ $student->mail }}"
                                         data-student-gender="{{ $student->gender }}"
                                         data-student-phone="{{ $student->phone }}"
