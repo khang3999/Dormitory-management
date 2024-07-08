@@ -88,7 +88,7 @@ main {
 
 .text-12 {
     font-size: 12px;
-    text-align: center;
+   
 }
 
 .text-15 {
@@ -304,7 +304,7 @@ border: 1px solid #007bff;
 
 /* Tạo dòng chữ ẩn ban đầu */
 .typeOfStudentManagerment.quanLyThongBao::after {
-    content: "Thông báo sinh viên";
+    content: "Sinh viên ở kí túc xá";
     position: absolute;
     top: 50%; /* Căn giữa theo chiều dọc */
     left: 110%; /* Đặt bên cạnh button */
@@ -501,4 +501,29 @@ border: 1px solid #007bff;
 }
 .tt{
     font-size: 15px;
+}
+.modal-lg-custom {
+    max-width: 90%;
+}
+.modal_chon_phong{
+  width: 750px;
+
+
+}
+.modalsinhvien{
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+}
+.center{
+    text-align: center;
+}
+.student-image
+{
+    width: 5cm;
+    height: 6cm;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+label{
+    font-weight: bold;
+    color: #000000;
 }

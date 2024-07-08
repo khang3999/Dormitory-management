@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Room;
 
 class AdminController extends Controller
 {
@@ -16,7 +17,9 @@ class AdminController extends Controller
         $user = Auth::user();
         if ($user->permission == 'admin') {
             # code...
-            return view('admin/rooms');
+            $rooms = Room::withCount('students')->get();
+      
+            return view('admin.rooms',["rooms"=> $rooms]);
         }
     }
 
