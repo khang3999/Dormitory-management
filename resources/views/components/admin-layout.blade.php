@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="{{ asset('css/style-admin.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
 
 </head>
 
@@ -52,13 +55,13 @@
     <div class="row">
       <div class="col-1 navbarTrai py-3">
         <div class="typeOfStudentManagerment btnDonXin">
-          <a href="{{route('admin.studentIn')}}"><i class="bi bi-person-plus-fill"></i></a>
+          <a href="{{route('admin.student-in')}}"><i class="bi bi-person-plus-fill"></i></a>
         </div>
         <div class="typeOfStudentManagerment btnDonXinRut">
-          <a href="{{route('admin.studentOut')}}"><i class="bi bi-person-dash-fill"></i></a>
+          <a href="{{route('admin.student-out')}}"><i class="bi bi-person-dash-fill"></i></a>
         </div>
         <div class="typeOfStudentManagerment quanLyThongBao">
-          <a href="#"><i class="bi bi-bell-fill"></i></a>
+          <a  href="{{route('admin.students')}}" ><i class="bi bi-people-fill"></i></a>
         </div>
         <div class="typeOfStudentManagerment btnGhiChu">
           <a href="#ghichu"><i class="bi bi-card-checklist"></i></a>
@@ -78,7 +81,7 @@
 
     <!-- Footer -->
  
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     {{$script ?? ''}}
 </body>
