@@ -55,42 +55,42 @@
                     @if ($students->isEmpty())
                         <p>Không có sinh viên nào để hiển thị.</p>
                     @else
-                    @foreach ($students as $student)
-                    <tr>
-                        <td class="text-12">{{ $student->id }}</td>
-                        <td class="text-12">{{ $student->name }}</td>
-                        <td class="text-12">{{ $student->MSSV }}</td>
-                        <td class="text-12">{{ $student->mail }}</td>
-                        <td class="text-12">{{ $student->gender }}</td>
-                        <td class="text-12">{{ $student->phone }}</td>
-                        <td class="text-12">{{ $student->cccd }}</td>
-                        <td class="text-12">{{ $student->birthday }}</td>
-                        <td class="text-12 text-limit">{{ $student->address }}</td>
-                        <td class="text-12">{{ $student->nation }}</td>
-                        <td class="text-12 text-limit">{{ $student->note }}</td>
-                        <td class="text-12">{{ $student->time }}</td>
-                        <td class="text-12">{{ $student->room ? $student->room->name : 'Chưa có phòng' }}</td>
-                        <td class="text-15">
-                            <i class="bi bi-app"></i>
-                            <i class="bi bi-pencil-square"></i>
-                            <i class="bi bi-eye" type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#modalStudent" data-student-name="{{ $student->name }}"
-                                data-student-id="{{ $student->id }}" data-student-mssv="{{ $student->MSSV }}"
-                                data-student-mail="{{ $student->mail }}"
-                                data-student-gender="{{ $student->gender }}"
-                                data-student-phone="{{ $student->phone }}"
-                                data-student-cccd="{{ $student->cccd }}"
-                                data-student-birthday="{{ $student->birthday }}"
-                                data-student-address="{{ $student->address }}"
-                                data-student-nation="{{ $student->nation }}"
-                                data-student-note="{{ $student->note }}"
-                                data-student-time="{{ $student->time }}"
-                                data-student-phong="{{ $student->idphong }}">
-                            </i>
-                        </td>
-                        <!-- Thêm các trường khác nếu cần thiết -->
-                    </tr>
-                @endforeach
+                        @foreach ($students as $student)
+                            <tr>
+                                <td class="text-12">{{ $student->id }}</td>
+                                <td class="text-12">{{ $student->name }}</td>
+                                <td class="text-12">{{ $student->MSSV }}</td>
+                                <td class="text-12">{{ $student->mail }}</td>
+                                <td class="text-12">{{ $student->gender }}</td>
+                                <td class="text-12">{{ $student->phone }}</td>
+                                <td class="text-12">{{ $student->cccd }}</td>
+                                <td class="text-12">{{ $student->birthday }}</td>
+                                <td class="text-12 text-limit">{{ $student->address }}</td>
+                                <td class="text-12">{{ $student->nation }}</td>
+                                <td class="text-12 text-limit">{{ $student->note }}</td>
+                                <td class="text-12">{{ $student->time }}</td>
+                                <td class="text-12">{{ $student->room ? $student->room->name : 'Chưa có phòng' }}</td>
+                                <td class="text-15">
+                                    <i class="bi bi-app"></i>
+                                    <i class="bi bi-pencil-square"></i>
+                                    <i class="bi bi-eye" type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#modalStudent" data-student-name="{{ $student->name }}"
+                                        data-student-id="{{ $student->id }}" data-student-mssv="{{ $student->MSSV }}"
+                                        data-student-mail="{{ $student->mail }}"
+                                        data-student-gender="{{ $student->gender }}"
+                                        data-student-phone="{{ $student->phone }}"
+                                        data-student-cccd="{{ $student->cccd }}"
+                                        data-student-birthday="{{ $student->birthday }}"
+                                        data-student-address="{{ $student->address }}"
+                                        data-student-nation="{{ $student->nation }}"
+                                        data-student-note="{{ $student->note }}"
+                                        data-student-time="{{ $student->time }}"
+                                        data-student-phong="{{ $student->idphong }}">
+                                    </i>
+                                </td>
+                                <!-- Thêm các trường khác nếu cần thiết -->
+                            </tr>
+                        @endforeach
                     @endif
 
                 </tbody>
@@ -124,7 +124,8 @@
                                 readonly>
                         </div>
                         <div class="form-group col-md-12 text-center ">
-                            <img class="student-image " id="student-image" src="" alt="Student Image" class="img-fluid rounded">
+                            <img class="student-image " id="student-image" src="" alt="Student Image"
+                                class="img-fluid rounded">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="student-name">Tên:</label>
@@ -186,10 +187,6 @@
             </div>
         </div>
     </div>
-
-
-
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -296,7 +293,7 @@
                 var studentImage = button.data('student-image');
                 modal.find('#student-image').attr('src', studentImage ? studentImage :
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxdYCUFoUPaFmn2NytlDMr6_kj2c3bq_3jkA&s'
-                    );
+                );
 
 
                 // Load room options
@@ -321,25 +318,50 @@
             });
 
             $('#deleteStudent').click(function() {
-                var studentId = $('#student-id').val();
+                var studentId = $('#student-mssv').val();
+               
 
                 if (confirm('Bạn có chắc chắn muốn xoá sinh viên này không?')) {
+
                     $.ajax({
-                        url: '/admin/student/' + studentId,
+                        url: '{{ route('users.delete') }}',
                         type: 'DELETE',
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            mssv: studentId // Assuming studentId is the mssv
+                        },
                         success: function(response) {
-                            alert('Student deleted successfully!');
-                            $('#modalStudent').modal('hide');
-                            location.reload(); // Reload the page to see the changes
+                            alert('Đã xoá tài khoản cho sinh viên');
+
+                            $.ajax({
+                                url: '/admin/student/' + $('#student-id').val(),
+                                type: 'DELETE',
+                                success: function(response) {
+                                    alert('Student deleted successfully!');
+                                    // var mssv = $('#student-id').val();
+                                    $('#modalStudent').modal('hide');
+                                    location
+                                .reload(); // Reload the page to see the changes
+                                },
+                                error: function(xhr) {
+                                    console.log(xhr.responseText);
+                                    alert(
+                                    'Something went wrong. Please try again.');
+                                }
+                            });
                         },
                         error: function(xhr) {
                             console.log(xhr.responseText);
-                            alert('Something went wrong. Please try again.');
+                            alert(
+                                'Xoá tài khoản sinh viên không thành công');
                         }
                     });
+
                 }
             });
+
         });
+
         function filterStudents() {
             var searchKeyword = $('#search-input').val().toLowerCase();
             var genderFilter = $('input[name="options"]:checked').map(function() {

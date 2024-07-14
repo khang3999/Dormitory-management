@@ -74,8 +74,10 @@
                                     <i class="bi bi-app"></i>
                                     <i class="bi bi-pencil-square"></i>
                                     <i class="bi bi-eye" type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#modalStudent" data-student-name="{{ $student->name }}"
-                                        data-student-id="{{ $student->id }}" data-student-mssv="{{ $student->MSSV }}"
+                                        data-target="#modalStudent" 
+                                        data-student-name="{{ $student->name }}"
+                                        data-student-id="{{ $student->id }}" 
+                                        data-student-mssv="{{ $student->MSSV }}"
                                         data-student-mail="{{ $student->mail }}"
                                         data-student-gender="{{ $student->gender }}"
                                         data-student-phone="{{ $student->phone }}"
@@ -86,7 +88,13 @@
                                         data-student-note="{{ $student->note }}"
                                         data-student-time="{{ $student->time }}"
                                         data-student-phong="{{ $student->idphong }}"
-                                        data-student-image="{{ $student->avatar }}">
+                                        data-student-image="{{ $student->avatar }}"
+                                        {{-- boSung --}}
+                                        data-student-job="{{ $student->job }}"
+                                         data-student-class="{{ $student->class }}"
+                                          data-student-course="{{ $student->course }}"
+                                        >
+                                       
                                     </i>
                                 </td>
                                 <!-- Thêm các trường khác nếu cần thiết -->
@@ -135,6 +143,21 @@
                             <label for="student-mssv">MSSV:</label>
                             <input type="text" class="form-control" id="student-mssv" name="MSSV">
                         </div>
+                         {{-- bosung --}}
+                         <div class="form-group col-md-6">
+                            <label for="student-job">Ngành:</label>
+                            <input type="text" class="form-control" id="student-job" name="job">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="student-class">Lớp:</label>
+                            <input type="text" class="form-control" id="student-class" name="class">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="student-course">Khoá:</label>
+                            <input type="text" class="form-control" id="student-course" name="course">
+                        </div>
+                        {{-- bosung --}}
+
                         <div class="form-group col-md-6">
                             <label for="student-mail">Email:</label>
                             <input type="email" class="form-control" id="student-mail" name="mail">
@@ -326,6 +349,11 @@
                                 'data-student-nation="' + student.nation + '" ' +
                                 'data-student-note="' + student.note + '" ' +
                                 'data-student-time="' + student.time + '" ' +
+                                // boSung
+                                'data-student-job="' + student.job + '" ' +
+                                'data-student-class="' + student.class + '" ' +
+                                'data-student-course="' + student.course + '" ' +
+                                   // boSung
                                 'data-student-phong="' + roomId + '">' +
                                 // Pass room ID here
                                 'Chi tiết</button>' +
@@ -344,11 +372,9 @@
         });
 
         $(document).ready(function() {
-
             $('#modalStudent').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget);
                 var modal = $(this);
-
                 modal.find('#student-id').val(button.data('student-id'));
                 modal.find('#student-name').val(button.data('student-name'));
                 modal.find('#student-mssv').val(button.data('student-mssv'));
@@ -361,10 +387,13 @@
                 modal.find('#student-nation').val(button.data('student-nation'));
                 modal.find('#student-note').val(button.data('student-note'));
                 modal.find('#student-time').val(button.data('student-time'));
-
+                // boSUng
+                modal.find('#student-job').val(button.data('student-job'));
+                modal.find('#student-course').val(button.data('student-course'));
+                modal.find('#student-class').val(button.data('student-class'));
+                
                 var currentRoomId = button.data('student-phong');
-                var currentRoomName = button.data('student-phong') ? button.data('student-phong') :
-                    'Chưa có phòng';
+                var currentRoomName = button.data('student-phong') ? button.data('student-phong') :'Chưa có phòng';
                 var studentImage = button.data('student-image');
                 modal.find('#student-image').attr('src', studentImage ? studentImage :
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxdYCUFoUPaFmn2NytlDMr6_kj2c3bq_3jkA&s'
@@ -391,7 +420,8 @@
                         rooms.forEach(function(room) {
                             if (room.id !== currentRoomId) {
                                 roomSelect.append(
-                                    `<option value="${room.id}">${room.name}</option>`
+                                    `<option value="${room.id}">phòng ${room.name} sinh viên ${room.gender}  số lượng sinh viên ${room.students_count}</option>`
+                                    
                                 );
                             }
                         });
@@ -416,7 +446,12 @@
                     nation: $('#student-nation').val(),
                     note: $('#student-note').val(),
                     time: $('#student-time').val(),
-                    phong: $('#student-phong').val()
+                    phong: $('#student-phong').val(),
+                    // bosung
+                    job: $('#student-job').val(),
+                    class: $('#student-class').val(),
+                    course: $('#student-course').val(),
+                    
                 };
 
                 $.ajax({

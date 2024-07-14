@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('MSSV');
             $table->string('password');
             $table->string('name');
+            $table->string('job');
+            $table->string('course');
+            $table->string('class');
             $table->string('cccd');
             $table->string('birthday');
             $table->string('phone');

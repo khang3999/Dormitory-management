@@ -7,6 +7,8 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\UserController;
+
 
 Route::get('/',[
     HomeController::class, 'index'
@@ -82,3 +84,5 @@ Route::get('/rooms/layphongtrong', [RoomController::class, 'layphongtrong'])->na
 Route::post('/student/updateduyetdon', [StudentController::class, 'duyetdon'])->name('student.duyetdon');
 Route::post('/student/update', [StudentController::class, 'update'])->name('student.update');
 Route::delete('/admin/student/{id}', [StudentController::class, 'destroy'])->name('student.destroy');
+Route::post('/users', [UserController::class, 'create'])->name('users.create');
+Route::delete('/users/delete', [UserController::class, 'destroy'])->name('users.delete');

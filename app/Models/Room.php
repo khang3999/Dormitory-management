@@ -15,5 +15,8 @@ class Room extends Model
     {
         return $this->hasMany(Student::class, 'idphong');
     }
-   
+    public function getStudentCountAttribute()
+    {
+        return $this->students()->count();
+    }
 }

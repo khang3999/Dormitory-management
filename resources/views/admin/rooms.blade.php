@@ -37,7 +37,7 @@
                             </div>
                             <div class="room-infor row">
                                 <div class="styleComponentOfRoom col-4 py-1">{{ $room->gender }}</div>
-                                <div class="styleComponentOfRoom col-4 py-1">{{ $room->status }}/15</div>
+                                <div class="styleComponentOfRoom col-4 py-1">{{ $room->students_count }}/15</div>
                                 @if (!empty($room->note))
                                     <i style="color: rgb(255, 77, 0)"
                                         class="styleComponentOfRoom col-4 py-1 bi bi-patch-exclamation-fill"></i>
@@ -51,7 +51,7 @@
                                 <i class="styleComponentOfRoom col-4 bi bi-eye" data-toggle="modal"
                                     data-target="#exampleModalRoom" data-room-id="{{ $room->id }}"
                                     data-room-name="{{ $room->name }}" data-room-gender="{{ $room->gender }}"
-                                    data-room-status="{{ $room->status }}" data-room-note="{{ $room->note }}">
+                                    data-room-status="{{ $room->students_count }}" data-room-note="{{ $room->note }}">
                                 </i>
 
                                 <i class="styleComponentOfRoom col-4  bi bi-pen" data-toggle="modal"
