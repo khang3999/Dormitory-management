@@ -301,7 +301,7 @@
 
                 // Load room options
                 $.ajax({
-                    url: '{{ route('rooms.all') }}',
+                    url: '{{ route("rooms.all") }}',
                     method: 'GET',
                     success: function(rooms) {
                         var roomSelect = modal.find('#student-phong');

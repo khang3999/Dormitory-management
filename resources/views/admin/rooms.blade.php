@@ -65,8 +65,8 @@
             </div>
         </div>
         <div class="groupbutton">
-            <button class="btn-file">Xuất file</button>
-            <button class="btn-file">Nhập file</button>
+            <a href="{{route('export.rooms')}}" class="btn btn-outline-primary">Xuất file</a>
+            <button  class="btn btn-outline-primary">Nhập file</button>
         </div>
     </div>
 
@@ -372,7 +372,7 @@
             }
 
             $.ajax({
-                url: '{{ route('update-room') }}',
+                url: '{{ route("update-room") }}',
                 type: 'POST', // Đảm bảo phương thức POST ở đây
                 data: formData,
                 dataType: 'json',

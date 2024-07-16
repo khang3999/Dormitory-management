@@ -78,7 +78,7 @@ class RoomController extends Controller
             return response()->json(['status' => 'success', 'message' => 'Cập nhật phòng thành công']);
         } catch (\Exception $e) {
             // Log lỗi và trả về phản hồi lỗi
-            \Log::error('Error updating room: '.$e->getMessage().' at line '.$e->getLine());
+            Log::error('Error updating room: '.$e->getMessage().' at line '.$e->getLine());
             return response()->json(['status' => 'error', 'message' => 'Lỗi trong quá trình cập nhật phòng'], 500);
         }
     }

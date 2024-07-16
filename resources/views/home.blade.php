@@ -49,7 +49,7 @@
                     </ul>
                     <div class="box-event-personal text-center me-3">
                         <?php
-                        $isLogin = false; // Đổi thành true để xem layout khi có tài khoản
+                        // $isLogin = false; // Đổi thành true để xem layout khi có tài khoản
                         if ($user != null) {
                         ?>
                             <div class="personal position-relative">

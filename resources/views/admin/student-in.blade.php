@@ -369,7 +369,7 @@
 
                 // Load room options
                 $.ajax({
-                    url: '{{ route('rooms.layphongtrong') }}',
+                    url: '{{ route("rooms.layphongtrong") }}',
                     method: 'GET',
                     success: function(rooms) {
                         var roomSelect = modal.find('#student-phong');
@@ -415,7 +415,7 @@
                 };
 
                 $.ajax({
-                    url: '{{ route('student.duyetdon') }}',
+                    url: '{{ route("student.duyetdon") }}',
                     type: 'POST',
                     data: studentData,
                     success: function(response) {
@@ -433,7 +433,7 @@
 
         $('#chosenRoomModal').on('show.bs.modal', function(event) {
             $.ajax({
-                url: '{{ route('rooms.all') }}',
+                url: '{{ route("rooms.all") }}',
                 method: 'GET',
                 success: function(rooms) {
                     var roomList = $('#room-list');

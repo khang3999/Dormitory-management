@@ -99,8 +99,8 @@
         </div>
 
         <div class="groupbutton">
-            <button class="btn-file">Xuất file</button>
-            <button class="btn-file">Nhập file</button>
+            <a href="{{route('export.students')}}" class="btn btn-outline-primary">Xuất file</a>
+            <button class="btn btn-outline-primary">Nhập file</button>
         </div>
     </div>
 
@@ -371,7 +371,7 @@
                     );
                 // Load room options
                 $.ajax({
-                    url: '{{ route('rooms.layphongtrong') }}',
+                    url: '{{ route("rooms.layphongtrong") }}',
                     method: 'GET',
                     success: function(rooms) {
                         var roomSelect = modal.find('#student-phong');
@@ -420,7 +420,7 @@
                 };
 
                 $.ajax({
-                    url: '{{ route('student.update') }}',
+                    url: '{{ route("student.update") }}',
                     type: 'POST',
                     data: studentData,
                     success: function(response) {
@@ -438,7 +438,7 @@
 
         $('#chosenRoomModal').on('show.bs.modal', function(event) {
             $.ajax({
-                url: '{{ route('rooms.all') }}',
+                url: '{{ route("rooms.all") }}',
                 method: 'GET',
                 success: function(rooms) {
                     var roomList = $('#room-list');
