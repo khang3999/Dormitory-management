@@ -17,6 +17,7 @@
 <body>
     <div class="i-banner">
         <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="hidden-nav text-center"><i class="bi bi-caret-up-fill icon-nav-hidden"></i></div>
             <div class="container-fluid">
                 <div class="navbar-before"></div>
                 <a class="navbar-brand" href="#">

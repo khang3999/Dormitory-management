@@ -29,9 +29,51 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreStudentRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'avatar' => 'required|image',
+            'fullname' => 'required',
+            'gender' => 'required',
+            'dayBorn' => 'required',
+            'liveIn' => 'required',
+            'class' => 'required',
+            'course' => 'required',
+            'codeStudent' => 'required',
+            'phoneNumber' => 'required',
+            'job' => 'nullable',
+            'uutien' => 'nullable',
+        ]);
+
+        $student = new Student();
+        $student->avatar = $validatedData['codeStudent'] . '.jpg';
+        $student->name = $validatedData['fullname'];
+        $student->password = '';
+        $student->mail = 'example@gmai.com';
+        $student->cccd = '23456789';
+        $student->gender = $validatedData['gender'];
+        $student->birthDay = $validatedData['dayBorn'];
+        $student->address = $validatedData['liveIn'];
+        $student->nation = $validatedData['class'];
+        $student->course = $validatedData['course'];
+        $student->MSSV = $validatedData['codeStudent'];
+        $student->phone = $validatedData['phoneNumber'];
+        $student->job = $validatedData['job'];
+        $student->note = $validatedData['uutien'];
+        $student->type = '2';
+        $student->time = now();
+        $student->idphong = '0';
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $filename = $validatedData['codeStudent'] . '.jpg';
+            $avatar->move(public_path('images/avatar/'), $filename);
+        }
+
+        $student->save();
+
+        // Sau khi lưu thành công, có thể chuyển hướng người dùng về trang khác hoặc hiển thị thông báo thành công
+        return redirect()->route('students.store')->with('success', 'Đăng kí thành công');
     }
 
     /**

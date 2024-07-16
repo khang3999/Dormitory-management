@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\StudentController;
@@ -15,6 +16,8 @@ Route::get('/', [
     HomeController::class, 'index'          
 ])->name('home');
 
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -24,9 +27,11 @@ Route::get('/myLogin', [HomeController::class, 'create'])->name('myLogin');
 Route::post('/myLogin', [HomeController::class, 'store']);
 
 // Trang register
-Route::get('/myRegister', function () {
-    return view('registerIn');
-})->name('myRegister');
+Route::get('/myRegister', [
+    RegisterController::class, 'index'
+])->name('myRegister');
+
+Route::post('/myRegister', [StudentController::class, 'store'])->name('students.store');
 
 
 Route::middleware('auth')->group(function () {
