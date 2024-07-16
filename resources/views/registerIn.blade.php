@@ -17,11 +17,9 @@
 </head>
 
 <body>
-    <!-- <div class="i-header">
-
-    </div> -->
     <div class="i-banner">
         <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="hidden-nav text-center"><i class="bi bi-caret-up-fill icon-nav-hidden"></i></div>
             <div class="container-fluid">
                 <div class="navbar-before"></div>
                 <a class="navbar-brand" href="#">
@@ -36,9 +34,10 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarScroll">
-                    <ul class="navbar-nav mx-5">
+                    <ul class="navbar-nav ms-5">
                         <li class="nav-item">
-                            <a class="nav-link active px-3 btn-navigation" aria-current="page" href="{{ route('home')}}">Trang chủ</a>
+                            <a class="nav-link active px-3 btn-navigation" aria-current="page"
+                                href="{{ route('home')}}">Trang chủ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active px-3 btn-navigation" aria-current="page"
@@ -55,133 +54,187 @@
                         </li>
                     </ul>
                 </div>
-                <div class="box-event-personal text-center">
-                    <?php
-                        $isLogin = false;
-                        if ($isLogin == true) {
-                            ?>
-                    <div class="personal">
-                        <i class="bi bi-gear-fill btn-event-personal"></i>
-                    </div>
-                    <div class="name-person">Ali MahKot</div>
-                    <?php
+                <div class="box-event-personal text-center me-3">
+                        <?php
+                        // $isLogin = false; // Đổi thành true để xem layout khi có tài khoản
+                        if ($user != null) {
+                        ?>
+                            <div class="personal position-relative">
+                                <i class="bi bi-gear-fill btn-event-personal"></i>
+                                <div id="popup-personal" class="popup-personal">
+                                    <ul>
+                                        <li>
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                                <button class="btn btn-danger" type="submit">Đăng xuất</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="name-person">{{$user->name}}</div>
+                        <?php
                         } else {
                         ?>
-                    <a href="{{ route('myLogin') }}" class="btn-login text-center">
-                        <i class="bi bi-box-arrow-in-right icon-login"></i>
-                        <div class="name-person">Đăng nhập</div>
-                    </a>
-                    <?php
+                            <a href="{{ route('login') }}" class="btn-login text-center">
+                                <i class="bi bi-box-arrow-in-right icon-login"></i>
+                                <div class="name-person">Đăng nhập</div>
+                            </a>
+                        <?php
                         }
                         ?>
-                </div>
+                    </div>
             </div>
 
         </nav>
-    <div class="i-pre-image-btn">&#60;</div>
-    <div class="i-next-image-btn">&#62;</div>
+        <div class="i-pre-image-btn">&#60;</div>
+        <div class="i-next-image-btn">&#62;</div>
     </div>
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Thông báo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="success-checkmark">
+                        <div class="check-icon"></div>
+                    </div>
+                    <div class="text-success font-italic mt-3">
+                        {{ session('success') }}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                $('#successModal').modal('show');
+            });
+        </script>
+    @endif
     <div class="r-content pb-4">
         <div class="container">
             <div class="title-navigation my-5">Đăng kí vào kí túc xá</div>
             <div class="text-navigation">Bạn hãy điền đầy đủ các thông tin dưới đây: </div>
             <div class="box-content my-3">
-                <div class="row justify-content-center">
-                    <div class="col-md-2 px-4 py-3">
-                        <div class="box-avatar-3x4">
-                            <div class="text-des-avatar">Chọn ảnh 3x4</div>
+                <form action="{{ route('students.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row justify-content-center">
+                        <div class="col-md-2 px-4 py-3">
+                            <div id="avatarPreview" class="text-center box-avatar-3x4">Chọn ảnh</div>
+                            <input type="file" id="fileInput" name="avatar" required style="display: none;">
                         </div>
-                        <input class="file-avatar" type="file" name="avatar" placeholder="Nothing">
+                        <div class="col-md-9">
+                            <div class="h4 mt-3 text-center">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+                            <div class="text-country text-center">Độc lập - Tự do - Hạnh Phúc</div>
+                            <hr class="mx-5">
+                            <div class="title-application h4 mb-4 text-center font-weight-bold">ĐƠN XIN NỘI TRÚ KÍ TÚC
+                                XÁ
+                            </div>
+                            <div class="d-block text-right">
+                                <div class="d-inline-block h5 font-weight-bold mx-5">Kính gửi:</div>
+                                <div class="d-inline-block h5 font-weight-bold">- Hiệu trưởng trường Cao Đẳng Công Nghệ
+                                    Thủ
+                                    Đức</div>
+                            </div>
+                            <div class="d-block h5 font-weight-bold text-right mx-5">- Phòng Công tác Chính trị - Học
+                                sinh
+                                sinh viên.</div>
+                        </div>
+                        <div class="col-md-1"></div>
                     </div>
-                    <div class="col-md-9">
-                        <div class="h4 mt-3 text-center">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
-                        <div class="text-country text-center">Độc lập - Tự do - Hạnh Phúc</div>
-                        <hr class="mx-5">
-                        <div class="title-application h4 mb-4 text-center font-weight-bold">ĐƠN XIN NỘI TRÚ KÍ TÚC XÁ
-                        </div>
-                        <div class="d-block text-right">
-                            <div class="d-inline-block h5 font-weight-bold mx-5">Kính gửi:</div>
-                            <div class="d-inline-block h5 font-weight-bold">- Hiệu trưởng trường Cao Đẳng Công Nghệ Thủ
-                                Đức</div>
-                        </div>
-                        <div class="d-block h5 font-weight-bold text-right mx-5">- Phòng Công tác Chính trị - Học sinh
-                            sinh viên.</div>
-                    </div>
-                    <div class="col-md-1"></div>
-                </div>
-                <div class="box-data mx-5 my-4">
-                    <div class="data d-flex justify-content-between">
-                        <div class="mr-3">Họ và tên HSSV: </div>
-                        <input class="input-name form-control" type="text" name="fullname" id="fullname">
-                        <div class="gender text-right">
-                            <div class="d-flex">
-                                <div class="form-check mx-3 text-start">
-                                    <input class="form-check-input" type="radio" name="nam" id="nam">
-                                    <label class="form-check-label" for="nam">
-                                        Nam
-                                    </label>
-                                </div>
-                                <div class="form-check mx-3 text-end">
-                                    <input class="form-check-input" type="radio" name="nu" id="nu">
-                                    <label class="form-check-label" for="nu">
-                                        Nữ
-                                    </label>
+                    <div class="box-data mx-5 my-4">
+
+                        <div class="data d-flex justify-content-between">
+                            <div class="mr-3">Họ và tên HSSV: </div>
+                            <input class="input-name form-control" type="text" name="fullname" id="fullname" required>
+                            <div class="gender text-right">
+                                <div class="d-flex">
+                                    <div class="form-check mx-3 text-start">
+                                        <input class="form-check-input" type="radio" name="gender" id="nam" value="1"
+                                            required>
+                                        <label class="form-check-label" for="nam">
+                                            Nam
+                                        </label>
+                                    </div>
+                                    <div class="form-check mx-3 text-end">
+                                        <input class="form-check-input" type="radio" name="gender" id="nu" value="0">
+                                        <label class="form-check-label" for="nu">
+                                            Nữ
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="data d-flex justify-content-between">
+                            <div class="mr-3">Ngày sinh: </div>
+                            <input class="input-day form-control" type="date" name="dayBorn" id="dayBorn" required>
+                        </div>
+                        <div class="data d-flex justify-content-between">
+                            <div class="mr-3">Thường trú tại: </div>
+                            <input class="input-live form-control" type="text" name="liveIn" id="liveIn" required>
+                        </div>
+                        <div class="data d-flex justify-content-between">
+                            <div class="mr-3">Là HSSV lớp: </div>
+                            <input class="input-class form-control" type="text" name="class" id="class" required>
+                            <div class="mr-1">Khóa: </div>
+                            <input class="input-course form-control" type="number" min="0" max="24" step="1"
+                                name="course" id="course" required>
+                        </div>
+                        <div class="data d-flex justify-content-between">
+                            <div class="mr-3">Mã số HSSV: </div>
+                            <input class="input-codeStudent form-control" type="text" name="codeStudent"
+                                id="codeStudent" required>
+                            <div class="mr-1">Số điện thoại: </div>
+                            <input class="input-phoneNumber form-control" type="text" name="phoneNumber"
+                                id="phoneNumber" required>
+                        </div>
+                        <div class="data d-flex justify-content-between">
+                            <div class="mr-3">Ngành: </div>
+                            <input class="input-live form-control" type="text" name="job" id="job">
+                        </div>
+                        <div class="data d-flex justify-content-between">
+                            <div class="mr-3">Đối tượng ưu tiên (nếu có): </div>
+                            <input class="input-l form-control" type="text" name="uutien" id="uutien">
+                        </div>
+                        <div class="data d-block justify-content-between">
+                            <div class="mr-3 font-italic">Đề nghị nhà trường xem xét, tiếp nhận tôi được nội trú Kí túc
+                                xá
+                                Trường Cao Đẳng Công Nghệ Thủ Đức.</div>
+                            <div class="mr-3 font-italic">Tôi xin cam kết thực hiện đầy đủ các điều khoản được quy định
+                                tại
+                                Thông tư số 27/TT-BGDDT ngày 31/02/2024 của Bộ Giáo dục và đào tạo ban hành Quy chế công
+                                tác
+                                sinh viên, sinh viên nội trú tại các cơ sở giáo dục thuộc hệ thống giáo dục quốc dân và
+                                nội
+                                quy Kí túc xá hiện hành.</div>
+                        </div>
+
                     </div>
-                    <div class="data d-flex justify-content-between">
-                        <div class="mr-3">Ngày sinh: </div>
-                        <input class="input-day form-control" type="date" name="dayBorn" id="dayBorn">
+                    <div class="row my-5">
+                        <div class="col-6 text-center">
+                            <div class="font-weight-bold date-create">Ý kiến của P.CT Chính trị - HSSV</div>
+                        </div>
+                        <div class="col-6 text-center">
+                            <div id="current-date" class="font-italic"></div>
+                            <div class="date-create font-weight-bold">Người làm đơn</div>
+                            <div class="font-italic">(Kí tên, ghi rõ họ tên)</div>
+                        </div>
                     </div>
-                    <div class="data d-flex justify-content-between">
-                        <div class="mr-3">Thường trú tại: </div>
-                        <input class="input-live form-control" type="text" name="liveIn" id="liveIn">
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary px-5 py-3 font-weight-bold">Đăng kí</button>
                     </div>
-                    <div class="data d-flex justify-content-between">
-                        <div class="mr-3">Là HSSV lớp: </div>
-                        <input class="input-class form-control" type="text" name="class" id="class">
-                        <div class="mr-1">Khóa: </div>
-                        <input class="input-course form-control" type="number" min="0" max="24" step="1" name="course"
-                            id="course">
-                    </div>
-                    <div class="data d-flex justify-content-between">
-                        <div class="mr-3">Mã số HSSV: </div>
-                        <input class="input-codeStudent form-control" type="text" name="codeStudent" id="codeStudent">
-                        <div class="mr-1">Số điện thoại: </div>
-                        <input class="input-phoneNumber form-control" type="text" name="phoneNumber" id="phoneNumber">
-                    </div>
-                    <div class="data d-flex justify-content-between">
-                        <div class="mr-3">Ngành: </div>
-                        <input class="input-live form-control" type="text" name="job" id="job">
-                    </div>
-                    <div class="data d-flex justify-content-between">
-                        <div class="mr-3">Đối tượng ưu tiên (nếu có): </div>
-                        <input class="input-l form-control" type="text" name="uutien" id="uutien">
-                    </div>
-                    <div class="data d-block justify-content-between">
-                        <div class="mr-3 font-italic">Đề nghị nhà trường xem xét, tiếp nhận tôi được nội trú Kí túc xá
-                            Trường Cao Đẳng Công Nghệ Thủ Đức.</div>
-                        <div class="mr-3 font-italic">Tôi xin cam kết thực hiện đầy đủ các điều khoản được quy định tại
-                            Thông tư số 27/TT-BGDDT ngày 31/02/2024 của Bộ Giáo dục và đào tạo ban hành Quy chế công tác
-                            sinh viên, sinh viên nội trú tại các cơ sở giáo dục thuộc hệ thống giáo dục quốc dân và nội
-                            quy Kí túc xá hiện hành.</div>
-                    </div>
-                </div>
-                <div class="row my-5">
-                    <div class="col-6 text-center">
-                        <div class="font-weight-bold date-create">Ý kiến của P.CT Chính trị - HSSV</div>
-                    </div>
-                    <div class="col-6 text-center">
-                        <div class="font-italic">Ngày ... ... Tháng ... ... Năm ... ...</div>
-                        <div class="date-create font-weight-bold">Người làm đơn</div>
-                        <div class="font-italic">(Kí tên, ghi rõ họ tên)</div>
-                        <div class="kiTen"></div>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <div class="btn btn-outline-primary">Đăng kí ngay</div>
-                </div>
+                </form>
                 <hr>
                 <div class="rule text-left mx-5">
                     <div class="title-rule font-weight-bold h3 my-5 text-center">TRÍCH DẪN NỘI QUY KÍ TÚC XÁ</div>
@@ -207,8 +260,8 @@
                         định của Nhà nước; Chứa chấp, che dấu hàng quốc cấm; phá hoại, ăn cắp của công, tài sản của công
                         dân.</div>
                 </div>
+            </div>
         </div>
-    </div>
     </div>
     <div class="i-footer">
         <div class="footer-background">
@@ -264,6 +317,8 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
