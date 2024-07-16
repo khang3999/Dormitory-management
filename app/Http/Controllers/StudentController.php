@@ -73,6 +73,9 @@ class StudentController extends Controller
         $student->note = $request->note;
         $student->time = $request->time;
         $student->idphong = $request->phong;
+        $student->class = $request->class;
+        $student->course = $request->course;
+        $student->job = $request->job;
     
         $student->save();
     
@@ -82,17 +85,17 @@ class StudentController extends Controller
     {
         $student = Student::findOrFail($request->student_id);
     
-        $student->name = $request->name;
-        $student->MSSV = $request->MSSV;
-        $student->mail = $request->mail;
-        $student->gender = $request->gender;
-        $student->phone = $request->phone;
-        $student->cccd = $request->cccd;
-        $student->birthday = $request->birthday;
-        $student->address = $request->address;
-        $student->nation = $request->nation;
-        $student->note = $request->note;
-        $student->time = $request->time;
+        // $student->name = $request->name;
+        // $student->MSSV = $request->MSSV;
+        // $student->mail = $request->mail;
+        // $student->gender = $request->gender;
+        // $student->phone = $request->phone;
+        // $student->cccd = $request->cccd;
+        // $student->birthday = $request->birthday;
+        // $student->address = $request->address;
+        // $student->nation = $request->nation;
+        // $student->note = $request->note;
+        // $student->time = $request->time;
         $student->type= 1;
         $student->idphong = $request->phong;
     
@@ -110,22 +113,22 @@ class StudentController extends Controller
         return response()->json(['message' => 'Xoá sinh viên thành công!']);
     }
 //lay sinh vien đăng kí ở trong ktx
-public function getStudentIn()
-{
-    $students = Student::where('type', 2)->with('room')->get();
-    return view('admin.student-in', compact('students'));
-}
-public function getStudentOut()
-{
-    $students = Student::where('type', 0)->with('room')->get();
-    return view('admin.student-out', compact('students'));
-}
+    public function getStudentIn()
+    {
+        $students = Student::where('type', 2)->with('room')->get();
+        return view('admin.student-in', compact('students'));
+    }
+    public function getStudentOut()
+    {
+        $students = Student::where('type', 0)->with('room')->get();
+        return view('admin.student-out', compact('students'));
+    }
 //lay sinh vien đang  ở trong ktx
-public function getStudentInRightNow()
-{
-    $students = Student::whereIn('type', [0,1])->with('room')->get();
-    return view('admin.students', compact('students'));
-}
+    public function getStudentInRightNow()
+    {
+        $students = Student::whereIn('type', [0,1])->with('room')->get();
+        return view('admin.students', compact('students'));
+    }
 
 
 }

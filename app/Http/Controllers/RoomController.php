@@ -108,34 +108,17 @@ class RoomController extends Controller
         return response()->json($students);
     }
 
-    public function updateRoomStatus()
-    {
-        // Lấy tất cả các phòng
-        $rooms = Room::all();
-
-        foreach ($rooms as $room) {
-            // Đếm số lượng sinh viên trong phòng hiện tại
-            $studentCount = Student::where('idphong', $room->id)->count();
-            
-            // Cập nhật cột status với số lượng sinh viên
-            $room->status = $studentCount;
-            $room->save();
-        }
-
-        return response()->json(['status' => 'success', 'message' => 'Cập nhật số lượng sinh viên thành công']);
-    }
-  
     public function getAllRooms()
-{
-    $rooms = Room::all();
-    return response()->json($rooms);
-}
-public function layphongtrong()
-{
-    $rooms = Room::withCount('students')
-                ->having('students_count', '<', 3)
+    {
+        $rooms = Room::all();
+        return response()->json($rooms);
+    }
+    public function layphongtrong(){
+        $rooms = Room::withCount('students')
+                ->having('students_count', '<', 15)
                 ->get();
     
     return response()->json($rooms);
-}
+    }
+
     }

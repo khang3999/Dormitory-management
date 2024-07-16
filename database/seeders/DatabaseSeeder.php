@@ -37,7 +37,13 @@ class DatabaseSeeder extends Seeder
                 'note' => 'Note A',
                 'address' => 'Address A',
                 'type' => 1,
-                'idphong'=>'1'
+                'idphong'=>'1',
+                'job'=>'Cong Nghe Thong Tin',
+                'course'=>'22',
+                'class'=>'CD22TT11'
+                // $table->string('job');
+                // $table->string('year');
+                // $table->string('class');
             ],
             [
                 'MSSV' => 'S123457',
@@ -54,6 +60,9 @@ class DatabaseSeeder extends Seeder
                 'address' => 'Address B',
                 'type' => 1,
                     'idphong'=>'1',
+                    'job'=>'Cong Nghe Thong Tin',
+                    'course'=>'22',
+                    'class'=>'CD22TT11'
             ],
             [
                 'MSSV' => 'S123458',
@@ -70,6 +79,9 @@ class DatabaseSeeder extends Seeder
                 'address' => 'Address C',
                 'type' => 1,
                 'idphong'=>'1',
+                'job'=>'Cong Nghe Thong Tin',
+                'course'=>'22',
+                'class'=>'CD22TT11'
             ],
             [
                 'MSSV' => 'S123459',
@@ -86,6 +98,9 @@ class DatabaseSeeder extends Seeder
                 'address' => 'Address D',
                 'type' => 1,
                 'idphong'=>'2',
+                'job'=>'Cong Nghe Thong Tin',
+                'course'=>'22',
+                'class'=>'CD22TT11'
             ],
             [
                 'MSSV' => 'S123460',
@@ -94,7 +109,7 @@ class DatabaseSeeder extends Seeder
                 'cccd' => '123456783',
                 'birthday' => '2000-05-05',
                 'phone' => '0912345682',
-                'mail' => 'hoangvane@example.com',
+                'mail' => 'hoandddgvane@example.com',
                 'nation' => 'Vietnam',
                 'gender' => 1,
                 'time' => now(),
@@ -102,6 +117,9 @@ class DatabaseSeeder extends Seeder
                 'address' => 'Address E',
                 'type' => 1,
                 'idphong'=>'2',
+                'job'=>'Cong Nghe Thong Tin',
+                'course'=>'22',
+                'class'=>'CD22TT11'
             ],
             [
                 'MSSV' => 'S123460',
@@ -110,7 +128,7 @@ class DatabaseSeeder extends Seeder
                 'cccd' => '123456783',
                 'birthday' => '2000-05-05',
                 'phone' => '0912345682',
-                'mail' => 'hoangvane@example.com',
+                'mail' => 'hoangvanecaa@example.com',
                 'nation' => 'Vietnam',
                 'gender' => 1,
                 'time' => now(),
@@ -118,6 +136,9 @@ class DatabaseSeeder extends Seeder
                 'address' => 'Address E',
                 'type' => 0,
                 'idphong'=>'2',
+                'job'=>'Cong Nghe Thong Tin',
+                'course'=>'22',
+                'class'=>'CD22TT11'
             ],
             [
                 'MSSV' => 'S123460',
@@ -126,7 +147,7 @@ class DatabaseSeeder extends Seeder
                 'cccd' => '123456783',
                 'birthday' => '2000-05-05',
                 'phone' => '0912345682',
-                'mail' => 'hoangvane@example.com',
+                'mail' => 'hoaadqwngvane@example.com',
                 'nation' => 'Vietnam',
                 'gender' => 1,
                 'time' => now(),
@@ -134,6 +155,9 @@ class DatabaseSeeder extends Seeder
                 'address' => 'Address E',
                 'type' => 0,
                 'idphong'=>'2',
+                'job'=>'Cong Nghe Thong Tin',
+                'course'=>'22',
+                'class'=>'CD22TT11'
             ],
             [
                 'MSSV' => 'S123460',
@@ -142,7 +166,7 @@ class DatabaseSeeder extends Seeder
                 'cccd' => '123456783',
                 'birthday' => '2000-05-05',
                 'phone' => '0912345682',
-                'mail' => 'hoangvane@example.com',
+                'mail' => 'hoanfgfdgvane@example.com',
                 'nation' => 'Vietnam',
                 'gender' => 1,
                 'time' => now(),
@@ -150,15 +174,18 @@ class DatabaseSeeder extends Seeder
                 'address' => 'Address E',
                 'type' => 0,
                 'idphong'=>'2',
+                'job'=>'Cong Nghe Thong Tin',
+                'course'=>'22',
+                'class'=>'CD22TT11'
             ],
             [
-                'MSSV' => 'S123460',
+                'MSSV' => 'OUT1',
                 'password' => Hash::make('password123'),
                 'name' => 'in 1',
                 'cccd' => '123456783',
                 'birthday' => '2000-05-05',
                 'phone' => '0912345682',
-                'mail' => 'hoangvane@example.com',
+                'mail' => 'hoangvandde@example.com',
                 'nation' => 'Vietnam',
                 'gender' => 1,
                 'time' => now(),
@@ -166,16 +193,19 @@ class DatabaseSeeder extends Seeder
                 'address' => 'Address E',
                 'type' => 2,
                  'idphong'=>null,
+                 'job'=>'Cong Nghe Thong Tin',
+                 'course'=>'22',
+                 'class'=>'CD22TT11'
                 
             ],
             [
-                'MSSV' => 'S123460',
+                'MSSV' => 'OUT2',
                 'password' => Hash::make('password123'),
                 'name' => 'in 2',
                 'cccd' => '123456783',
                 'birthday' => '2000-05-05',
                 'phone' => '0912345682',
-                'mail' => 'hoangvane@example.com',
+                'mail' => 'hoangvanead@example.com',
                 'nation' => 'Vietnam',
                 'gender' => 1,
                 'time' => now(),
@@ -183,16 +213,19 @@ class DatabaseSeeder extends Seeder
                 'address' => 'Address E',
                 'type' => 2,
                  'idphong'=>null,
+                 'job'=>'Cong Nghe Thong Tin',
+                 'course'=>'22',
+                 'class'=>'CD22TT11'
                 
             ],
             [
-                'MSSV' => 'S123460',
+                'MSSV' => 'OUT3',
                 'password' => Hash::make('password123'),
                 'name' => 'in 3',
                 'cccd' => '123456783',
                 'birthday' => '2000-05-05',
                 'phone' => '0912345682',
-                'mail' => 'hoangvane@example.com',
+                'mail' => 'hoangvvane@example.com',
                 'nation' => 'Vietnam',
                 'gender' => 1,
                 'time' => now(),
@@ -200,6 +233,9 @@ class DatabaseSeeder extends Seeder
                 'address' => 'Address E',
                 'type' => 2,
                  'idphong'=>null,
+                 'job'=>'Cong Nghe Thong Tin',
+                 'course'=>'22',
+                 'class'=>'CD22TT11'
 
                 
             ],
@@ -207,29 +243,35 @@ class DatabaseSeeder extends Seeder
         DB::table('rooms')->insert([
             [
                 'name'=>'001',
-                'status'=>'10',
                 'gender'=>'nữ',
                 'note'=>'',
             ],
             [
                 'name'=>'002',
-                'status'=>'15',
                 'gender'=>'nam',
                 'note'=>'',
             ],
             [
                 'name'=>'003',
                 'gender'=>'nữ',
-                'status'=>'12',
                 'note'=>'',
             ],
         ]);
        
-        DB::table('users')->insert([
-            'name' => 'khang',
+        DB::table('users')->insert(
+            [[
+            'name' => 'khangggg',
             'email' => 'huukhang@gmail.com',
-            'password' => '123',
-        ]);
+            'password' => Hash::make('12345678'),
+            'permission' => 'student',
+        ],
+        [
+            'name' => 'vanduvandu',
+            'email' => 'vandupluss@gmail.com',
+            'password' => Hash::make('12345678'),
+            'permission'=>'admin',
+        ],]
+    );
 
         DB::table('events')->insert([
             'id' => 0,
