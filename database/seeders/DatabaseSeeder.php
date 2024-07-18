@@ -275,7 +275,28 @@ class DatabaseSeeder extends Seeder
 
         DB::table('events')->insert([
             'id' => 0,
-            'title' => 'Thông báo miễn giảm học phí',
+            'title' => '1',
+            'content' => 'latfbnigyiauombaeiuNOm',
+            'img' => 'banner.jpg',
+            'type' => 'none'
+        ]);
+        DB::table('events')->insert([
+            'id' => 0,
+            'title' => '2',
+            'content' => 'latfbnigyiauombaeiuNOm',
+            'img' => 'banner.jpg',
+            'type' => 'none'
+        ]);
+        DB::table('events')->insert([
+            'id' => 0,
+            'title' => '3',
+            'content' => 'latfbnigyiauombaeiuNOm',
+            'img' => 'banner.jpg',
+            'type' => 'none'
+        ]);
+        DB::table('events')->insert([
+            'id' => 0,
+            'title' => '4',
             'content' => 'latfbnigyiauombaeiuNOm',
             'img' => 'banner.jpg',
             'type' => 'none'

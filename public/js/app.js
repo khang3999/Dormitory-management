@@ -33,12 +33,12 @@ document.addEventListener("DOMContentLoaded", function () {
             navbarBefore.style.height = '10px';
             changeNav = true;
             hiddenNav.innerHTML = '<i class="bi bi-caret-down-fill icon-nav-hidden"></i>';
-        }else if (navbar.style.height = '1px'){
+        } else if (navbar.style.height = '1px') {
             navbar.style.height = '130px';
             navbarBefore.style.height = '130px';
             changeNav = false;
             hiddenNav.innerHTML = '<i class="bi bi-caret-up-fill icon-nav-hidden"></i>';
-        }else{
+        } else {
             navbar.style.height = '160px';
             navbarBefore.style.height = '160px';
             changeNav = true;
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 navbar.style.height = '130px';
                 navbarBefore.style.height = '130px';
             }
-            else{
+            else {
                 navbar.style.height = '1px';
                 navbarBefore.style.height = '10px';
             }
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 navbar.style.height = '160px';
                 navbarBefore.style.height = '160px';
             }
-            else{
+            else {
                 navbar.style.height = '0px';
                 navbarBefore.style.height = '10px';
             }
@@ -137,38 +137,54 @@ document.addEventListener("DOMContentLoaded", function () {
         changeImage(currentImageIndex);
     }, 3000);
 
+});
+
     // Event Navigation
     let currentEventIndex = 0;
     const eventItems = document.querySelectorAll('.i-event .col-md-4');
+    const prevButton = document.querySelector('.i-pre-event-btn');
+    const nextButton = document.querySelector('.i-next-event-btn');
 
     function updateEventVisibility() {
         eventItems.forEach((item, index) => {
-            if (currentEventIndex > eventItems.length - 1) {
-                document.querySelector('.i-next-event-btn').setAttribute('disabled');
-            } else if (currentEventIndex < 0) {
-                document.querySelector('.i-pre-event-btn').setAttribute('disabled');
-            }
             if (index >= currentEventIndex && index < currentEventIndex + 3) {
                 item.style.display = 'block';
-            }
-            else {
+            } else {
                 item.style.display = 'none';
             }
         });
+    
+        // Disable/enable buttons based on currentEventIndex
+        if (currentEventIndex <= 0) {
+            prevButton.setAttribute('disabled', true);
+        } else {
+            prevButton.removeAttribute('disabled');
+        }
+    
+        if (currentEventIndex >= eventItems.length) {
+            nextButton.setAttribute('disabled', true);
+        } else {
+            nextButton.removeAttribute('disabled');
+        }
     }
+    
+    
 
-    document.querySelector('.i-pre-event-btn').addEventListener('click', function () {
-        currentEventIndex = (currentEventIndex - 1 + eventItems.length) % eventItems.length;
-        updateEventVisibility();
+    prevButton.addEventListener('click', function () {
+        if (currentEventIndex > 0) {
+            currentEventIndex--;
+            updateEventVisibility();
+        }
     });
 
-    document.querySelector('.i-next-event-btn').addEventListener('click', function () {
-        currentEventIndex = (currentEventIndex + 1) % eventItems.length;
-        updateEventVisibility();
+    nextButton.addEventListener('click', function () {
+        if (currentEventIndex < eventItems.length - 1) {
+            currentEventIndex++;
+            updateEventVisibility();
+        }
     });
 
     updateEventVisibility();
-});
 
 // Avatar File Upload
 document.getElementById('avatarPreview').addEventListener('click', function () {

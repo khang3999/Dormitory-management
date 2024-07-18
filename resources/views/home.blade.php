@@ -189,18 +189,19 @@
         <div class="container">
             <div class="i-title bg-warning text-white px-5 py-2 mb-4">Tin nổi bật</div>
             <div class="row">
-                @foreach ($events as $event)
-                    <div class="col-12 col-md-4 mb-4">
-                        <div class="i-event-image">
-                            <img class="i-event-image" src="/images/{{$event->img}}" alt="">
+                @foreach ($events as $index => $event)
+                    @if (true)
+                        <div class="col-md-4 mb-4">
+                            <div class="i-event-image">
+                                <img class="i-event-image" src="/images/{{ $event->img }}" alt="">
+                            </div>
+                            <div class="i-event-title">{{ $event->title }}</div>
+                            <div class="i-event-text">
+                                {{ $event->content }}
+                            </div>
                         </div>
-                        <div class="i-event-title">{{ $event->title }}</div>
-                        <div class="i-event-text">
-                            {{ $event->content }}
-                        </div>
-                    </div>
+                    @endif
                 @endforeach
-
             </div>
         </div>
         <div class="i-map">
