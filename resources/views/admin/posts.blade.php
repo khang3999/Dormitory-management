@@ -5,7 +5,7 @@
     <div class="bang" id="quanLyPhong">
         <div class="tableName">Quản lý bài viết</div>
         <div class="row py-2">
-            
+
             <div class="col-8">
                 <div class="groupbutton">
                     <button class="btn-file btn-create-post" data-toggle="modal" data-target="#createPostModal">Tạo bài
@@ -14,9 +14,9 @@
             </div>
             <div class="col-4">
                 <div class="input-group">
-                    <input type="search" class="form-control rounded" placeholder="Tìm kiếm theo tên bài viết" aria-label="Search"
-                        aria-describedby="search-addon" />
-                   
+                    <input type="search" class="form-control rounded" placeholder="Tìm kiếm theo tên bài viết"
+                        aria-label="Search" aria-describedby="search-addon" />
+
                 </div>
             </div>
         </div>
@@ -138,7 +138,7 @@
             // Sự kiện khi thay đổi nội dung ô tìm kiếm
             $('input[type="search"]').on('keyup', function() {
                 var searchText = $(this).val()
-            .toLowerCase(); // Lấy nội dung tìm kiếm và chuyển thành chữ thường
+                    .toLowerCase(); // Lấy nội dung tìm kiếm và chuyển thành chữ thường
 
                 // Lặp qua từng hàng trong bảng
                 $('table tbody tr').each(function() {
@@ -146,7 +146,7 @@
                     // Lặp qua từng ô dữ liệu trong hàng
                     $(this).find('td').each(function() {
                         var cellText = $(this).text()
-                    .toLowerCase(); // Lấy nội dung của ô và chuyển thành chữ thường
+                            .toLowerCase(); // Lấy nội dung của ô và chuyển thành chữ thường
                         // Kiểm tra xem chuỗi tìm kiếm có tồn tại trong nội dung ô không
                         if (cellText.indexOf(searchText) !== -1) {
                             found = true;
@@ -177,9 +177,18 @@
                 modal.find('#modalPostContent').val(content);
 
                 if (img) {
-                    modal.find('#currentImg').attr('src', '/' + img); // Set src attribute for the image
-                    var imgName = img.split('/').pop(); // Extract the file name from the path
-                    modal.find('#currentImgName').text(imgName); // Show the file name
+                    // Xây dựng đường dẫn mới cho ảnh
+                    var newImgPath = 'images/img/' + img.split('/')
+                .pop(); // Lấy tên file từ đường dẫn và thêm vào chuỗi 'images/img/'
+
+                    // Đặt thuộc tính src cho ảnh
+                    modal.find('#currentImg').attr('src', '/' + newImgPath);
+
+                    // Lấy tên file từ đường dẫn mới
+                    var imgName = newImgPath.split('/').pop();
+
+                    // Hiển thị tên file
+                    modal.find('#currentImgName').text(imgName);
                 }
             });
             $('#savePostButton').click(function() {
