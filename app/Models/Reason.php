@@ -12,4 +12,8 @@ class Reason extends Model
     protected $fillable = [
         'fullname','codeStudent', 'reason', 'room'
     ];
+    public function student()
+    {
+        return $this->belongsTo(Student::class, 'codeStudent', 'mssv');
+    }
 }

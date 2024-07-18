@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    overflow: hidden;
     padding: 0;
 }
 a{
@@ -139,8 +140,6 @@ main {
 .table {
     width: 100%;
     margin-bottom: 0;
-
-
 }
 
 .checkbox-group {

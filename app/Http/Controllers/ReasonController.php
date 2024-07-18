@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reason;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class ReasonController extends Controller
@@ -44,6 +45,13 @@ class ReasonController extends Controller
         $reason->room = $validatedData['room'];
 
         $reason->save();
+
+        // Cập nhật thông tin sinh viên
+        $student = Student::where('mssv', $request->codeStudent)->first();
+        if ($student) {
+            $student->type = 0; // Đổi type thành 0
+            $student->save();
+        }
         // Sau khi lưu thành công, có thể chuyển hướng người dùng về trang khác hoặc hiển thị thông báo thành công
         return redirect()->route('reasons.store')->with('success', 'Đăng kí thành công');
     }
@@ -79,4 +87,20 @@ class ReasonController extends Controller
     {
         //
     }
+    public function getReasonByMssv($mssv)
+{
+    $student = Student::where('mssv', $mssv)->first();
+
+    if (!$student) {
+        return response()->json(['message' => 'Student not found'], 404);
+    }
+
+    $reasons = $student->reasons;
+
+    if ($reasons->isEmpty()) {
+        return response()->json(['message' => 'No reasons found for this student'], 404);
+    }
+
+    return response()->json($reasons);
+}
 }

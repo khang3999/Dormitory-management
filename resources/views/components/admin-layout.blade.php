@@ -49,7 +49,7 @@
       <a href="#" class="admin-btn"><i class="bi bi-postcard-fill me-1"></i>Quản lý bài viết</a>
     </div>
     <div class="col-3 d-flex justify-content-center">
-      <a href="#" class="admin-btn"><i class="bi bi-bar-chart-line-fill me-1"></i>Thống kê</a>
+      <a href="{{route('admin.statistical')}}" class="admin-btn"><i class="bi bi-bar-chart-line-fill me-1"></i>Thống kê</a>
     </div>
   </div>
   <div class="row">

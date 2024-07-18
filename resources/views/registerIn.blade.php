@@ -36,30 +36,30 @@
                 <div class="collapse navbar-collapse" id="navbarScroll">
                     <ul class="navbar-nav mx-5">
                         <li class="nav-item">
-                            <a class="nav-link active px-3 btn-navigation" aria-current="page"
+                            <a class="active px-3 btn btn-navigation" aria-current="page"
                                 href="{{ route('home')}}">Trang chủ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active px-3 btn-navigation" aria-current="page"
+                            <a class="px-3 btn-navigation" aria-current="page"
                                 href="{{ route('myRegister') }}">Đơn vào</a>
                         </li>
                         <li class="nav-item">
                             <?php if ($user != null) { ?>
-                            <a class="nav-link active px-3 btn-navigation" aria-current="page"
+                            <a class="active px-3 btn-navigation" aria-current="page"
                                 href="{{ route('outKTX') }}">Đơn ra</a>
                             <?php } else {?>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button class="btn btn-navigation" type="submit">Đơn ra</button>
-                            </form>
+                                <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button class="btn btn-navigation" type="submit">Đơn ra</button>
+                                    </form>
                             <?php }?>
 
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active px-3 btn-navigation" aria-current="page" href="#">Nội quy</a>
+                            <a class="active px-3 btn-navigation" aria-current="page" href="#">Nội quy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active px-3 btn-navigation" aria-current="page" href="#">Liên hệ</a>
+                            <a class="active px-3 btn-navigation" aria-current="page" href="#">Liên hệ</a>
                         </li>
                     </ul>
                 </div>

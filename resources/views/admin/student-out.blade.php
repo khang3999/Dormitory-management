@@ -76,16 +76,12 @@
                                     <i class="bi bi-eye" type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#modalStudent" data-student-name="{{ $student->name }}"
                                         data-student-id="{{ $student->id }}" data-student-mssv="{{ $student->MSSV }}"
-                                        data-student-mail="{{ $student->mail }}"
-                                        data-student-gender="{{ $student->gender }}"
-                                        data-student-phone="{{ $student->phone }}"
-                                        data-student-cccd="{{ $student->cccd }}"
+                                        data-student-mail="{{ $student->mail }}" data-student-gender="{{ $student->gender }}"
+                                        data-student-phone="{{ $student->phone }}" data-student-cccd="{{ $student->cccd }}"
                                         data-student-birthday="{{ $student->birthday }}"
                                         data-student-address="{{ $student->address }}"
-                                        data-student-nation="{{ $student->nation }}"
-                                        data-student-note="{{ $student->note }}"
-                                        data-student-time="{{ $student->time }}"
-                                        data-student-phong="{{ $student->idphong }}">
+                                        data-student-nation="{{ $student->nation }}" data-student-note="{{ $student->note }}"
+                                        data-student-time="{{ $student->time }}" data-student-phong="{{ $student->idphong }}">
                                     </i>
                                 </td>
                                 <!-- Thêm các trường khác nếu cần thiết -->
@@ -120,12 +116,18 @@
                         <input type="hidden" name="student_id" id="student-id">
                         <div class="form-group col-md-6" style="display: none">
                             <label for="student-id-display">ID:</label>
-                            <input type="text" class="form-control" id="student-id-display" name="student_id"
-                                readonly>
+                            <input type="text" class="form-control" id="student-id-display" name="student_id" readonly>
                         </div>
                         <div class="form-group col-md-12 text-center ">
                             <img class="student-image " id="student-image" src="" alt="Student Image"
                                 class="img-fluid rounded">
+                        </div>
+                        <div class="alert alert-danger">
+                            @foreach ($reasons as $reason)
+                                @if ($reason->codeStudent == $student->MSSV)
+                                    <div>{{ $reason->reason }}</div>
+                                @endif
+                            @endforeach
                         </div>
                         <div class="form-group col-md-6">
                             <label for="student-name">Tên:</label>
@@ -153,8 +155,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="student-birthday">Ngày sinh:</label>
-                            <input readonly type="date" class="form-control" id="student-birthday"
-                                name="birthday">
+                            <input readonly type="date" class="form-control" id="student-birthday" name="birthday">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="student-address">Quê quán:</label>
@@ -196,7 +197,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $('#exampleModalRoom').on('show.bs.modal', function(event) {
+        $('#exampleModalRoom').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var roomId = button.data('room-id');
             var roomName = button.data('room-name');
@@ -214,11 +215,11 @@
             $.ajax({
                 url: '/admin/rooms/' + roomId + '/students',
                 method: 'GET',
-                success: function(data) {
+                success: function (data) {
                     var studentTable = modal.find('#student-table tbody');
                     studentTable.empty();
                     if (data.length > 0) {
-                        data.forEach(function(student) {
+                        data.forEach(function (student) {
 
                             studentTable.append(
                                 '<tr><td class="text-12">' +
@@ -267,14 +268,14 @@
                             '<tr><td colspan="12">Không có sinh viên nào trong phòng</td></tr>');
                     }
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
+                error: function (jqXHR, textStatus, errorThrown) {
                     console.error('AJAX error: ' + textStatus + ' : ' + errorThrown);
                 }
             });
         });
 
-        $(document).ready(function() {
-            $('#modalStudent').on('show.bs.modal', function(event) {
+        $(document).ready(function () {
+            $('#modalStudent').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget);
                 var modal = $(this);
 
@@ -292,7 +293,7 @@
                 modal.find('#student-time').val(button.data('student-time'));
                 var studentImage = button.data('student-image');
                 modal.find('#student-image').attr('src', studentImage ? studentImage :
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxdYCUFoUPaFmn2NytlDMr6_kj2c3bq_3jkA&s'
+                    '../images/avatar/' + modal.find('#student-mssv').val() + '.jpg'
                 );
 
 
@@ -300,10 +301,10 @@
                 $.ajax({
                     url: '{{ route("rooms.all") }}',
                     method: 'GET',
-                    success: function(rooms) {
+                    success: function (rooms) {
                         var roomSelect = modal.find('#student-phong');
                         roomSelect.empty();
-                        rooms.forEach(function(room) {
+                        rooms.forEach(function (room) {
                             var selected = room.id == button.data('student-phong') ?
                                 'selected' : '';
                             var roomOption =
@@ -311,15 +312,15 @@
                             roomSelect.append(roomOption);
                         });
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error('Error fetching rooms:', error);
                     }
                 });
             });
 
-            $('#deleteStudent').click(function() {
+            $('#deleteStudent').click(function () {
                 var studentId = $('#student-mssv').val();
-               
+
 
                 if (confirm('Bạn có chắc chắn muốn xoá sinh viên này không?')) {
 
@@ -330,27 +331,27 @@
                             _token: '{{ csrf_token() }}',
                             mssv: studentId // Assuming studentId is the mssv
                         },
-                        success: function(response) {
+                        success: function (response) {
                             alert('Đã xoá tài khoản cho sinh viên');
 
                             $.ajax({
                                 url: '/admin/student/' + $('#student-id').val(),
                                 type: 'DELETE',
-                                success: function(response) {
+                                success: function (response) {
                                     alert('Student deleted successfully!');
                                     // var mssv = $('#student-id').val();
                                     $('#modalStudent').modal('hide');
                                     location
-                                .reload(); // Reload the page to see the changes
+                                        .reload(); // Reload the page to see the changes
                                 },
-                                error: function(xhr) {
+                                error: function (xhr) {
                                     console.log(xhr.responseText);
                                     alert(
-                                    'Something went wrong. Please try again.');
+                                        'Something went wrong. Please try again.');
                                 }
                             });
                         },
-                        error: function(xhr) {
+                        error: function (xhr) {
                             console.log(xhr.responseText);
                             alert(
                                 'Xoá tài khoản sinh viên không thành công');
@@ -364,11 +365,11 @@
 
         function filterStudents() {
             var searchKeyword = $('#search-input').val().toLowerCase();
-            var genderFilter = $('input[name="options"]:checked').map(function() {
+            var genderFilter = $('input[name="options"]:checked').map(function () {
                 return $(this).val();
             }).get();
 
-            $('table tbody tr').each(function() {
+            $('table tbody tr').each(function () {
                 var MSSV = $(this).find('td:eq(2)').text().toLowerCase();
                 var studentName = $(this).find('td:eq(1)').text().toLowerCase();
                 var studentGender = $(this).find('td:eq(4)').text().toLowerCase();
@@ -402,16 +403,16 @@
             });
         }
 
-        $(document).ready(function() {
-            $('.loc').change(function() {
+        $(document).ready(function () {
+            $('.loc').change(function () {
                 filterStudents();
             });
 
-            $('#search-button').click(function() {
+            $('#search-button').click(function () {
                 filterStudents();
             });
 
-            $('#search-input').on('keyup', function(event) {
+            $('#search-input').on('keyup', function (event) {
                 if (event.key === 'Enter') {
                     filterStudents();
                 }

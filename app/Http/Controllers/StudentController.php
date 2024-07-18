@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Models\Reason;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use PharIo\Manifest\Email;
@@ -14,11 +15,11 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-   public function index()
-{
-    $students = Student::all(); // Hoặc lấy dữ liệu theo điều kiện phù hợp
-    return view('admin.student-in', compact('students'));
-}
+    public function index()
+    {
+        $students = Student::all(); // Hoặc lấy dữ liệu theo điều kiện phù hợp
+        return view('admin.student-in', compact('students'));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -107,7 +108,7 @@ class StudentController extends Controller
     public function update(Request $request)
     {
         $student = Student::findOrFail($request->student_id);
-    
+
         $student->name = $request->name;
         $student->MSSV = $request->MSSV;
         $student->mail = $request->mail;
@@ -123,15 +124,15 @@ class StudentController extends Controller
         $student->class = $request->class;
         $student->course = $request->course;
         $student->job = $request->job;
-    
+
         $student->save();
-    
+
         return response()->json(['message' => 'Cập nhật thành công!']);
     }
     public function duyetdon(Request $request)
     {
         $student = Student::findOrFail($request->student_id);
-    
+
         // $student->name = $request->name;
         // $student->MSSV = $request->MSSV;
         // $student->mail = $request->mail;
@@ -143,11 +144,11 @@ class StudentController extends Controller
         // $student->nation = $request->nation;
         // $student->note = $request->note;
         // $student->time = $request->time;
-        $student->type= 1;
+        $student->type = 1;
         $student->idphong = $request->phong;
-    
+
         $student->save();
-    
+
         return response()->json(['message' => 'Cập nhật thành công!']);
     }
     /**
@@ -159,7 +160,7 @@ class StudentController extends Controller
         $student->delete();
         return response()->json(['message' => 'Xoá sinh viên thành công!']);
     }
-//lay sinh vien đăng kí ở trong ktx
+    //lay sinh vien đăng kí ở trong ktx
     public function getStudentIn()
     {
         $students = Student::where('type', 2)->with('room')->get();
@@ -167,15 +168,31 @@ class StudentController extends Controller
     }
     public function getStudentOut()
     {
+        // Lấy danh sách sinh viên có type = 0 và kèm theo thông tin phòng
         $students = Student::where('type', 0)->with('room')->get();
-        return view('admin.student-out', compact('students'));
+
+        $reasons = Reason::all();
+
+        // Trả về view 'admin.student-out' với dữ liệu sinh viên và lý do
+        return view('admin.student-out', compact('students','reasons'));
     }
-//lay sinh vien đang  ở trong ktx
+
+    //lay sinh vien đang  ở trong ktx
     public function getStudentInRightNow()
     {
-        $students = Student::whereIn('type', [0,1])->with('room')->get();
+        $students = Student::whereIn('type', [0, 1])->with('room')->get();
         return view('admin.students', compact('students'));
     }
 
+    public function statistical()
+    {
+        $maleStudents = Student::where('gender', '1')->count();
+        $femaleStudents = Student::where('gender', '0')->count();
+
+        return view('admin.statistical', [
+            'maleStudents' => $maleStudents,
+            'femaleStudents' => $femaleStudents
+        ]);
+    }
 
 }

@@ -16,12 +16,12 @@ body{
 .title-navigation {
     font-size: 40px;
     text-align: center;
-    background-color: aquamarine;
+    background-color: teal;
     padding: 20px;
     font-weight: bold;
     clip-path: polygon(100% 0, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%);
     font-style: italic;
-    color: red;
+    color: white;
 }
 
 .box-avatar-3x4 {

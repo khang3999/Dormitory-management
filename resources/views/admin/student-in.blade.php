@@ -362,9 +362,10 @@
                 modal.find('#student-nation').val(button.data('student-nation'));
                 modal.find('#student-note').val(button.data('student-note'));
                 modal.find('#student-time').val(button.data('student-time'));
+                var studentCode = modal.find('#student-mssv').val();
                 var studentImage = button.data('student-image');
                 modal.find('#student-image').attr('src', studentImage ? studentImage :
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxdYCUFoUPaFmn2NytlDMr6_kj2c3bq_3jkA&s'
+                    "../images/avatar/" + studentCode + '.jpg'
                 );
 
                 // Load room options

@@ -33,7 +33,7 @@ ul{
     width: 100%;
     height: 130px;
     filter: blur(0px);
-    background: linear-gradient(11deg, rgba(0, 155, 245, 1) 0%, rgba(0, 255, 253, 1) 40%, rgba(0, 212, 255, 1) 100%);
+    background: teal;
 }
 
 .navbar.scrolled {
@@ -64,7 +64,7 @@ ul{
 }
 
 .hidden-nav.scrolled{
-    background-color: rgba(0, 255, 253, 1);
+    background-color: teal;
     background-blend-mode: overlay;
     color: #000;
 }
@@ -73,18 +73,19 @@ ul{
     font-weight: bold;
     margin: 30px 16px;
     padding: 15px 40px;
-    background: #009bf5;
+    background: #fff;
     z-index: 2;
-    color: #fff;
-    border: 2px solid #009bf5;
+    color: teal !important;
+    border: 2px solid teal;
     border-radius: 5px;
     margin-left: 20px;
 }
 
 .btn-navigation.scrolled:hover {
-    background-color: #000;
-    border: 2px solid #000;
+    background-color: aquamarine;
+    border: 2px solid aquamarine;
     color: #fff;
+    text-decoration: none;
 }
 
 .logo {
@@ -142,12 +143,14 @@ ul{
     border: 2px solid #009bf5;
     border-radius: 5px;
     margin-left: 20px;
+    text-decoration: none;
     transition: all 0.3s ease-out;
 }
 
 .btn-navigation:hover {
     background-color: #009bf5;
     border: 2px solid #009bf5;
+    text-decoration: none;
     color: #fff;
 }
 

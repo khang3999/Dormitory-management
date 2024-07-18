@@ -10,6 +10,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RemoveController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\RulesController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 
@@ -36,6 +37,10 @@ Route::post('/myRegister', [StudentController::class, 'store'])->name('students.
 Route::get('/outKTX', [RemoveController::class, 'index'])->name('outKTX');
 Route::post('/outKTX', [ReasonController::class, 'store'])->name('reasons.store');
 
+// Trang nội quy
+Route::get('/rules', [RulesController::class, 'index'])->name('rules');
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -53,6 +58,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('students', [StudentController::class, 'getStudentInRightNow'])->name('admin.students');
     //lay sinh vien ra khoi ktx
     Route::get('student-out', [StudentController::class, 'getstudentOut'])->name('admin.student-out');
+
+    Route::get('statistical', [StudentController::class, 'statistical'])->name('admin.statistical');
 
     Route::get('/studentsExport', [ExportController::class, 'studentsExport'])->name('export.students');
     Route::get('/roomsExport', [ExportController::class, 'roomsExport'])->name('export.rooms');
