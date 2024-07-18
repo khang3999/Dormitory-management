@@ -5,7 +5,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReasonController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RemoveController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\StudentController;
@@ -27,12 +29,12 @@ Route::get('/myLogin', [HomeController::class, 'create'])->name('myLogin');
 Route::post('/myLogin', [HomeController::class, 'store']);
 
 // Trang register
-Route::get('/myRegister', [
-    RegisterController::class, 'index'
-])->name('myRegister');
-
+Route::get('/myRegister', [RegisterController::class, 'index'])->name('myRegister');
 Route::post('/myRegister', [StudentController::class, 'store'])->name('students.store');
 
+// Trang xin ra khỏi KTX
+Route::get('/outKTX', [RemoveController::class, 'index'])->name('outKTX');
+Route::post('/outKTX', [ReasonController::class, 'store'])->name('reasons.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

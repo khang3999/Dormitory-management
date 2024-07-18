@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('cccd');
             $table->string('birthday');
             $table->string('phone');
+            $table->string('class');
             $table->string('mail');
             $table->string('nation');
             $table->integer('gender');

@@ -54,6 +54,7 @@ ul{
     -webkit-text-stroke: 0px #fff;
     color: #fff;
     margin-left: 5px;
+    margin-right: 60px;
 }
 
 .title-home-hidden.scrolled {
@@ -70,8 +71,8 @@ ul{
 .btn-navigation.scrolled {
     font-size: 18px;
     font-weight: bold;
-    margin: 30px 10px;
-    padding: 15px 30px;
+    margin: 30px 16px;
+    padding: 15px 40px;
     background: #009bf5;
     z-index: 2;
     color: #fff;
@@ -133,8 +134,8 @@ ul{
 .btn-navigation {
     font-size: 18px;
     font-weight: bold;
-    margin: 20px 5px;
-    padding: 20px 30px;
+    margin: 20px 15px;
+    padding: 20px 40px;
     background: none;
     z-index: 2;
     color: #009bf5;
@@ -293,9 +294,9 @@ ul{
     position: absolute;
     font-size: 15px;
     padding: 5px 10px;
-    bottom: -105px;
+    top: 55px;
     text-wrap: nowrap;
-    right: -20px;
+    right: -40px;
     background-color: white;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -412,7 +413,7 @@ ul{
     .btn-navigation {
         font-size: 14px;
         margin: 10px 10px;
-        padding: 5px 15px;
+        padding: 10px 30px;
     }
 
     .i-pre-image-btn:hover,
