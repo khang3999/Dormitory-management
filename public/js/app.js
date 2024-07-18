@@ -137,6 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
         changeImage(currentImageIndex);
     }, 3000);
 
+});
     // Avatar File Upload
     document.getElementById('avatarPreview').addEventListener('click', function () {
         document.getElementById('fileInput').click();
@@ -153,8 +154,6 @@ document.addEventListener("DOMContentLoaded", function () {
             reader.readAsDataURL(file);
         }
     });
-
-});
 
 // Event Navigation
 let currentEventIndex = 0;
