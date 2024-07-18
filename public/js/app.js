@@ -166,25 +166,33 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             nextButton.removeAttribute('disabled');
         }
+// Event Navigation
+let currentEventIndex = 0;
+const eventItems = document.querySelectorAll('.i-event .col-md-4');
+
+function updateEventVisibility() {
+    // Ensure currentEventIndex is within valid bounds
+    if (currentEventIndex >= eventItems.length) {
+        currentEventIndex = eventItems.length - 1;
+    } else if (currentEventIndex < 0) {
+        currentEventIndex = 0;
     }
     
     
 
-    prevButton.addEventListener('click', function () {
-        if (currentEventIndex > 0) {
-            currentEventIndex--;
-            updateEventVisibility();
-        }
-    });
 
-    nextButton.addEventListener('click', function () {
-        if (currentEventIndex < eventItems.length - 1) {
-            currentEventIndex++;
-            updateEventVisibility();
-        }
-    });
-
+document.querySelector('.i-pre-event-btn').addEventListener('click', function () {
+    currentEventIndex = Math.max(currentEventIndex - 1, 0);
     updateEventVisibility();
+
+document.querySelector('.i-next-event-btn').addEventListener('click', function () {
+    currentEventIndex = Math.min(currentEventIndex + 1, eventItems.length - 3);
+    updateEventVisibility();
+});
+
+updateEventVisibility();
+
+});
 
 // Avatar File Upload
 document.getElementById('avatarPreview').addEventListener('click', function () {

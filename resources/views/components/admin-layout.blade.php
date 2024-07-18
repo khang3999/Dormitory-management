@@ -37,6 +37,7 @@
       </div>
     </div>
   </header>
+
   <!-- thanh tác vụ -->
   <div class="navbar row">
     <div class="col-3 d-flex justify-content-center">
@@ -46,7 +47,7 @@
       <a href="{{route('admin.students')}}" class="admin-btn"><i class="bi bi-people-fill me-1"></i>Quản lý sinh viên</a>
     </div>
     <div class="col-3 d-flex justify-content-center">
-      <a href="#" class="admin-btn"><i class="bi bi-postcard-fill me-1"></i>Quản lý bài viết</a>
+      <a href="{{route('admin.posts')}}" class="admin-btn"><i class="bi bi-postcard-fill me-1"></i>Quản lý bài viết</a>
     </div>
     <div class="col-3 d-flex justify-content-center">
       <a href="{{route('admin.statistical')}}" class="admin-btn"><i class="bi bi-bar-chart-line-fill me-1"></i>Thống kê</a>

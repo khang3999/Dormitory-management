@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('content');
-            $table->string('img');
-            $table->string('type');
+            $table->string('title')->nullable();
+            $table->string('content')->nullable();
+            $table->string('img')->nullable();
+            $table->string('type')->nullable();
         });
     }
 

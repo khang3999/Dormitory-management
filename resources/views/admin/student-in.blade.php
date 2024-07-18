@@ -85,7 +85,11 @@
                                         data-student-nation="{{ $student->nation }}"
                                         data-student-note="{{ $student->note }}"
                                         data-student-time="{{ $student->time }}"
-                                        data-student-phong="{{ $student->idphong }}">
+                                        data-student-phong="{{ $student->idphong }}"
+                                        data-student-image="{{ $student->avatar }}" {{-- boSung --}}
+                                        data-student-job="{{ $student->job }}"
+                                        data-student-class="{{ $student->class }}"
+                                        data-student-course="{{ $student->course }}">
                                     </i>
                                 </td>
                                 <!-- Thêm các trường khác nếu cần thiết -->
@@ -135,6 +139,20 @@
                             <label for="student-mssv">MSSV:</label>
                             <input type="text" class="form-control" id="student-mssv" name="MSSV" readonly>
                         </div>
+                        {{-- bosung --}}
+                        <div class="form-group col-md-6">
+                            <label for="student-job">Ngành:</label>
+                            <input type="text" class="form-control" id="student-job" name="job">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="student-class">Lớp:</label>
+                            <input type="text" class="form-control" id="student-class" name="class">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="student-course">Khoá:</label>
+                            <input type="text" class="form-control" id="student-course" name="course">
+                        </div>
+                        {{-- bosung --}}
                         <div class="form-group col-md-6">
                             <label for="student-mail">Email:</label>
                             <input type="email" class="form-control" id="student-mail" name="mail" readonly>
@@ -259,6 +277,8 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    {{-- <script src="https://cdn.emailjs.com/dist/email.min.js"></script> --}}
+    <script type="text/javascript"  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
@@ -268,84 +288,10 @@
             }
         });
 
-        $('#exampleModalRoom').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget);
-            var roomId = button.data('room-id');
-            var roomName = button.data('room-name');
-            var roomGender = button.data('room-gender');
-            var roomStatus = button.data('room-status');
-            var roomNote = button.data('room-note');
-
-            var modal = $(this);
-            modal.find('#modal-room-name').text('Tên phòng: ' + roomName);
-            modal.find('#modal-room-gender').text('Giới tính: ' + roomGender);
-            modal.find('#modal-room-status').text('Số lượng sinh viên ' + roomStatus);
-            modal.find('#modal-room-note').text('Ghi chú: ' + (roomNote ? roomNote : 'Không có'));
-
-            // Gọi AJAX để lấy danh sách sinh viên
-            $.ajax({
-                url: '/admin/rooms/' + roomId + '/students',
-                method: 'GET',
-                success: function(data) {
-                    var studentTable = modal.find('#student-table tbody');
-                    studentTable.empty();
-                    if (data.length > 0) {
-                        data.forEach(function(student) {
-
-                            studentTable.append(
-                                '<tr><td class="text-12">' +
-                                student.name +
-                                '</td><td class="text-12 center">' +
-                                student.MSSV +
-                                '</td><td class="text-12 ">' +
-                                student.mail +
-                                '</td><td class="text-12 center">' +
-                                student.gender +
-                                '</td><td class="text-12 center">' +
-                                student.phone +
-                                '</td><td class="text-12 center">' +
-                                student.cccd +
-                                '</td><td class="text-12">' +
-                                student.birthday +
-                                '</td><td class="text-12">' +
-                                student.address +
-                                '</td><td class="text-12">' +
-                                student.nation +
-                                '</td><td class="text-12">' +
-                                student.note +
-                                '</td><td class="text-12">' +
-                                student.time +
-                                '</td><td>' +
-                                '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalStudent"' +
-                                'data-student-name="' + student.name + '" ' +
-                                'data-student-mssv="' + student.MSSV + '" ' +
-                                'data-student-mail="' + student.mail + '" ' +
-                                'data-student-gender="' + student.gender + '" ' +
-                                'data-student-phone="' + student.phone + '" ' +
-                                'data-student-cccd="' + student.cccd + '" ' +
-                                'data-student-birthday="' + student.birthday + '" ' +
-                                'data-student-address="' + student.address + '" ' +
-                                'data-student-nation="' + student.nation + '" ' +
-                                'data-student-note="' + student.note + '" ' +
-                                'data-student-time="' + student.time + '" ' +
-                                'data-student-phong="' + roomId + '">' +
-                                // Pass room ID here
-                                'Chi tiết</button>' +
-                                '</td></tr>'
-                            );
-                        });
-                    } else {
-                        studentTable.append(
-                            '<tr><td colspan="12">Không có sinh viên nào trong phòng</td></tr>');
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    console.error('AJAX error: ' + textStatus + ' : ' + errorThrown);
-                }
-            });
-        });
+      
 
         $(document).ready(function() {
+
             $('#modalStudent').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget);
                 var modal = $(this);
@@ -362,7 +308,13 @@
                 modal.find('#student-nation').val(button.data('student-nation'));
                 modal.find('#student-note').val(button.data('student-note'));
                 modal.find('#student-time').val(button.data('student-time'));
+
                 var studentCode = modal.find('#student-mssv').val();
+
+                modal.find('#student-job').val(button.data('student-job'));
+                modal.find('#student-course').val(button.data('student-course'));
+                modal.find('#student-class').val(button.data('student-class'));
+
                 var studentImage = button.data('student-image');
                 modal.find('#student-image').attr('src', studentImage ? studentImage :
                     "../images/avatar/" + studentCode + '.jpg'
@@ -370,7 +322,7 @@
 
                 // Load room options
                 $.ajax({
-                    url: '{{ route("rooms.layphongtrong") }}',
+                    url: '{{ route('rooms.layphongtrong') }}',
                     method: 'GET',
                     success: function(rooms) {
                         var roomSelect = modal.find('#student-phong');
@@ -383,7 +335,7 @@
                             var selected = room.id == button.data('student-phong') ?
                                 'selected' : '';
                             var roomOption =
-                                `<option value="${room.id}" ${selected}>Phòng: ${room.name}  || Số lượng sinh viên: ${room.students_count} || Phòng của: ${room.gender}</option>`;
+                                `<option value="${room.id}" ${selected}>Phòng: ${room.name}  - Số lượng sinh viên: ${room.students_count} - Phòng của: ${room.gender}</option>`;
                             roomSelect.append(roomOption);
                         });
                     },
@@ -393,12 +345,14 @@
                 });
             });
 
+           
             $('#saveStudent').click(function() {
                 var phongValue = $('#student-phong').val();
                 if (!phongValue) {
-                    alert('Vui lòng chọn phòng trước khi lưu thay đổi.');
-                    return; // Ngăn chặn hành động lưu nếu chưa chọn phòng
+                    toastr.error('Vui lòng chọn phòng trước khi lưu thay đổi.');
+                    return;
                 }
+
                 var studentData = {
                     student_id: $('#student-id').val(),
                     name: $('#student-name').val(),
@@ -412,16 +366,16 @@
                     nation: $('#student-nation').val(),
                     note: $('#student-note').val(),
                     time: $('#student-time').val(),
-                    phong: $('#student-phong').val() || null // Chuyển giá trị phòng thành null nếu rỗng
+                    phong: $('#student-phong').val() || null
                 };
 
                 $.ajax({
-                    url: '{{ route("student.duyetdon") }}',
+                    url: '{{ route('student.duyetdon') }}',
                     type: 'POST',
                     data: studentData,
                     success: function(response) {
-                        alert('Student updated successfully!');
-                      // Reload the page to see the changes
+                        toastr.success('Duyệt sinh viên thành công!');
+
                         var userData = {
                             name: $('#student-name').val(),
                             email: $('#student-mail').val(),
@@ -433,27 +387,27 @@
                             type: 'POST',
                             data: userData,
                             success: function(response) {
-                                alert('Đã tạo tài khoản cho sinh viên');
-                                location.reload();
-                                 $('#modalStudent').modal('hide');
+                                toastr.success('Đã tạo tài khoản cho sinh viên');
+                                sendEmail();
+                                // location.reload();
+                                $('#modalStudent').modal('hide');
                             },
                             error: function(xhr) {
                                 console.log(xhr.responseText);
-                                alert('tạo tài khoản sinh viên không thành công');
+                                toastr.error('Tạo tài khoản sinh viên không thành công');
                             }
-                        })
+                        });
                     },
                     error: function(xhr) {
                         console.log(xhr.responseText);
-                        alert('Tạo user thất bại.');
+                        toastr.error('Tạo user thất bại.');
                     }
                 });
             });
         });
-
         $('#chosenRoomModal').on('show.bs.modal', function(event) {
             $.ajax({
-                url: '{{ route("rooms.all") }}',
+                url: '{{ route('rooms.all') }}',
                 method: 'GET',
                 success: function(rooms) {
                     var roomList = $('#room-list');
@@ -489,19 +443,19 @@
 
         $('#deleteStudent').click(function() {
             var studentId = $('#student-id').val();
-
             if (confirm('Bạn có chắc chắn không duyệt sinh viên này không?')) {
+                sendDeneyEmail();
                 $.ajax({
                     url: '/admin/student/' + studentId,
                     type: 'DELETE',
                     success: function(response) {
-                        alert('Student deleted successfully!');
+                        toastr.success('Từ chối sinh viên thành công!');
                         $('#modalStudent').modal('hide');
-                        location.reload(); // Reload the page to see the changes
+                        location.reload(); 
                     },
                     error: function(xhr) {
                         console.log(xhr.responseText);
-                        alert('Something went wrong. Please try again.');
+                        toastr.error('Từ chối sinh viên thất bại!');
                     }
                 });
             }
@@ -562,6 +516,57 @@
                 }
             });
         });
+
+
+        function sendEmail() {
+            console.log("a nhawn nhawn nhawn");
+            var userData = {
+                name: document.getElementById('student-name').value,
+                email: document.getElementById('student-mail').value,
+                mssv: document.getElementById('student-mssv').value,
+          
+            };
+            console.log(userData);
+            emailjs.send("service_ku7iubq", "template_lznxjig", {
+                    name: userData.name,
+                    email: userData.email,
+                    mssv: userData.mssv,
+                    to: userData.email,
+                }, "gCR1IbwGCipNlyaAE")
+                .then(function(response) {
+                    console.log("Email sent successfully", response);
+                    toastr.success('Gửi email thành công');
+                }).catch(function(error) {
+                    console.log("Failed to send email", error);
+                    toastr.error('Gửi email không thành công');
+                }).finally(function () {
+                 location.reload();
+                })
+        }
+        function sendDeneyEmail() {
+            console.log("a nhawn nhawn nhawn");
+            var userData = {
+                name: document.getElementById('student-name').value,
+                email: document.getElementById('student-mail').value,
+                mssv: document.getElementById('student-mssv').value,
+            };
+            console.log(userData);
+            emailjs.send("service_ku7iubq", "template_t4k5c68", {
+                    name: userData.name,
+                    email: userData.email,
+                    mssv: userData.mssv,
+                    to: userData.email,
+                }, "gCR1IbwGCipNlyaAE")
+                .then(function(response) {
+                    console.log("Email sent successfully", response);
+                    toastr.success('Gửi email thành công');
+                }).catch(function(error) {
+                    console.log("Failed to send email", error);
+                    toastr.error('Gửi email không thành công');
+                }).finally(function () {
+                    // location.reload();
+                })
+        }
     </script>
 
 </x-admin-layout>

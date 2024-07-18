@@ -203,6 +203,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" id="deleteStudent">Xoá </button>
                         <button type="button" class="btn btn-primary" id="saveStudent">Save changes</button>
                     </div>
                 </form>
@@ -281,6 +282,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript"  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
@@ -401,29 +403,17 @@
                 // Load room options
                 $.ajax({
                     url: '{{ route("rooms.layphongtrong") }}',
-                    method: 'GET',
+                    method: 'GET', 
                     success: function(rooms) {
                         var roomSelect = modal.find('#student-phong');
                         roomSelect.empty();
-
-                        // Add the current room option first
-                        if (currentRoomId) {
-                            roomSelect.append(
-                                `<option value="${currentRoomId}" selected>${currentRoomName}</option>`
-                            );
-                        } else {
-                            roomSelect.append(
-                                '<option value="" selected>Chưa có phòng</option>');
-                        }
-
                         // Add other room options
                         rooms.forEach(function(room) {
-                            if (room.id !== currentRoomId) {
-                                roomSelect.append(
-                                    `<option value="${room.id}">phòng ${room.name} sinh viên ${room.gender}  số lượng sinh viên ${room.students_count}</option>`
-                                    
-                                );
-                            }
+                            var selected = room.id == button.data('student-phong') ?
+                                'selected' : '';
+                            var roomOption =
+                                `<option value="${room.id}" ${selected}>${room.name}</option>`;
+                            roomSelect.append(roomOption);
                         });
                     },
                     error: function(xhr, status, error) {
@@ -459,15 +449,56 @@
                     type: 'POST',
                     data: studentData,
                     success: function(response) {
-                        alert('Student updated successfully!');
+                        toastr.success('Student updated successfully!');
                         $('#modalStudent').modal('hide');
                         location.reload(); // Reload the page to see the changes
                     },
                     error: function(xhr) {
                         console.log(xhr.responseText);
-                        alert('Something went wrong. Please try again.');
+                        toastr.error('Something went wrong. Please try again.');
                     }
                 });
+            });
+            $('#deleteStudent').click(function() {
+                var studentId = $('#student-mssv').val();
+               
+
+                if (confirm('Bạn có chắc chắn muốn xoá sinh viên này không?')) {
+                    sendDeneyEmail();
+                    $.ajax({
+                        url: '{{ route('users.delete') }}',
+                        type: 'DELETE',
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            mssv: studentId // Assuming studentId is the mssv
+                        },
+                        success: function(response) {
+                            toastr.success('Đã xoá tài khoản cho sinh viên');
+
+                            $.ajax({
+                                url: '/admin/student/' + $('#student-id').val(),
+                                type: 'DELETE',
+                                success: function(response) {
+                                    toastr.success('Student deleted successfully!');
+                                    // var mssv = $('#student-id').val();
+                                    $('#modalStudent').modal('hide');
+                                    location.reload(); // Reload the page to see the changes
+                                },
+                                error: function(xhr) {
+                                    console.log(xhr.responseText);
+                                    toastr.error(
+                                    'Something went wrong. Please try again.');
+                                }
+                            });
+                        },
+                        error: function(xhr) {
+                            console.log(xhr.responseText);
+                            toastr.error(
+                                'Xoá tài khoản sinh viên không thành công');
+                        }
+                    });
+
+                }
             });
         });
 
@@ -561,6 +592,26 @@
                 }
             });
         });
+        function sendDeneyEmail() {
+            var userData = {
+                name: document.getElementById('student-name').value,
+                email: document.getElementById('student-mail').value,
+                mssv: document.getElementById('student-mssv').value,
+            };
+            console.log(userData);
+            emailjs.send("service_015cmoo", "template_abj69yu", {
+                    name: userData.name,
+                    email: userData.email,
+                    mssv: userData.mssv,
+                    to: userData.email,
+                }, "lSZ9PLawggMuHTcuI")
+                .then(function(response) {
+                    console.log("Email sent successfully", response);
+                     alert('Gửi email thành công');
+                }).catch(function(error) {
+                    console.log("Failed to send email", error);
+                     alert('Gửi email không thành công');
+                });
+        }
     </script>
-
 </x-admin-layout>

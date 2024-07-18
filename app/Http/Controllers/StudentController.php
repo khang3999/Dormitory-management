@@ -54,7 +54,6 @@ class StudentController extends Controller
 
         $student->avatar = $validatedData['codeStudent'] . '.jpg';
         $student->name = $validatedData['fullname'];
-        $student->password = '';
         $student->mail = $validatedData['mail'];
         $student->cccd = $validatedData['cccd'];
         $student->gender = $validatedData['gender'];
@@ -133,18 +132,7 @@ class StudentController extends Controller
     {
         $student = Student::findOrFail($request->student_id);
 
-        // $student->name = $request->name;
-        // $student->MSSV = $request->MSSV;
-        // $student->mail = $request->mail;
-        // $student->gender = $request->gender;
-        // $student->phone = $request->phone;
-        // $student->cccd = $request->cccd;
-        // $student->birthday = $request->birthday;
-        // $student->address = $request->address;
-        // $student->nation = $request->nation;
-        // $student->note = $request->note;
-        // $student->time = $request->time;
-        $student->type = 1;
+        $student->type= 1;
         $student->idphong = $request->phong;
 
         $student->save();

@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         DB::table('students')->insert([
             [
                 'MSSV' => 'S123456',
-                'password' => Hash::make('password123'),
+                
                 'name' => 'Nguyen Van A',
                 'cccd' => '123456789',
                 'birthday' => '2000-01-01',
@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'MSSV' => 'S123457',
-                'password' => Hash::make('password123'),
+                
                 'name' => 'Tran Thi B',
                 'cccd' => '123456780',
                 'birthday' => '2000-02-02',
@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'MSSV' => 'S123458',
-                'password' => Hash::make('password123'),
+                
                 'name' => 'Le Van C',
                 'cccd' => '123456781',
                 'birthday' => '2000-03-03',
@@ -85,7 +85,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'MSSV' => 'S123459',
-                'password' => Hash::make('password123'),
+                
                 'name' => 'Pham Thi D',
                 'cccd' => '123456782',
                 'birthday' => '2000-04-04',
@@ -104,7 +104,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'MSSV' => 'S123460',
-                'password' => Hash::make('password123'),
+                
                 'name' => 'Hoang Van E',
                 'cccd' => '123456783',
                 'birthday' => '2000-05-05',
@@ -123,7 +123,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'MSSV' => 'S123460',
-                'password' => Hash::make('password123'),
+                
                 'name' => 'out 1',
                 'cccd' => '123456783',
                 'birthday' => '2000-05-05',
@@ -142,7 +142,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'MSSV' => 'S123460',
-                'password' => Hash::make('password123'),
+                
                 'name' => 'out 2',
                 'cccd' => '123456783',
                 'birthday' => '2000-05-05',
@@ -161,7 +161,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'MSSV' => 'S123460',
-                'password' => Hash::make('password123'),
+                
                 'name' => 'out3',
                 'cccd' => '123456783',
                 'birthday' => '2000-05-05',
@@ -180,12 +180,11 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'MSSV' => 'OUT1',
-                'password' => Hash::make('password123'),
                 'name' => 'in 1',
                 'cccd' => '123456783',
                 'birthday' => '2000-05-05',
                 'phone' => '0912345682',
-                'mail' => 'hoangvandde@example.com',
+                'mail' => '22211TT1357@mail.tdc.edu.vn',
                 'nation' => 'Vietnam',
                 'gender' => 1,
                 'time' => now(),
@@ -200,12 +199,12 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'MSSV' => 'OUT2',
-                'password' => Hash::make('password123'),
+                
                 'name' => 'in 2',
                 'cccd' => '123456783',
                 'birthday' => '2000-05-05',
                 'phone' => '0912345682',
-                'mail' => 'hoangvanead@example.com',
+                'mail' => 'vandunguyenvan@gmail.com',
                 'nation' => 'Vietnam',
                 'gender' => 1,
                 'time' => now(),
@@ -220,12 +219,33 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'MSSV' => 'OUT3',
-                'password' => Hash::make('password123'),
+                
                 'name' => 'in 3',
                 'cccd' => '123456783',
                 'birthday' => '2000-05-05',
                 'phone' => '0912345682',
-                'mail' => 'hoangvvane@example.com',
+                'mail' => 'dunv.57.student@fit.tdc.edu.vn',
+                'nation' => 'Vietnam',
+                'gender' => 1,
+                'time' => now(),
+                'note' => 'Note E',
+                'address' => 'Address E',
+                'type' => 2,
+                 'idphong'=>null,
+                 'job'=>'Cong Nghe Thong Tin',
+                 'course'=>'22',
+                 'class'=>'CD22TT11'
+
+                
+            ],
+            [
+                'MSSV' => 'OUT4',
+                
+                'name' => 'in 4',
+                'cccd' => '123456783',
+                'birthday' => '2000-05-05',
+                'phone' => '0912345682',
+                'mail' => 'levietkhanh2k4@gmail.com',
                 'nation' => 'Vietnam',
                 'gender' => 1,
                 'time' => now(),
@@ -294,12 +314,6 @@ class DatabaseSeeder extends Seeder
             'img' => 'banner.jpg',
             'type' => 'none'
         ]);
-        DB::table('events')->insert([
-            'id' => 0,
-            'title' => '4',
-            'content' => 'latfbnigyiauombaeiuNOm',
-            'img' => 'banner.jpg',
-            'type' => 'none'
-        ]);
+       
     }
 }

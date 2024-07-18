@@ -82,6 +82,26 @@
                                         data-student-address="{{ $student->address }}"
                                         data-student-nation="{{ $student->nation }}" data-student-note="{{ $student->note }}"
                                         data-student-time="{{ $student->time }}" data-student-phong="{{ $student->idphong }}">
+                                        data-target="#modalStudent"
+                                        data-student-name="{{ $student->name }}"
+                                        data-student-id="{{ $student->id }}" 
+                                        data-student-mssv="{{ $student->MSSV }}"
+                                        data-student-mail="{{ $student->mail }}"
+                                        data-student-gender="{{ $student->gender }}"
+                                        data-student-phone="{{ $student->phone }}"
+                                        data-student-cccd="{{ $student->cccd }}"
+                                        data-student-birthday="{{ $student->birthday }}"
+                                        data-student-address="{{ $student->address }}"
+                                        data-student-nation="{{ $student->nation }}"
+                                        data-student-note="{{ $student->note }}"
+                                        data-student-time="{{ $student->time }}"
+                                        data-student-phong="{{ $student->idphong }}"
+                                        data-student-image="{{ $student->avatar }}"
+                                        {{-- boSung --}}
+                                        data-student-job="{{ $student->job }}"
+                                         data-student-class="{{ $student->class }}"
+                                          data-student-course="{{ $student->course }}"
+                                        >
                                     </i>
                                 </td>
                                 <!-- Thêm các trường khác nếu cần thiết -->
@@ -137,6 +157,20 @@
                             <label for="student-mssv">MSSV:</label>
                             <input readonly type="text" class="form-control" id="student-mssv" name="MSSV">
                         </div>
+                            {{-- bosung --}}
+                            <div class="form-group col-md-6">
+                                <label for="student-job">Ngành:</label>
+                                <input type="text" class="form-control" id="student-job" name="job" readonly>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="student-class">Lớp:</label>
+                                <input type="text" class="form-control" id="student-class" name="class" readonly>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="student-course">Khoá:</label>
+                                <input type="text" class="form-control" id="student-course" name="course" readonly>
+                            </div>
+                            {{-- bosung --}}
                         <div class="form-group col-md-6">
                             <label for="student-mail">Email:</label>
                             <input readonly type="email" class="form-control" id="student-mail" name="mail">
@@ -189,8 +223,10 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+     <script type="text/javascript"  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <script>
         $.ajaxSetup({
             headers: {
@@ -291,6 +327,10 @@
                 modal.find('#student-nation').val(button.data('student-nation'));
                 modal.find('#student-note').val(button.data('student-note'));
                 modal.find('#student-time').val(button.data('student-time'));
+                  // boSUng
+                  modal.find('#student-job').val(button.data('student-job'));
+                modal.find('#student-course').val(button.data('student-course'));
+                modal.find('#student-class').val(button.data('student-class'));
                 var studentImage = button.data('student-image');
                 modal.find('#student-image').attr('src', studentImage ? studentImage :
                     '../images/avatar/' + modal.find('#student-mssv').val() + '.jpg'
@@ -321,9 +361,8 @@
             $('#deleteStudent').click(function () {
                 var studentId = $('#student-mssv').val();
 
-
                 if (confirm('Bạn có chắc chắn muốn xoá sinh viên này không?')) {
-
+                    sendDeneyEmail();
                     $.ajax({
                         url: '{{ route('users.delete') }}',
                         type: 'DELETE',
@@ -333,6 +372,7 @@
                         },
                         success: function (response) {
                             alert('Đã xoá tài khoản cho sinh viên');
+
 
                             $.ajax({
                                 url: '/admin/student/' + $('#student-id').val(),
@@ -353,8 +393,7 @@
                         },
                         error: function (xhr) {
                             console.log(xhr.responseText);
-                            alert(
-                                'Xoá tài khoản sinh viên không thành công');
+                            toastr.error('Xoá tài khoản sinh viên không thành công');
                         }
                     });
 
@@ -418,6 +457,27 @@
                 }
             });
         });
+        function sendDeneyEmail() {
+            var userData = {
+                name: document.getElementById('student-name').value,
+                email: document.getElementById('student-mail').value,
+                mssv: document.getElementById('student-mssv').value,
+            };
+            console.log(userData);
+            emailjs.send("service_015cmoo", "template_abj69yu", {
+                    name: userData.name,
+                    email: userData.email,
+                    mssv: userData.mssv,
+                    to: userData.email,
+                }, "lSZ9PLawggMuHTcuI")
+                .then(function(response) {
+                    console.log("Email sent successfully", response);
+                     alert('Gửi email thành công');
+                }).catch(function(error) {
+                    console.log("Failed to send email", error);
+                     alert('Gửi email không thành công');
+                });
+        }
     </script>
 
 </x-admin-layout>

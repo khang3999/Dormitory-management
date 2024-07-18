@@ -65,6 +65,7 @@
                 </div>
                 <div class="box-event-personal text-center me-3">
                     <?php if ($user != null) { ?>
+
                     <div class="personal position-relative">
                         <i class="bi bi-gear-fill btn-event-personal"></i>
                         <div id="popup-personal" class="popup-personal">
@@ -297,6 +298,10 @@
                             <div class="mr-3">CCCD số: </div>
                             <input class="input-live form-control" type="text" name="cccd" minlength="12" id="cccd"
                                 required>
+                        </div>
+                        <div class="data d-flex justify-content-between">
+                            <div class="mr-3">CCCD số: </div>
+                            <input class="input-live form-control" type="text" name="cccd" id="cccd">
                         </div>
                         <div class="data d-flex justify-content-between">
                             <div class="mr-3">Đối tượng ưu tiên (nếu có): </div>
