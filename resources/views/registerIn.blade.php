@@ -300,10 +300,6 @@
                                 required>
                         </div>
                         <div class="data d-flex justify-content-between">
-                            <div class="mr-3">CCCD số: </div>
-                            <input class="input-live form-control" type="text" name="cccd" id="cccd">
-                        </div>
-                        <div class="data d-flex justify-content-between">
                             <div class="mr-3">Đối tượng ưu tiên (nếu có): </div>
                             <input class="input-l form-control" type="text" name="uutien" id="uutien">
                         </div>

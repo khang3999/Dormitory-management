@@ -81,27 +81,7 @@
                                         data-student-birthday="{{ $student->birthday }}"
                                         data-student-address="{{ $student->address }}"
                                         data-student-nation="{{ $student->nation }}" data-student-note="{{ $student->note }}"
-                                        data-student-time="{{ $student->time }}" data-student-phong="{{ $student->idphong }}">
-                                        data-target="#modalStudent"
-                                        data-student-name="{{ $student->name }}"
-                                        data-student-id="{{ $student->id }}" 
-                                        data-student-mssv="{{ $student->MSSV }}"
-                                        data-student-mail="{{ $student->mail }}"
-                                        data-student-gender="{{ $student->gender }}"
-                                        data-student-phone="{{ $student->phone }}"
-                                        data-student-cccd="{{ $student->cccd }}"
-                                        data-student-birthday="{{ $student->birthday }}"
-                                        data-student-address="{{ $student->address }}"
-                                        data-student-nation="{{ $student->nation }}"
-                                        data-student-note="{{ $student->note }}"
-                                        data-student-time="{{ $student->time }}"
-                                        data-student-phong="{{ $student->idphong }}"
-                                        data-student-image="{{ $student->avatar }}"
-                                        {{-- boSung --}}
-                                        data-student-job="{{ $student->job }}"
-                                         data-student-class="{{ $student->class }}"
-                                          data-student-course="{{ $student->course }}"
-                                        >
+                                        data-student-time="{{ $student->time }}" data-student-phong="{{ $student->idphong }}"></i>
                                     </i>
                                 </td>
                                 <!-- Thêm các trường khác nếu cần thiết -->
@@ -223,7 +203,7 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-     <script type="text/javascript"  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+     <script type="text/javascript"  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
