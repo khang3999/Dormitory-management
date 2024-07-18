@@ -6,6 +6,7 @@ use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use Illuminate\Http\Request;
 use App\Models\Student;
+use PharIo\Manifest\Email;
 
 
 class StudentController extends Controller
@@ -34,10 +35,13 @@ class StudentController extends Controller
         $validatedData = $request->validate([
             'avatar' => 'required|image',
             'fullname' => 'required',
+            'cccd' => 'required',
             'gender' => 'required',
+            'mail' => 'required',
             'dayBorn' => 'required',
             'liveIn' => 'required',
             'class' => 'required',
+            'ethnic' => 'required',
             'course' => 'required',
             'codeStudent' => 'required',
             'phoneNumber' => 'required',
@@ -48,13 +52,13 @@ class StudentController extends Controller
         $student = new Student();
         $student->avatar = $validatedData['codeStudent'] . '.jpg';
         $student->name = $validatedData['fullname'];
-        $student->password = '';
-        $student->mail = 'example@gmai.com';
-        $student->cccd = '23456789';
+        $student->mail = $validatedData['mail'];
+        $student->cccd = $validatedData['cccd'];
         $student->gender = $validatedData['gender'];
         $student->birthDay = $validatedData['dayBorn'];
         $student->address = $validatedData['liveIn'];
-        $student->nation = $validatedData['class'];
+        $student->nation = $validatedData['ethnic'];
+        $student->class = $validatedData['class'];
         $student->course = $validatedData['course'];
         $student->MSSV = $validatedData['codeStudent'];
         $student->phone = $validatedData['phoneNumber'];
@@ -126,18 +130,6 @@ class StudentController extends Controller
     public function duyetdon(Request $request)
     {
         $student = Student::findOrFail($request->student_id);
-    
-        // $student->name = $request->name;
-        // $student->MSSV = $request->MSSV;
-        // $student->mail = $request->mail;
-        // $student->gender = $request->gender;
-        // $student->phone = $request->phone;
-        // $student->cccd = $request->cccd;
-        // $student->birthday = $request->birthday;
-        // $student->address = $request->address;
-        // $student->nation = $request->nation;
-        // $student->note = $request->note;
-        // $student->time = $request->time;
         $student->type= 1;
         $student->idphong = $request->phong;
     

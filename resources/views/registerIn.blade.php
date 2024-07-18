@@ -55,35 +55,35 @@
                     </ul>
                 </div>
                 <div class="box-event-personal text-center me-3">
-                        <?php
-                        // $isLogin = false; // Đổi thành true để xem layout khi có tài khoản
-                        if ($user != null) {
+                    <?php
+// $isLogin = false; // Đổi thành true để xem layout khi có tài khoản
+if ($user != null) {
                         ?>
-                            <div class="personal position-relative">
-                                <i class="bi bi-gear-fill btn-event-personal"></i>
-                                <div id="popup-personal" class="popup-personal">
-                                    <ul>
-                                        <li>
-                                            <form method="POST" action="{{ route('logout') }}">
-                                                @csrf
-                                                <button class="btn btn-danger" type="submit">Đăng xuất</button>
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="name-person">{{$user->name}}</div>
-                        <?php
-                        } else {
-                        ?>
-                            <a href="{{ route('login') }}" class="btn-login text-center">
-                                <i class="bi bi-box-arrow-in-right icon-login"></i>
-                                <div class="name-person">Đăng nhập</div>
-                            </a>
-                        <?php
-                        }
-                        ?>
+                    <div class="personal position-relative">
+                        <i class="bi bi-gear-fill btn-event-personal"></i>
+                        <div id="popup-personal" class="popup-personal">
+                            <ul>
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button class="btn btn-danger" type="submit">Đăng xuất</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
+                    <div class="name-person">{{$user->name}}</div>
+                    <?php
+} else {
+                        ?>
+                    <a href="{{ route('login') }}" class="btn-login text-center">
+                        <i class="bi bi-box-arrow-in-right icon-login"></i>
+                        <div class="name-person">Đăng nhập</div>
+                    </a>
+                    <?php
+}
+                        ?>
+                </div>
             </div>
 
         </nav>
@@ -126,7 +126,7 @@
         <div class="container">
             <div class="title-navigation my-5">Đăng kí vào kí túc xá</div>
             <div class="text-navigation">Bạn hãy điền đầy đủ các thông tin dưới đây: </div>
-            <div class="box-content my-3">
+            <div class="box-content my-3" style="line-height: 40px; vertical-align:middle;">
                 <form action="{{ route('students.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row justify-content-center">
@@ -181,6 +181,17 @@
                             <input class="input-day form-control" type="date" name="dayBorn" id="dayBorn" required>
                         </div>
                         <div class="data d-flex justify-content-between">
+                            <div class="mr-5">Mail: </div>
+                            <input class="input-email form-control" type="email" name="mail" id="mail" required>
+                            <div class="mr-3">Dân tộc: </div>
+                            <select name="ethnic" id="ethnic" class="input-ethnic form-control">
+                                <option value="Kinh">Kinh</option>
+                                <option value="Tày">Tày</option>
+                                <option value="Mường">Mường</option>
+                                <option value="Chăm">Chăm</option>
+                            </select>
+                        </div>
+                        <div class="data d-flex justify-content-between">
                             <div class="mr-3">Thường trú tại: </div>
                             <input class="input-live form-control" type="text" name="liveIn" id="liveIn" required>
                         </div>
@@ -202,6 +213,10 @@
                         <div class="data d-flex justify-content-between">
                             <div class="mr-3">Ngành: </div>
                             <input class="input-live form-control" type="text" name="job" id="job">
+                        </div>
+                        <div class="data d-flex justify-content-between">
+                            <div class="mr-3">CCCD số: </div>
+                            <input class="input-live form-control" type="text" name="cccd" id="cccd">
                         </div>
                         <div class="data d-flex justify-content-between">
                             <div class="mr-3">Đối tượng ưu tiên (nếu có): </div>

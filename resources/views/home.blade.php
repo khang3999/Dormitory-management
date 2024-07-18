@@ -90,9 +90,13 @@
             <div class="i-title bg-primary text-white px-5 py-2">Thông tin</div>
             <div class="row">
                 <div class="col-12 i-info px-3 py-3">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque, sint saepe? Sapiente harum,
-                    deleniti, quaerat illo itaque odit nam voluptatem cupiditate, praesentium reiciendis corporis
-                    deserunt dolor incidunt ipsum quibusdam aliquid?
+                   <b>
+                    <h1>
+                        
+Chào mừng bạn đến với Kí túc xá TDC
+                    </h1>
+                    
+                   </b>
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="i-about-image-first"></div>
@@ -101,15 +105,9 @@
                     <div class="i-about-image-second-1 mb-3"></div>
                     <div class="i-about-image-second-2"></div>
                 </div>
-                <div class="col-12 i-info px-3 py-3">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic inventore nam velit earum ut similique
-                    vero cumque, porro neque, nihil optio, aliquid sit possimus ducimus placeat exercitationem?
-                    Officiis, impedit facere?
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla non nesciunt delectus iusto ab nam
-                    sunt deleniti, aperiam odio, animi eius ut natus error! Ut voluptas officia doloremque nihil non!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti quidem, ea iusto soluta unde
-                    aliquid excepturi! Voluptas fugiat ipsa quidem commodi temporibus possimus, unde, facere maiores
-                    expedita fugit, dolores nam.
+                <div class="col-12 i-info px-3 py-3 ">
+                    Kí túc xá trường Cao đẳng Công nghệ Thủ Đức là nơi tiện nghi và thoải mái, với vị trí nằm trong khuôn viên trường mang lại sự thoải mái và tiết kiệm thời gian khi di chuyển cho sinh viên.
+                   Khuôn viên thoáng mát, an toàn và bảo mật, cây xanh và nơi học tập thoải mái tạo ra một môi trường vừa kỹ luật riêng tư nhưng cũng không kém phần sôi động. Đến với Kí túc xá TDC bạn cũng cần phải tuân thủ những quy định của kí túc xá, nhưng đồng thời bạn sẽ rèn được tính kỷ luật và tự giác cũng như sự an toàn. Bạn còn chần chờ gì mà không đăng kí để trở thành thành viên của kí túc xá TDC với những ưu điểm tiện lợi, tiết kiệm thời gian và chi phí, kỷ luật và thoải mái!!!
                 </div>
             </div>
         </div>
@@ -156,7 +154,7 @@
                 @foreach ($events as $event)
                 <div class="col-12 col-md-4 mb-4">
                     <div class="i-event-image">
-                        <img class="i-event-image" src="/images/{{$event->img}}" alt="">
+                        <img class="i-event-image" src="/{{$event->img}}" alt="">
                     </div>
                     <div class="i-event-title">{{ $event->title }}</div>
                     <div class="i-event-text">
