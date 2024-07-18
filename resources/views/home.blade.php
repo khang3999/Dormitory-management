@@ -191,7 +191,7 @@ Chào mừng bạn đến với Kí túc xá TDC
                     @if (true)
                         <div class="col-md-4 mb-4">
                             <div class="i-event-image">
-                                <img class="i-event-image" src="/images/{{ $event->img }}" alt="">
+                                <img class="i-event-image" src="images/img/{{ $event->img }}" alt="">
                             </div>
                             <div class="i-event-title">{{ $event->title }}</div>
                             <div class="i-event-text">
