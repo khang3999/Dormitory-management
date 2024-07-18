@@ -56,7 +56,8 @@
 
                         </li>
                         <li class="nav-item">
-                            <a class="active px-3 btn-navigation" aria-current="page" href="#">Nội quy</a>
+                        <a class="active px-3 btn-navigation" aria-current="page"
+                        href="{{ route('rules') }}">Nội quy</a>
                         </li>
                         <li class="nav-item">
                             <a class="active px-3 btn-navigation" aria-current="page" href="#">Liên hệ</a>
