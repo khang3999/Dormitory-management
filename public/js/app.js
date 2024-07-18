@@ -137,37 +137,43 @@ document.addEventListener("DOMContentLoaded", function () {
         changeImage(currentImageIndex);
     }, 3000);
 
-    // Event Navigation
-    let currentEventIndex = 0;
-    const eventItems = document.querySelectorAll('.i-event .col-md-4');
+// Event Navigation
+let currentEventIndex = 0;
+const eventItems = document.querySelectorAll('.i-event .col-md-4');
 
-    function updateEventVisibility() {
-        eventItems.forEach((item, index) => {
-            if (currentEventIndex > eventItems.length - 1) {
-                document.querySelector('.i-next-event-btn').setAttribute('disabled');
-            } else if (currentEventIndex < 0) {
-                document.querySelector('.i-pre-event-btn').setAttribute('disabled');
-            }
-            if (index >= currentEventIndex && index < currentEventIndex + 3) {
-                item.style.display = 'block';
-            }
-            else {
-                item.style.display = 'none';
-            }
-        });
+function updateEventVisibility() {
+    // Ensure currentEventIndex is within valid bounds
+    if (currentEventIndex >= eventItems.length) {
+        currentEventIndex = eventItems.length - 1;
+    } else if (currentEventIndex < 0) {
+        currentEventIndex = 0;
     }
 
-    document.querySelector('.i-pre-event-btn').addEventListener('click', function () {
-        currentEventIndex = (currentEventIndex - 1 + eventItems.length) % eventItems.length;
-        updateEventVisibility();
+    eventItems.forEach((item, index) => {
+        if (index >= currentEventIndex && index < currentEventIndex + 3) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
     });
 
-    document.querySelector('.i-next-event-btn').addEventListener('click', function () {
-        currentEventIndex = (currentEventIndex + 1) % eventItems.length;
-        updateEventVisibility();
-    });
+    // Disable buttons if at the beginning or end
+    document.querySelector('.i-pre-event-btn').disabled = currentEventIndex === 0;
+    document.querySelector('.i-next-event-btn').disabled = currentEventIndex >= eventItems.length - 3;
+}
 
+document.querySelector('.i-pre-event-btn').addEventListener('click', function () {
+    currentEventIndex = Math.max(currentEventIndex - 1, 0);
     updateEventVisibility();
+});
+
+document.querySelector('.i-next-event-btn').addEventListener('click', function () {
+    currentEventIndex = Math.min(currentEventIndex + 1, eventItems.length - 3);
+    updateEventVisibility();
+});
+
+updateEventVisibility();
+
 });
 
 // Avatar File Upload

@@ -74,3 +74,10 @@ Route::post('/student/update', [StudentController::class, 'update'])->name('stud
 Route::delete('/admin/student/{id}', [StudentController::class, 'destroy'])->name('student.destroy');
 Route::post('/users', [UserController::class, 'create'])->name('users.create');
 Route::delete('/users/delete', [UserController::class, 'destroy'])->name('users.delete');
+Route::get('/admin/posts', [EventController::class, 'getAll'])->name('admin.posts');
+Route::post('/posts', [EventController::class, 'store'])->name('events.store');
+Route::put('/posts/{post}', [EventController::class, 'update'])->name('events.update');
+// For deleting the post
+Route::delete('/posts/{id}', [EventController::class, 'destroy']);
+Route::post('/send-email', [YourController::class, 'sendEmail'])->name('send.email');
+
