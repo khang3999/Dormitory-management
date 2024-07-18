@@ -137,79 +137,68 @@ document.addEventListener("DOMContentLoaded", function () {
         changeImage(currentImageIndex);
     }, 3000);
 
+    // Avatar File Upload
+    document.getElementById('avatarPreview').addEventListener('click', function () {
+        document.getElementById('fileInput').click();
+    });
+
+    document.getElementById('fileInput').addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById('avatarPreview').style.backgroundImage = `url(${e.target.result})`;
+                document.getElementById('avatarPreview').textContent = ''; // Clear the "Chọn ảnh" text
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
 });
 
-    // Event Navigation
-    let currentEventIndex = 0;
-    const eventItems = document.querySelectorAll('.i-event .col-md-4');
-    const prevButton = document.querySelector('.i-pre-event-btn');
-    const nextButton = document.querySelector('.i-next-event-btn');
-
-    function updateEventVisibility() {
-        eventItems.forEach((item, index) => {
-            if (index >= currentEventIndex && index < currentEventIndex + 3) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    
-        // Disable/enable buttons based on currentEventIndex
-        if (currentEventIndex <= 0) {
-            prevButton.setAttribute('disabled', true);
-        } else {
-            prevButton.removeAttribute('disabled');
-        }
-    
-        if (currentEventIndex >= eventItems.length) {
-            nextButton.setAttribute('disabled', true);
-        } else {
-            nextButton.removeAttribute('disabled');
-        }
 // Event Navigation
 let currentEventIndex = 0;
 const eventItems = document.querySelectorAll('.i-event .col-md-4');
+const prevButton = document.querySelector('.i-pre-event-btn');
+const nextButton = document.querySelector('.i-next-event-btn');
 
 function updateEventVisibility() {
-    // Ensure currentEventIndex is within valid bounds
-    if (currentEventIndex >= eventItems.length) {
-        currentEventIndex = eventItems.length - 1;
-    } else if (currentEventIndex < 0) {
-        currentEventIndex = 0;
-    }
-    
-    
+    eventItems.forEach((item, index) => {
+        if (index >= currentEventIndex && index < currentEventIndex + 3) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
 
+    // Disable/enable buttons based on currentEventIndex
+    if (currentEventIndex <= 0) {
+        prevButton.setAttribute('disabled', true);
+    } else {
+        prevButton.removeAttribute('disabled');
+    }
+
+    if (currentEventIndex >= eventItems.length) {
+        nextButton.setAttribute('disabled', true);
+    } else {
+        nextButton.removeAttribute('disabled');
+    }
+}
 
 document.querySelector('.i-pre-event-btn').addEventListener('click', function () {
     currentEventIndex = Math.max(currentEventIndex - 1, 0);
     updateEventVisibility();
 
-document.querySelector('.i-next-event-btn').addEventListener('click', function () {
-    currentEventIndex = Math.min(currentEventIndex + 1, eventItems.length - 3);
+    document.querySelector('.i-next-event-btn').addEventListener('click', function () {
+        currentEventIndex = Math.min(currentEventIndex + 1, eventItems.length - 3);
+        updateEventVisibility();
+    });
+
     updateEventVisibility();
-});
-
-updateEventVisibility();
 
 });
 
-// Avatar File Upload
-document.getElementById('avatarPreview').addEventListener('click', function () {
-    document.getElementById('fileInput').click();
-});
 
-document.getElementById('fileInput').addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            document.getElementById('avatarPreview').style.backgroundImage = `url(${e.target.result})`;
-            document.getElementById('avatarPreview').textContent = ''; // Clear the "Chọn ảnh" text
-        };
-        reader.readAsDataURL(file);
-    }
-});
 
 // Ngày tháng năm hiển thị làm đơn
 document.addEventListener('DOMContentLoaded', function () {
