@@ -14,6 +14,11 @@ class Student extends Model
         'name', 'MSSV', 'mail', 'gender', 'phone', 'cccd', 'birthday', 'address', 'nation', 'note', 'time', 'idphong'
     ];
 
+    public function reasons()
+    {
+        return $this->hasMany(Reason::class, 'codeStudent', 'mssv');
+    }
+    
     public function room()
     {
         return $this->belongsTo(Room::class, 'idphong');

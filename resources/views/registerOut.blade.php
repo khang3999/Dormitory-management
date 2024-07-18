@@ -65,7 +65,6 @@
                 </div>
                 <div class="box-event-personal text-center me-3">
                     <?php if ($user != null) { ?>
-
                     <div class="personal position-relative">
                         <i class="bi bi-gear-fill btn-event-personal"></i>
                         <div id="popup-personal" class="popup-personal">
@@ -144,7 +143,6 @@
             </div>
         </div>
     </div>
-
     @if (session('success'))
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -154,172 +152,58 @@
     @endif
     <div class="r-content pb-4">
         <div class="container">
-            <div class="title-navigation my-5">Đăng kí vào kí túc xá</div>
+            <div class="title-navigation my-5">Đơn đăng kí ra khỏi kí túc xá</div>
             <div class="text-navigation">Bạn hãy điền đầy đủ các thông tin dưới đây: </div>
-            <div class="box-content my-3" style="line-height: 40px; vertical-align:middle;">
-                <form action="{{ route('students.store') }}" method="POST" enctype="multipart/form-data">
+            <div class="box-content my-3 px-5" style="line-height: 40px; vertical-align:middle;">
+                <form action="{{ route('reasons.store') }}" method="POST">
                     @csrf
                     <div class="row justify-content-center">
-                        <div class="col-md-2 px-4 py-3">
-                            <div id="avatarPreview" class="text-center box-avatar-3x4">Chọn ảnh</div>
-                            <input type="file" id="fileInput" name="avatar" required style="display: none;">
-                        </div>
-                        <div class="col-md-9">
+                        <div class="col-md-12">
                             <div class="h4 mt-3 text-center">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
                             <div class="text-country text-center">Độc lập - Tự do - Hạnh Phúc</div>
                             <hr class="mx-5">
-                            <div class="title-application h4 mb-4 text-center font-weight-bold">ĐƠN XIN NỘI TRÚ KÍ TÚC
+                            <div class="title-application h4 mb-4 text-center font-weight-bold">ĐƠN XIN RA KHỎI KÍ TÚC
                                 XÁ
                             </div>
-                            <div class="d-block text-right">
+                            <div class="d-block text-center">
                                 <div class="d-inline-block h5 font-weight-bold mx-5">Kính gửi:</div>
-                                <div class="d-inline-block h5 font-weight-bold">- Hiệu trưởng trường Cao Đẳng Công Nghệ
-                                    Thủ
-                                    Đức</div>
+                                <div class="d-inline-block h5 font-weight-bold">- Phòng Công tác Chính trị - Học sinh sinh viên.</div>
                             </div>
-                            <div class="d-block h5 font-weight-bold text-right mx-5">- Phòng Công tác Chính trị - Học
-                                sinh
-                                sinh viên.</div>
                         </div>
                         <div class="col-md-1"></div>
                     </div>
                     <div class="box-data mx-5 my-4">
 
                         <div class="data d-flex justify-content-between">
-                            <div class="mr-3">Họ và tên HSSV: </div>
-                            <input class="input-name form-control" type="text" name="fullname" id="fullname" required>
-                            <div class="gender text-right">
-                                <div class="d-flex">
-                                    <div class="form-check mx-3 text-start">
-                                        <input class="form-check-input" type="radio" name="gender" id="nam" value="1"
-                                            required>
-                                        <label class="form-check-label" for="nam">
-                                            Nam
-                                        </label>
-                                    </div>
-                                    <div class="form-check mx-3 text-end">
-                                        <input class="form-check-input" type="radio" name="gender" id="nu" value="0">
-                                        <label class="form-check-label" for="nu">
-                                            Nữ
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="mr-3">Em tên là: </div>
+                            <input class="input-name-second form-control" type="text" name="fullname" id="fullname" required>
                         </div>
                         <div class="data d-flex justify-content-between">
-                            <div class="mr-3">Ngày sinh: </div>
-                            <input class="input-day form-control" type="date" name="dayBorn" id="dayBorn" required>
-                        </div>
-                        <div class="data d-flex justify-content-between">
-                            <div class="mr-5">Mail: </div>
-                            <input class="input-email form-control" type="email" name="mail" id="mail" required>
-                            <div class="mr-3">Dân tộc: </div>
-                            <select name="ethnic" id="ethnic" class="input-ethnic form-control">
-                                <option value="Kinh">Kinh</option>
-                                <option value="Tày">Tày</option>
-                                <option value="Thái">Thái</option>
-                                <option value="Hoa">Hoa</option>
-                                <option value="Khơ-me">Khơ-me</option>
-                                <option value="Mường">Mường</option>
-                                <option value="Nùng">Nùng</option>
-                                <option value="H'mông">H'mông</option>
-                                <option value="Dao">Dao</option>
-                                <option value="Gia-rai">Gia-rai</option>
-                                <option value="Ngái">Ngái</option>
-                                <option value="Ê-đê">Ê-đê</option>
-                                <option value="Ba-na">Ba-na</option>
-                                <option value="Xơ-đăng">Xơ-đăng</option>
-                                <option value="Sán Chay">Sán Chay</option>
-                                <option value="Cơ-ho">Cơ-ho</option>
-                                <option value="Chăm">Chăm</option>
-                                <option value="Sán Dìu">Sán Dìu</option>
-                                <option value="Hrê">Hrê</option>
-                                <option value="Mnông">Mnông</option>
-                                <option value="Ra-glai">Ra-glai</option>
-                                <option value="Xtiêng">Xtiêng</option>
-                                <option value="Bru-Vân Kiều">Bru-Vân Kiều</option>
-                                <option value="Thổ">Thổ</option>
-                                <option value="Giáy">Giáy</option>
-                                <option value="Cơ-tu">Cơ-tu</option>
-                                <option value="Gié-Triêng">Gié-Triêng</option>
-                                <option value="Mạ">Mạ</option>
-                                <option value="Khơ-mú">Khơ-mú</option>
-                                <option value="Co">Co</option>
-                                <option value="Tà-ôi">Tà-ôi</option>
-                                <option value="Chơ-ro">Chơ-ro</option>
-                                <option value="Kháng">Kháng</option>
-                                <option value="Xinh-mun">Xinh-mun</option>
-                                <option value="Hà Nhì">Hà Nhì</option>
-                                <option value="Chu-ru">Chu-ru</option>
-                                <option value="Lào">Lào</option>
-                                <option value="La Chí">La Chí</option>
-                                <option value="La Ha">La Ha</option>
-                                <option value="Phù Lá">Phù Lá</option>
-                                <option value="La Hủ">La Hủ</option>
-                                <option value="Lự">Lự</option>
-                                <option value="Lô Lô">Lô Lô</option>
-                                <option value="Chứt">Chứt</option>
-                                <option value="Mảng">Mảng</option>
-                                <option value="Pà Thẻn">Pà Thẻn</option>
-                                <option value="Cờ Lao">Cờ Lao</option>
-                                <option value="Bố Y">Bố Y</option>
-                                <option value="Cống">Cống</option>
-                                <option value="Si La">Si La</option>
-                                <option value="Pu Péo">Pu Péo</option>
-                                <option value="Brâu">Brâu</option>
-                                <option value="Ơ Đu">Ơ Đu</option>
-                                <option value="Rơ-măm">Rơ-măm</option>
-                            </select>
-                        </div>
-                        <div class="data d-flex justify-content-between">
-                            <div class="mr-3">Thường trú tại: </div>
-                            <input class="input-live form-control" type="text" name="liveIn" id="liveIn" required>
-                        </div>
-                        <div class="data d-flex justify-content-between">
-                            <div class="mr-3">Là HSSV lớp: </div>
-                            <input class="input-class form-control" type="text" name="class" id="class" required>
-                            <div class="mr-1">Khóa: </div>
-                            <input class="input-course form-control" type="number" min="0" max="24" step="1"
-                                name="course" id="course" required>
-                        </div>
-                        <div class="data d-flex justify-content-between">
-                            <div class="mr-3">Mã số HSSV: </div>
-                            <input class="input-codeStudent form-control" type="text" name="codeStudent"
+                            <div class="mr-3">MSSV: </div>
+                            <input class="input-codeStudent-second form-control" type="text" name="codeStudent"
                                 id="codeStudent" minlength="11" required>
-                            <div class="mr-1">Số điện thoại: </div>
-                            <input class="input-phoneNumber form-control" type="text" name="phoneNumber"
-                                id="phoneNumber" minlength="10" required>
                         </div>
                         <div class="data d-flex justify-content-between">
-                            <div class="mr-3">Ngành: </div>
-                            <input class="input-live form-control" type="text" name="job" id="job" required>
-                        </div>
-                        <div class="data d-flex justify-content-between">
-                            <div class="mr-3">CCCD số: </div>
-                            <input class="input-live form-control" type="text" name="cccd" minlength="12" id="cccd"
-                                required>
-                        </div>
-                        <div class="data d-flex justify-content-between">
-                            <div class="mr-3">CCCD số: </div>
-                            <input class="input-live form-control" type="text" name="cccd" id="cccd">
-                        </div>
-                        <div class="data d-flex justify-content-between">
-                            <div class="mr-3">Đối tượng ưu tiên (nếu có): </div>
-                            <input class="input-l form-control" type="text" name="uutien" id="uutien">
+                            <div class="mr-3">Hiện đang lưu trú tại phòng: </div>
+                            <input class="input-idphong form-control" type="text" name="room" id="room" required >
                         </div>
                         <div class="data d-block justify-content-between">
-                            <div class="mr-3 font-italic">Đề nghị nhà trường xem xét, tiếp nhận tôi được nội trú Kí túc
-                                xá
-                                Trường Cao Đẳng Công Nghệ Thủ Đức.</div>
-                            <div class="mr-3 font-italic">Tôi xin cam kết thực hiện đầy đủ các điều khoản được quy định
-                                tại
-                                Thông tư số 27/TT-BGDDT ngày 31/02/2024 của Bộ Giáo dục và đào tạo ban hành Quy chế công
-                                tác
-                                sinh viên, sinh viên nội trú tại các cơ sở giáo dục thuộc hệ thống giáo dục quốc dân và
-                                nội
-                                quy Kí túc xá hiện hành.</div>
+                            <div class="mr-3 font-italic">Nay em làm đơn này kính đề nghị Phòng Công tác Chính trị - Học sinh sinh viên cho phép em được chấm dứt hợp đồng thuê chỗ ở trước thời hạn.</div>
                         </div>
-
+                        <div class="data d-flex justify-content-between">
+                            <div class="mr-3">Lí do: </div>
+                            <input class="input-reason form-control" type="text" name="reason" id="reason" required>
+                        </div>
+                        <div class="data d-block justify-content-between text-nowrap">
+                            <span class="mr-2 font-weight-bold d-inline-block" style="text-decoration: underline;">Em cam kết</span>
+                            <div class="mr-3 font-italic d-inline-block">: Đã bàn giao tài sản KTX cho Quản Lý KTX và sẽ chuyển tư trang, hành lý cá nhân sau khi hoàn tất thủ tục xin ra khỏi KTX</div>
+                        </div>
+                        <div class="data d-block justify-content-between text-nowrap">
+                            <div class="mr-3 font-italic d-inline-block">Kính mong Phòng Công tác Chính trị - Học sinh sinh viên chấp thuận.</div>
+                        </div>
+                        <div class="data d-block justify-content-between text-nowrap">
+                            <div class="mr-3 font-italic d-inline-block">Em xin trân trọng cảm ơn.</div>
+                        </div>
                     </div>
                     <div class="row my-5">
                         <div class="col-6 text-center">
@@ -332,34 +216,10 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary px-5 py-3 font-weight-bold">Đăng kí</button>
+                        <button type="submit" class="btn btn-primary px-5 py-3 font-weight-bold">Xác nhận</button>
                     </div>
                 </form>
                 <hr>
-                <div class="rule text-left mx-5">
-                    <div class="title-rule font-weight-bold h3 my-5 text-center">TRÍCH DẪN NỘI QUY KÍ TÚC XÁ</div>
-                    <div class="h5 my-2 font-weight-bold">Điều 3.Các hành vi HS-SV không được làm</div>
-                    <div class=""><b>1.</b> Cải tạo phòng, thay đổi hoặc tự ý di chuyển trang thiết bị trong phòng ở;
-                        gây mất trật tự, an ninh, vệ sinh môi trường; Dán giấy, tranh ảnh, viết vẽ, kẻ, đóng đinh trên
-                        tường, treo rèm, mắc võng trong phòng ở.</div>
-                    <div class=""><b>2.</b> Đun, nấu và sử dụng các thiết bị dễ gây cháy, nổ trong KTX; Tự ý câu móc,
-                        tháo gỡ, sửa chữa, điều chỉnh hệ thống điện và các thiết bị điện của KTX; Tự tiện dịch chuyển,
-                        làm hư hỏng các trang thiết bị PCCC trong KTX.</div>
-                    <div class=""><b>3.</b> Tổ chức hoặc tham gia đánh bạc, mại dâm dưới mọi hình thức; Tổ chức hoặc
-                        tham gia uống rượu bia; mang thuốc lá, hút thuốc lá trong KTX</div>
-                    <div class=""><b>4.</b> Văng tục, chửi thề, có hành vi bạo lực, xúc phạm nhân phẩm, danh dự của
-                        người khác; Tổ chức hoặc tham gia các hoạt động gây ồn ào, ảnh hưởng đến học tập, sinh hoạt của
-                        HS - SV trong KTX; Kích động hoặc tham gia gây gỗ, đánh nhau gây mất trật tự an ninh KTX.</div>
-                    <div class=""><b>5.</b> Leo tường, rào vào khuôn viên KTX; Leo trèo, ngồi ở ban công, cửa sổ phòng
-                        ở.</div>
-                    <div class=""><b>6.</b> Tiếp bạn khác phái (đang lưu trú tại KTX) trong phòng ở; Tiếp hoặc chứa chấp
-                        khách (không phải là HS - SV đang lưu trú tại kí túc xá) trong phòng ở của KTX</div>
-                    <div class=""><b>7.</b> Sản xuất, buôn bán, vận chuyển, phát tán, tàng trữ, sử dụng hoặc lôi kéo
-                        người khác sử dụng vũ khí, chất nổ, các chất ma túy, các loại hóa chất cấm sử dụng, các tài
-                        liệu, ấn phẩm, thông tin phản động, đồi trụy, mê tín dị đoan và các tài liệu cấm khác theo quy
-                        định của Nhà nước; Chứa chấp, che dấu hàng quốc cấm; phá hoại, ăn cắp của công, tài sản của công
-                        dân.</div>
-                </div>
             </div>
         </div>
     </div>

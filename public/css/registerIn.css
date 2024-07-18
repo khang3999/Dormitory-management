@@ -16,12 +16,12 @@ body{
 .title-navigation {
     font-size: 40px;
     text-align: center;
-    background-color: aquamarine;
+    background-color: teal;
     padding: 20px;
     font-weight: bold;
     clip-path: polygon(100% 0, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%);
     font-style: italic;
-    color: red;
+    color: white;
 }
 
 .box-avatar-3x4 {
@@ -79,11 +79,21 @@ body{
 .input-name{
     width: 70%;
 }
+.input-name-second{
+    width: 90.5%;
+}
 .input-day{
     width: 86.8%;
 }
 .input-live{
     width: 86.8%;
+}
+.input-email{
+    margin-left: 50px;
+    width: 60.8%;
+}
+.input-ethnic{
+    width: 16.8%;
 }
 .input-class{
     width: 66%;
@@ -94,11 +104,20 @@ body{
 .input-codeStudent{
     width: 41%;
 }
+.input-codeStudent-second{
+    width: 90.5%;
+}
 .input-phoneNumber{
     width: 30%;
 }
 .input-l{
     width: 80%;
+}
+.input-idphong{
+    width: 77%;
+}
+.input-reason{
+    width: 90.5%;
 }
 
 .success-checkmark {

@@ -33,12 +33,12 @@ document.addEventListener("DOMContentLoaded", function () {
             navbarBefore.style.height = '10px';
             changeNav = true;
             hiddenNav.innerHTML = '<i class="bi bi-caret-down-fill icon-nav-hidden"></i>';
-        }else if (navbar.style.height = '1px'){
+        } else if (navbar.style.height = '1px') {
             navbar.style.height = '130px';
             navbarBefore.style.height = '130px';
             changeNav = false;
             hiddenNav.innerHTML = '<i class="bi bi-caret-up-fill icon-nav-hidden"></i>';
-        }else{
+        } else {
             navbar.style.height = '160px';
             navbarBefore.style.height = '160px';
             changeNav = true;
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 navbar.style.height = '130px';
                 navbarBefore.style.height = '130px';
             }
-            else{
+            else {
                 navbar.style.height = '1px';
                 navbarBefore.style.height = '10px';
             }
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 navbar.style.height = '160px';
                 navbarBefore.style.height = '160px';
             }
-            else{
+            else {
                 navbar.style.height = '0px';
                 navbarBefore.style.height = '10px';
             }
@@ -137,6 +137,35 @@ document.addEventListener("DOMContentLoaded", function () {
         changeImage(currentImageIndex);
     }, 3000);
 
+});
+
+    // Event Navigation
+    let currentEventIndex = 0;
+    const eventItems = document.querySelectorAll('.i-event .col-md-4');
+    const prevButton = document.querySelector('.i-pre-event-btn');
+    const nextButton = document.querySelector('.i-next-event-btn');
+
+    function updateEventVisibility() {
+        eventItems.forEach((item, index) => {
+            if (index >= currentEventIndex && index < currentEventIndex + 3) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    
+        // Disable/enable buttons based on currentEventIndex
+        if (currentEventIndex <= 0) {
+            prevButton.setAttribute('disabled', true);
+        } else {
+            prevButton.removeAttribute('disabled');
+        }
+    
+        if (currentEventIndex >= eventItems.length) {
+            nextButton.setAttribute('disabled', true);
+        } else {
+            nextButton.removeAttribute('disabled');
+        }
 // Event Navigation
 let currentEventIndex = 0;
 const eventItems = document.querySelectorAll('.i-event .col-md-4');
@@ -148,24 +177,13 @@ function updateEventVisibility() {
     } else if (currentEventIndex < 0) {
         currentEventIndex = 0;
     }
+    
+    
 
-    eventItems.forEach((item, index) => {
-        if (index >= currentEventIndex && index < currentEventIndex + 3) {
-            item.style.display = 'block';
-        } else {
-            item.style.display = 'none';
-        }
-    });
-
-    // Disable buttons if at the beginning or end
-    document.querySelector('.i-pre-event-btn').disabled = currentEventIndex === 0;
-    document.querySelector('.i-next-event-btn').disabled = currentEventIndex >= eventItems.length - 3;
-}
 
 document.querySelector('.i-pre-event-btn').addEventListener('click', function () {
     currentEventIndex = Math.max(currentEventIndex - 1, 0);
     updateEventVisibility();
-});
 
 document.querySelector('.i-next-event-btn').addEventListener('click', function () {
     currentEventIndex = Math.min(currentEventIndex + 1, eventItems.length - 3);

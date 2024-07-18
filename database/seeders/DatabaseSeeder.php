@@ -294,42 +294,26 @@ class DatabaseSeeder extends Seeder
     );
 
         DB::table('events')->insert([
-           [  'title' => 'Thông báo miễn giảm học phí',
+            'id' => 0,
+            'title' => '1',
             'content' => 'latfbnigyiauombaeiuNOm',
             'img' => 'banner.jpg',
-            'type' => 'none'],
-            [  'title' => 'Thông báo miễn giảm học phí',
-            'content' => 'latfbnigyiauombaeiuNOm',
-            'img' => 'banner.jpg',
-            'type' => 'none'],
-            [  'title' => 'Thông báo miễn giảm học phí',
-            'content' => 'latfbnigyiauombaeiuNOm',
-            'img' => 'banner.jpg',
-            'type' => 'none'],
-            [  'title' => 'Thông báo miễn giảm học phí',
-            'content' => 'latfbnigyiauombaeiuNOm',
-            'img' => 'banner.jpg',
-            'type' => 'none'],
-            [  'title' => 'Thông báo miễn giảm học phí',
-            'content' => 'latfbnigyiauombaeiuNOm',
-            'img' => 'banner.jpg',
-            'type' => 'none'],
-            [  'title' => 'Thông báo miễn giảm học phí',
-            'content' => 'latfbnigyiauombaeiuNOm',
-            'img' => 'banner.jpg',
-            'type' => 'none'],
-            [  'title' => 'Thông báo miễn giảm học phí',
-            'content' => 'latfbnigyiauombaeiuNOm',
-            'img' => 'banner.jpg',
-            'type' => 'none'],
-            [  'title' => 'Thông báo miễn giảm học phí',
-            'content' => 'latfbnigyiauombaeiuNOm',
-            'img' => 'banner.jpg',
-            'type' => 'none'],
-            [  'title' => 'Thông báo miễn giảm học phí',
-            'content' => 'latfbnigyiauombaeiuNOm',
-            'img' => 'banner.jpg',
-            'type' => 'none'],
+            'type' => 'none'
         ]);
+        DB::table('events')->insert([
+            'id' => 0,
+            'title' => '2',
+            'content' => 'latfbnigyiauombaeiuNOm',
+            'img' => 'banner.jpg',
+            'type' => 'none'
+        ]);
+        DB::table('events')->insert([
+            'id' => 0,
+            'title' => '3',
+            'content' => 'latfbnigyiauombaeiuNOm',
+            'img' => 'banner.jpg',
+            'type' => 'none'
+        ]);
+       
     }
 }
