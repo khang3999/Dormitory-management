@@ -65,22 +65,23 @@ class EventController extends Controller
         $event->content = $request->content;
     
         if ($request->hasFile('img')) {
-            // Lấy file từ request
             $file = $request->file('img');
-            // Tạo tên file duy nhất
             $filename = time() . '.' . $file->getClientOriginalExtension();
-            // Đường dẫn tới thư mục lưu trữ
             $path = public_path('images/img');
-            // Di chuyển file tới thư mục lưu trữ
+            
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            
             $file->move($path, $filename);
-            // Lưu tên file vào database
-            $event->img =  $filename;
+            $event->img = "images/img/" . $filename;
         }
     
         $event->save();
     
         return response()->json(['message' => 'Thêm sự kiện thành công!']);
     }
+    
     
     /**
      * Display the specified resource.
@@ -117,33 +118,43 @@ class EventController extends Controller
     //     return response()->json(['message' => 'Bài viết đã được cập nhật thành công!']);
     // }
     public function update(Request $request, Event $post)
-{
-    $request->validate([
-        'title' => 'required|string|max:255',
-        'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'content' => 'required|string',
-    ]);
-
-    $post->title = $request->title;
-    $post->content = $request->content;
-
-    if ($request->hasFile('img')) {
-        // Lấy file từ request
-        $file = $request->file('img');
-        // Tạo tên file duy nhất
-        $filename = time() . '.' . $file->getClientOriginalExtension();
-        // Đường dẫn tới thư mục lưu trữ
-        $path = public_path('images/img');
-        // Di chuyển file tới thư mục lưu trữ
-        $file->move($path, $filename);
-        // Lưu tên file vào database
-        $post->img =  $filename;
+    {
+        try {
+            $request->validate([
+                'title' => 'required|string|max:255',
+                'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'content' => 'required|string',
+            ]);
+    
+            $post->title = $request->title;
+            $post->content = $request->content;
+    
+            if ($request->hasFile('img')) {
+                // Get the file from the request
+                $file = $request->file('img');
+                // Create a unique filename
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                // Path to store the file
+                $path = public_path('images/img');
+                // Check and create directory if not exists
+                if (!File::isDirectory($path)) {
+                    File::makeDirectory($path, 0755, true, true);
+                }
+                // Move the file to the storage
+                $file->move($path, $filename);
+                // Save the filename to the database
+                $post->img = "images/img/" . $filename;
+            }
+    
+            $post->save();
+    
+            return response()->json(['message' => 'Bài viết đã được cập nhật thành công!']);
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            Log::error('Error updating post: ' . $e->getMessage());
+            return response()->json(['message' => 'Có lỗi xảy ra, vui lòng thử lại sau.'], 500);
+        }
     }
-
-    $post->save();
-
-    return response()->json(['message' => 'Bài viết đã được cập nhật thành công!']);
-}
 
     
     // public function destroy($id) {
