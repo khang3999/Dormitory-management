@@ -166,20 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             nextButton.removeAttribute('disabled');
         }
-// Event Navigation
-let currentEventIndex = 0;
-const eventItems = document.querySelectorAll('.i-event .col-md-4');
-
-function updateEventVisibility() {
-    // Ensure currentEventIndex is within valid bounds
-    if (currentEventIndex >= eventItems.length) {
-        currentEventIndex = eventItems.length - 1;
-    } else if (currentEventIndex < 0) {
-        currentEventIndex = 0;
     }
-    
-    
-
 
 document.querySelector('.i-pre-event-btn').addEventListener('click', function () {
     currentEventIndex = Math.max(currentEventIndex - 1, 0);
