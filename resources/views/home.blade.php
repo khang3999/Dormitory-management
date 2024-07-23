@@ -162,7 +162,7 @@ Chào mừng bạn đến với Kí túc xá TDC
                 <div class="i-content-item" style="--i: 4;"> - Các giấy tờ có liên quan</div>
             </div>
             <div class="text-right mx-3">
-                <button class="btn btn-outline-primary mt-3"> Đăng kí ngay </button>
+                <a href="{{ route('myRegister') }}" class="btn btn-outline-primary mt-3"> Đăng kí ngay </a>
             </div>
             <div class="i-info-content px-3 text-center">
                 Hoặc liên hệ đến trang quản trị sinh viên để được hỗ trợ:
@@ -182,26 +182,49 @@ Chào mừng bạn đến với Kí túc xá TDC
         </div>
     </div>
     <div class="i-event">
-        <div class="i-pre-event-btn">&#60;</div>
-        <div class="i-next-event-btn">&#62;</div>
+        <div class="i-pre-event-btn" style="top: 200px;">&#60;</div>
+        <div class="i-next-event-btn" style="top: 200px;">&#62;</div>
         <div class="container">
             <div class="i-title bg-warning text-white px-5 py-2 mb-4">Tin nổi bật</div>
             <div class="row">
                 @foreach ($events as $index => $event)
-                    @if (true)
-                        <div class="col-md-4 mb-4">
-                            <div class="i-event-image">
-                                <img class="i-event-image" src="images/img/{{ $event->img }}" alt="">
+                    <div class="col-md-4 mb-4 event-item {{ $index < 3 ? 'active' : '' }}">
+                        <div class="i-event-image">
+                            <img class="i-event-image" src="images/post/{{ $event->img }}" alt="">
+                        </div>
+                        <div class="i-event-title">{{ $event->title }}</div>
+                        <div class="i-event-text">
+                            {{ Str::limit($event->content, 100) }}...
+                        </div>
+                        <div class="i-event-text-hidden" hidden>
+                            {{ $event->content }}
+                        </div>
+                    </div>
+                @endforeach
+                <!-- Modal -->
+                <div class="modal" id="eventModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="eventModalTitle"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                            <div class="i-event-title">{{ $event->title }}</div>
-                            <div class="i-event-text">
-                                {{ $event->content }}
+                            <div class="modal-body">
+                                <img style="width: 450px; height: 400px; background: cover;" class="modal-event-image" src="" alt="">
+                                <div class="modal-event-content"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                             </div>
                         </div>
-                    @endif
-                @endforeach
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+
         <div class="i-map">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.523387609766!2d106.7598254!3d10.852075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752755cc3274a5%3A0x4b637fd0b7f89e!2zNTMgVsO1IFbEg24gTmfDtG4sIExpbmggQ2hp4buBdSwgVGjhu6UgxJDhu6ljLCBI4buNYyBDaMOtIE1pbmgsIFZpZXRuYW0!5e0!3m2!1svi!2s!4v1626862356625!5m2!1svi!2s"
@@ -258,7 +281,6 @@ Chào mừng bạn đến với Kí túc xá TDC
                     </div>
                 </div>
             </div>
-        </div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

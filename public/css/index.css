@@ -19,6 +19,14 @@
     font-weight: bold;
 }
 
+.event-item {
+    display: none;
+}
+
+.event-item.active {
+    display: block;
+}
+
 .i-info-content {
     font-size: 25px;
 }
@@ -144,15 +152,18 @@
     background-image: url(../images/event.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    cursor: pointer;
 }
 
 .i-event-title {
     font-size: 20px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .i-event-text {
     font-size: 15px;
+    cursor: pointer;
     color: #d9d9d9;
 }
 /* Responsive */

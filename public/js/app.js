@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
             navbarBefore.style.height = '10px';
             changeNav = true;
             hiddenNav.innerHTML = '<i class="bi bi-caret-down-fill icon-nav-hidden"></i>';
-        } else if (navbar.style.height = '1px') {
+        } else if (navbar.style.height === '1px') {
             navbar.style.height = '130px';
             navbarBefore.style.height = '130px';
             changeNav = false;
@@ -72,8 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
             btnNav.forEach(element => {
                 element.classList.add("scrolled");
             });
-
-            console.log(changeNav);
         } else {
             if (changeNav == false) {
                 navbar.style.height = '160px';
@@ -92,7 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
             btnNav.forEach(element => {
                 element.classList.remove("scrolled");
             });
-            console.log(changeNav);
         }
     }
 
@@ -112,61 +109,69 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Image banner
-    let currentImageIndex = 0;
-    const images = ['/images/banner.jpg', '/images/event.jpg'];
-    const banner = document.querySelector('.i-banner');
-
-    function changeImage(index) {
-        banner.style.backgroundImage = `url('${images[index]}')`;
-    }
-
-    document.querySelector('.i-pre-image-btn').addEventListener('click', function () {
-        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-        changeImage(currentImageIndex);
-    });
-
-    document.querySelector('.i-next-image-btn').addEventListener('click', function () {
-        currentImageIndex = (currentImageIndex + 1) % images.length;
-        changeImage(currentImageIndex);
-    });
-
-    // Automatic image change every 3 seconds
-    setInterval(function () {
-        currentImageIndex = (currentImageIndex + 1) % images.length;
-        changeImage(currentImageIndex);
-    }, 3000);
-
 });
-    // Avatar File Upload
-    document.getElementById('avatarPreview').addEventListener('click', function () {
-        document.getElementById('fileInput').click();
+
+// Avatar File Upload
+// Các phần tử liên quan đến avatar
+var avatarPreview = document.getElementById('avatarPreview');
+var fileInput = document.getElementById('fileInput');
+
+if (avatarPreview && fileInput) {
+    avatarPreview.addEventListener('click', function () {
+        fileInput.click();
     });
 
-    document.getElementById('fileInput').addEventListener('change', function (event) {
+    fileInput.addEventListener('change', function (event) {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = function (e) {
-                document.getElementById('avatarPreview').style.backgroundImage = `url(${e.target.result})`;
-                document.getElementById('avatarPreview').textContent = ''; // Clear the "Chọn ảnh" text
+                avatarPreview.style.backgroundImage = `url(${e.target.result})`;
+                avatarPreview.textContent = ''; // Clear the "Chọn ảnh" text
             };
             reader.readAsDataURL(file);
         }
     });
+} else {
+    console.error('Không tìm thấy các phần tử avatar trong DOM');
+}
 
-// Event Navigation
+// Image banner
+let currentImageIndex = 0;
+const images = ['/images/banner.jpg', '/images/event.jpg'];
+const banner = document.querySelector('.i-banner');
+
+function changeImage(index) {
+    banner.style.backgroundImage = `url('${images[index]}')`;
+}
+
+document.querySelector('.i-pre-image-btn').addEventListener('click', function () {
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    changeImage(currentImageIndex);
+});
+
+document.querySelector('.i-next-image-btn').addEventListener('click', function () {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    changeImage(currentImageIndex);
+});
+
+// Automatic image change every 3 seconds
+setInterval(function () {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    changeImage(currentImageIndex);
+}, 3000);
+
 let currentEventIndex = 0;
-const eventItems = document.querySelectorAll('.i-event .col-md-4');
+const eventItems = document.querySelectorAll('.event-item');
 const prevButton = document.querySelector('.i-pre-event-btn');
 const nextButton = document.querySelector('.i-next-event-btn');
 
 function updateEventVisibility() {
     eventItems.forEach((item, index) => {
         if (index >= currentEventIndex && index < currentEventIndex + 3) {
-            item.style.display = 'block';
+            item.classList.add('active');
         } else {
-            item.style.display = 'none';
+            item.classList.remove('active');
         }
     });
 
@@ -177,35 +182,55 @@ function updateEventVisibility() {
         prevButton.removeAttribute('disabled');
     }
 
-    if (currentEventIndex >= eventItems.length) {
+    if (currentEventIndex >= eventItems.length - 3) {
         nextButton.setAttribute('disabled', true);
     } else {
         nextButton.removeAttribute('disabled');
     }
 }
 
-document.querySelector('.i-pre-event-btn').addEventListener('click', function () {
-    currentEventIndex = Math.max(currentEventIndex - 1, 0);
-    updateEventVisibility();
-
-    document.querySelector('.i-next-event-btn').addEventListener('click', function () {
-        currentEventIndex = Math.min(currentEventIndex + 1, eventItems.length - 3);
+nextButton.addEventListener('click', function () {
+    if (currentEventIndex < eventItems.length - 3) {
+        currentEventIndex++;
         updateEventVisibility();
+    }
+});
+
+prevButton.addEventListener('click', function () {
+    if (currentEventIndex > 0) {
+        currentEventIndex--;
+        updateEventVisibility();
+    }
+});
+
+// Initial update to show the first 3 items
+updateEventVisibility();
+
+const modal = document.getElementById('eventModal');
+const modalTitle = modal.querySelector('.modal-title');
+const modalImage = modal.querySelector('.modal-event-image');
+const modalContent = modal.querySelector('.modal-event-content');
+
+eventItems.forEach(item => {
+    item.addEventListener('click', function () {
+        const eventTitle = item.querySelector('.i-event-title').textContent;
+        const eventImageSrc = item.querySelector('.i-event-image img').getAttribute('src');
+        const eventContent = item.querySelector('.i-event-text-hidden').textContent;
+
+        modalTitle.textContent = eventTitle;
+        modalImage.setAttribute('src', eventImageSrc);
+        modalContent.textContent = eventContent;
+
+        $('#eventModal').modal('show');
     });
-
-    updateEventVisibility();
-
 });
 
 
 
 // Ngày tháng năm hiển thị làm đơn
-document.addEventListener('DOMContentLoaded', function () {
-    const currentDateDiv = document.getElementById('current-date');
-    const now = new Date();
-    const day = String(now.getDate()).padStart(2, '0');
-    const month = String(now.getMonth() + 1).padStart(2, '0'); // Tháng trong JavaScript bắt đầu từ 0
-    const year = now.getFullYear();
-
-    currentDateDiv.textContent = `Ngày ${day} Tháng ${month} Năm ${year}`;
-});
+const currentDateDiv = document.getElementById('current-date');
+const now = new Date();
+const day = String(now.getDate()).padStart(2, '0');
+const month = String(now.getMonth() + 1).padStart(2, '0'); // Tháng trong JavaScript bắt đầu từ 0
+const year = now.getFullYear();
+currentDateDiv.textContent = `Ngày ${day} Tháng ${month} Năm ${year}`;

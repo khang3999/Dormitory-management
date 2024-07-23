@@ -77,7 +77,7 @@
                     </div>
                     <div class="form-group col-md-12">
                         <label for="modalPostImg">Ảnh:</label>
-                        <input type="file" class="form-control" id="modalPostImg" name="img">
+                        <input type="file" class="form-control" id="modalPostImg" name="img" required>
                         <img class="img-fluid" src="" alt="ảnh hiện tại" id="currentImg">
                         <p id="currentImgName" hidden></p>
                     </div>
@@ -96,8 +96,8 @@
     </div>
 
     <!-- Modal for creating a new post -->
-    <div class="modal fade" id="createPostModal" tabindex="-1" role="dialog"
-        aria-labelledby="createPostModalLabel" aria-hidden="true">
+    <div class="modal fade" id="createPostModal" tabindex="-1" role="dialog" aria-labelledby="createPostModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-coustome" role="document">
             <div class="modal-content ">
                 <div class="modal-header">
@@ -134,19 +134,28 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
+            // Function to preview image
+            function readURL(input, imgElement) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $(imgElement).attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
             // Sự kiện khi thay đổi nội dung ô tìm kiếm
-            $('input[type="search"]').on('keyup', function() {
-                var searchText = $(this).val()
-                    .toLowerCase(); // Lấy nội dung tìm kiếm và chuyển thành chữ thường
+            $('input[type="search"]').on('keyup', function () {
+                var searchText = $(this).val().toLowerCase(); // Lấy nội dung tìm kiếm và chuyển thành chữ thường
 
                 // Lặp qua từng hàng trong bảng
-                $('table tbody tr').each(function() {
+                $('table tbody tr').each(function () {
                     var found = false;
                     // Lặp qua từng ô dữ liệu trong hàng
-                    $(this).find('td').each(function() {
-                        var cellText = $(this).text()
-                            .toLowerCase(); // Lấy nội dung của ô và chuyển thành chữ thường
+                    $(this).find('td').each(function () {
+                        var cellText = $(this).text().toLowerCase(); // Lấy nội dung của ô và chuyển thành chữ thường
                         // Kiểm tra xem chuỗi tìm kiếm có tồn tại trong nội dung ô không
                         if (cellText.indexOf(searchText) !== -1) {
                             found = true;
@@ -162,9 +171,8 @@
                     }
                 });
             });
-        });
-        $(document).ready(function() {
-            $('#postModal').on('show.bs.modal', function(event) {
+
+            $('#postModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget); // Button that triggered the modal
                 var id = button.data('post-id'); // Extract info from data-* attributes
                 var title = button.data('post-title');
@@ -178,8 +186,7 @@
 
                 if (img) {
                     // Xây dựng đường dẫn mới cho ảnh
-                    var newImgPath = 'images/img/' + img.split('/')
-                .pop(); // Lấy tên file từ đường dẫn và thêm vào chuỗi 'images/img/'
+                    var newImgPath = 'images/post/' + img.split('/').pop(); // Lấy tên file từ đường dẫn và thêm vào chuỗi 'images/post/'
 
                     // Đặt thuộc tính src cho ảnh
                     modal.find('#currentImg').attr('src', '/' + newImgPath);
@@ -191,6 +198,7 @@
                     modal.find('#currentImgName').text(imgName);
                 }
             });
+
             $('#savePostButton').click(function() {
                 const title = $('#createPostTitle').val();
                 const img = $('#createPostImg')[0].files[0]; // Lấy file ảnh
@@ -230,7 +238,7 @@
                 });
             });
 
-            $('#savePostChanges').on('click', function() {
+            $('#savePostChanges').on('click', function () {
                 var id = $('#modalPostId').val();
                 var title = $('#modalPostTitle').val();
                 var img = $('#modalPostImg')[0].files[0]; // Lấy file ảnh
@@ -238,30 +246,34 @@
 
                 var formData = new FormData();
                 formData.append('title', title);
-                formData.append('img', img);
                 formData.append('content', content);
                 formData.append('_method', 'PUT'); // Let Laravel recognize this as a PUT request
                 formData.append('_token', '{{ csrf_token() }}'); // CSRF token
 
+                // Kiểm tra xem người dùng có chọn ảnh mới hay không
+                if (img) {
+                    formData.append('img', img);
+                }
+
                 $.ajax({
                     url: `/posts/${id}`,
-                    method: 'POST',
+                    method: 'POST', // Phương thức POST (do FormData không thể gửi trực tiếp với PUT qua Ajax)
                     data: formData,
-                    processData: false, // Không xử lý dữ liệu thành query string
-                    contentType: false, // Không đặt Content-Type header
-                    success: function(response) {
+                    processData: false, // Không xử lý dữ liệu FormData
+                    contentType: false, // Không set Content-Type header
+                    success: function (response) {
                         alert('Bài viết đã được cập nhật thành công!');
                         $('#postModal').modal('hide');
-                        location.reload(); // Reload the page to see changes
+                        location.reload(); // Tải lại trang để xem các thay đổi
                     },
-                    error: function(xhr) {
+                    error: function (xhr) {
                         alert('Có lỗi xảy ra, vui lòng kiểm tra lại.');
                     }
                 });
             });
 
             // Delete post
-            $('#deletePostButton').on('click', function() {
+            $('#deletePostButton').on('click', function () {
                 var id = $('#modalPostId').val();
 
                 if (confirm('Are you sure you want to delete this post?')) {
@@ -271,17 +283,27 @@
                         data: {
                             _token: '{{ csrf_token() }}' // CSRF token
                         },
-                        success: function(response) {
+                        success: function (response) {
                             alert(response.message);
                             $('#postModal').modal('hide');
                             location.reload(); // Reload the page to see changes
                         },
-                        error: function(xhr) {
+                        error: function (xhr) {
                             alert('An error occurred while deleting the post.');
                         }
                     });
                 }
             });
+
+            // Preview image when selecting a new one
+            $('#modalPostImg').change(function () {
+                readURL(this, '#currentImg');
+            });
+
+            $('#createPostImg').change(function () {
+                readURL(this, '#currentImg');
+            });
         });
     </script>
+
 </x-admin-layout>
