@@ -4,39 +4,18 @@
     </x-slot:title>
     <div class="bang bangquanlyphong" id="quanLyPhong">
         <div class="tableName">Quản lý phòng</div>
-        <div class="row py-2">
-            {{-- <div class="col-8">
-                <div class="checkbox-group">
-                    <label for="checkbox1">
-                        <input class="check" type="checkbox" id="checkbox1" name="options" value="Option 1" />
-                        Phòng còn trống
-                    </label>
-                    <label for="checkbox2">
-                        <input class="check" type="checkbox" id="checkbox2" name="options" value="Option 2" />
-                        Phòng đầy
-                    </label>
-                    <label for="checkbox3">
-                        <input class="check" type="checkbox" id="checkbox3" name="options" value="Option 3" />
-                        Phòng đang hư
-                    </label>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="input-group">
-                    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                        aria-describedby="search-addon" />
-                    <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
-                </div>
-            </div> --}}
+        <div class="row py-2 house">
             <div class="row">
                 @foreach ($rooms as $room)
-                    <div class="col-2">
+                    <div class="col-2 mx-2 ">
                         <div class="room">
-                            <div class="room-name">
-                                {{ $room->name }}
-                            </div>
+                            <div class="room-logo text-center text-white font-weight-bold">Kí túc xá TDC</div>
                             <div class="room-infor row">
-                                <div class="styleComponentOfRoom col-4 py-1">{{ $room->gender }}</div>
+                                @if ($room->gender == 'nam')
+                                    <div class="styleComponentOfRoom col-4 py-1 text-primary font-weight-bold"><i class="bi bi-gender-male"></i></div>
+                                @else
+                                    <div class="styleComponentOfRoom col-4 py-1 text-danger font-weight-bold"><i class="bi bi-gender-female"></i></div>
+                                @endif
                                 <div class="styleComponentOfRoom col-4 py-1">{{ $room->students_count }}/15</div>
                                 @if (!empty($room->note))
                                     <i style="color: rgb(255, 77, 0)"
@@ -46,18 +25,25 @@
                                         class="styleComponentOfRoom col-4 py-1 bi bi-patch-exclamation-fill"></i>
                                 @endif
                             </div>
+                            <div class="room-door"></div>
                             <div class="room-button row">
-                                <i class="styleComponentOfRoom col-4 bi bi-app"></i>
-                                <i class="styleComponentOfRoom col-4 bi bi-eye" data-toggle="modal"
-                                    data-target="#exampleModalRoom" data-room-id="{{ $room->id }}"
-                                    data-room-name="{{ $room->name }}" data-room-gender="{{ $room->gender }}"
-                                    data-room-status="{{ $room->students_count }}" data-room-note="{{ $room->note }}">
-                                </i>
-
-                                <i class="styleComponentOfRoom col-4  bi bi-pen" data-toggle="modal"
-                                    data-target="#editModalRoom" data-room-id="{{ $room->id }}"
-                                    data-room-name="{{ $room->name }}" data-room-gender="{{ $room->gender }}"
-                                    data-room-status="{{ $room->status }}" data-room-note="{{ $room->note }}"></i>
+                                <div class="col-4">
+                                    <i class="styleComponentOfRoom col-4 bi bi-app"></i>
+                                </div>
+                                <div class="col-4">
+                                    <div class="room-door-active" data-toggle="modal"
+                                        data-target="#exampleModalRoom" data-room-id="{{ $room->id }}"
+                                        data-room-name="{{ $room->name }}" data-room-gender="{{ $room->gender }}"
+                                        data-room-status="{{ $room->students_count }}" data-room-note="{{ $room->note }}">
+                                        <div class="room-name-active">{{ $room->name }}</div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <i class="styleComponentOfRoom col-4  bi bi-pen" data-toggle="modal"
+                                        data-target="#editModalRoom" data-room-id="{{ $room->id }}"
+                                        data-room-name="{{ $room->name }}" data-room-gender="{{ $room->gender }}"
+                                        data-room-status="{{ $room->status }}" data-room-note="{{ $room->note }}"></i>
+                                </div>
                             </div>
                         </div>
                     </div>

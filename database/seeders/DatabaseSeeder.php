@@ -276,6 +276,111 @@ class DatabaseSeeder extends Seeder
                 'gender'=>'nữ',
                 'note'=>'',
             ],
+            [
+                'name'=>'001',
+                'gender'=>'nữ',
+                'note'=>'',
+            ],
+            [
+                'name'=>'002',
+                'gender'=>'nam',
+                'note'=>'',
+            ],
+            [
+                'name'=>'003',
+                'gender'=>'nữ',
+                'note'=>'',
+            ],
+            [
+                'name'=>'001',
+                'gender'=>'nữ',
+                'note'=>'',
+            ],
+            [
+                'name'=>'002',
+                'gender'=>'nam',
+                'note'=>'',
+            ],
+            [
+                'name'=>'003',
+                'gender'=>'nữ',
+                'note'=>'',
+            ],
+            [
+                'name'=>'001',
+                'gender'=>'nữ',
+                'note'=>'',
+            ],
+            [
+                'name'=>'002',
+                'gender'=>'nam',
+                'note'=>'',
+            ],
+            [
+                'name'=>'003',
+                'gender'=>'nữ',
+                'note'=>'',
+            ],
+            [
+                'name'=>'001',
+                'gender'=>'nữ',
+                'note'=>'',
+            ],
+            [
+                'name'=>'002',
+                'gender'=>'nam',
+                'note'=>'',
+            ],
+            [
+                'name'=>'003',
+                'gender'=>'nữ',
+                'note'=>'',
+            ],
+            [
+                'name'=>'001',
+                'gender'=>'nữ',
+                'note'=>'',
+            ],
+            [
+                'name'=>'002',
+                'gender'=>'nam',
+                'note'=>'',
+            ],
+            [
+                'name'=>'003',
+                'gender'=>'nữ',
+                'note'=>'',
+            ],
+            [
+                'name'=>'001',
+                'gender'=>'nữ',
+                'note'=>'',
+            ],
+            [
+                'name'=>'002',
+                'gender'=>'nam',
+                'note'=>'',
+            ],
+            [
+                'name'=>'003',
+                'gender'=>'nữ',
+                'note'=>'',
+            ],
+            [
+                'name'=>'001',
+                'gender'=>'nữ',
+                'note'=>'',
+            ],
+            [
+                'name'=>'002',
+                'gender'=>'nam',
+                'note'=>'',
+            ],
+            [
+                'name'=>'003',
+                'gender'=>'nữ',
+                'note'=>'',
+            ],
         ]);
        
         DB::table('users')->insert(
@@ -294,23 +399,20 @@ class DatabaseSeeder extends Seeder
     );
 
         DB::table('events')->insert([
-            'id' => 0,
-            'title' => '1',
-            'content' => 'latfbnigyiauombaeiuNOm',
-            'img' => 'banner.jpg',
-            'type' => 'none'
-        ]);
-        DB::table('events')->insert([
-            'id' => 0,
             'title' => '2',
-            'content' => 'latfbnigyiauombaeiuNOm',
+            'content' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero iste accusamus, labore odio enim sint ullam corporis, nesciunt, nam minima mollitia quas natus quidem fugit ducimus distinctio cumque eveniet commodi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas quo ad blanditiis, sed similique recusandae facere optio rerum quisquam, obcaecati ipsa! Enim saepe ullam aliquam incidunt labore architecto voluptates assumenda!',
             'img' => 'banner.jpg',
             'type' => 'none'
         ]);
         DB::table('events')->insert([
-            'id' => 0,
+            'title' => '5',
+            'content' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero iste accusamus, labore odio enim sint ullam corporis, nesciunt, nam minima mollitia quas natus quidem fugit ducimus distinctio cumque eveniet commodi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas quo ad blanditiis, sed similique recusandae facere optio rerum quisquam, obcaecati ipsa! Enim saepe ullam aliquam incidunt labore architecto voluptates assumenda!',
+            'img' => 'banner.jpg',
+            'type' => 'none'
+        ]);
+        DB::table('events')->insert([
             'title' => '3',
-            'content' => 'latfbnigyiauombaeiuNOm',
+            'content' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero iste accusamus, labore odio enim sint ullam corporis, nesciunt, nam minima mollitia quas natus quidem fugit ducimus distinctio cumque eveniet commodi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas quo ad blanditiis, sed similique recusandae facere optio rerum quisquam, obcaecati ipsa! Enim saepe ullam aliquam incidunt labore architecto voluptates assumenda!',
             'img' => 'banner.jpg',
             'type' => 'none'
         ]);
