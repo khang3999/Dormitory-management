@@ -24,59 +24,17 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('students')->insert([
             [
-                'MSSV' => 'S123456',
-                
-                'name' => 'Nguyen Van A',
-                'cccd' => '123456789',
-                'birthday' => '2000-01-01',
-                'phone' => '0912345678',
-                'mail' => 'nguyenvana@example.com',
+                'MSSV' => '22211TT3807',
+                'name' => 'Ngô Định An',
+                'cccd' => '123456789011',
+                'birthday' => '14-09-2004',
+                'phone' => '08999999999',
+                'mail' => '22211TT3807@mail.tdc.edu.vn',
                 'nation' => 'Vietnam',
                 'gender' => 1,
                 'time' => now(),
                 'note' => 'Note A',
-                'address' => 'Address A',
-                'type' => 1,
-                'idphong'=>'1',
-                'job'=>'Cong Nghe Thong Tin',
-                'course'=>'22',
-                'class'=>'CD22TT11'
-                // $table->string('job');
-                // $table->string('year');
-                // $table->string('class');
-            ],
-            [
-                'MSSV' => 'S123457',
-                
-                'name' => 'Tran Thi B',
-                'cccd' => '123456780',
-                'birthday' => '2000-02-02',
-                'phone' => '0912345679',
-                'mail' => 'tranthib@example.com',
-                'nation' => 'Vietnam',
-                'gender' => 0,
-                'time' => now(),
-                'note' => 'Note B',
-                'address' => 'Address B',
-                'type' => 1,
-                    'idphong'=>'1',
-                    'job'=>'Cong Nghe Thong Tin',
-                    'course'=>'22',
-                    'class'=>'CD22TT11'
-            ],
-            [
-                'MSSV' => 'S123458',
-                
-                'name' => 'Le Van C',
-                'cccd' => '123456781',
-                'birthday' => '2000-03-03',
-                'phone' => '0912345680',
-                'mail' => 'levanc@example.com',
-                'nation' => 'Vietnam',
-                'gender' => 1,
-                'time' => now(),
-                'note' => 'Note C',
-                'address' => 'Address C',
+                'address' => 'Hồ Chí Minh',
                 'type' => 1,
                 'idphong'=>'1',
                 'job'=>'Cong Nghe Thong Tin',
@@ -84,181 +42,171 @@ class DatabaseSeeder extends Seeder
                 'class'=>'CD22TT11'
             ],
             [
-                'MSSV' => 'S123459',
-                
-                'name' => 'Pham Thi D',
-                'cccd' => '123456782',
-                'birthday' => '2000-04-04',
-                'phone' => '0912345681',
-                'mail' => 'phamthid@example.com',
+                'MSSV' => '22211TT0744',
+                'name' => 'Huỳnh Lý Đình Châu',
+                'cccd' => '123456789011',
+                'birthday' => '14-09-2004',
+                'phone' => '08999999999',
+                'mail' => '22211TT0744@mail.tdc.edu.vn',
                 'nation' => 'Vietnam',
-                'gender' => 0,
+                'gender' => 1,
                 'time' => now(),
-                'note' => 'Note D',
-                'address' => 'Address D',
+                'note' => 'Note A',
+                'address' => 'Hồ Chí Minh',
                 'type' => 1,
-                'idphong'=>'2',
+                'idphong'=>'1',
                 'job'=>'Cong Nghe Thong Tin',
                 'course'=>'22',
                 'class'=>'CD22TT11'
             ],
             [
-                'MSSV' => 'S123460',
-                
-                'name' => 'Hoang Van E',
-                'cccd' => '123456783',
-                'birthday' => '2000-05-05',
-                'phone' => '0912345682',
-                'mail' => 'hoandddgvane@example.com',
+                'MSSV' => '22211TT3000',
+                'name' => 'Trần Trung Chiến',
+                'cccd' => '123456789011',
+                'birthday' => '14-09-2004',
+                'phone' => '08999999999',
+                'mail' => '22211TT3000@mail.tdc.edu.vn',
                 'nation' => 'Vietnam',
                 'gender' => 1,
                 'time' => now(),
-                'note' => 'Note E',
-                'address' => 'Address E',
+                'note' => 'Note A',
+                'address' => 'Hồ Chí Minh',
                 'type' => 1,
-                'idphong'=>'2',
+                'idphong'=>'1',
                 'job'=>'Cong Nghe Thong Tin',
                 'course'=>'22',
                 'class'=>'CD22TT11'
             ],
             [
-                'MSSV' => 'S123460',
-                
-                'name' => 'out 1',
-                'cccd' => '123456783',
-                'birthday' => '2000-05-05',
-                'phone' => '0912345682',
-                'mail' => 'hoangvanecaa@example.com',
-                'nation' => 'Vietnam',
-                'gender' => 1,
-                'time' => now(),
-                'note' => 'Note E',
-                'address' => 'Address E',
-                'type' => 0,
-                'idphong'=>'2',
-                'job'=>'Cong Nghe Thong Tin',
-                'course'=>'22',
-                'class'=>'CD22TT11'
-            ],
-            [
-                'MSSV' => 'S123460',
-                
-                'name' => 'out 2',
-                'cccd' => '123456783',
-                'birthday' => '2000-05-05',
-                'phone' => '0912345682',
-                'mail' => 'hoaadqwngvane@example.com',
-                'nation' => 'Vietnam',
-                'gender' => 1,
-                'time' => now(),
-                'note' => 'Note E',
-                'address' => 'Address E',
-                'type' => 0,
-                'idphong'=>'2',
-                'job'=>'Cong Nghe Thong Tin',
-                'course'=>'22',
-                'class'=>'CD22TT11'
-            ],
-            [
-                'MSSV' => 'S123460',
-                
-                'name' => 'out3',
-                'cccd' => '123456783',
-                'birthday' => '2000-05-05',
-                'phone' => '0912345682',
-                'mail' => 'hoanfgfdgvane@example.com',
-                'nation' => 'Vietnam',
-                'gender' => 1,
-                'time' => now(),
-                'note' => 'Note E',
-                'address' => 'Address E',
-                'type' => 0,
-                'idphong'=>'2',
-                'job'=>'Cong Nghe Thong Tin',
-                'course'=>'22',
-                'class'=>'CD22TT11'
-            ],
-            [
-                'MSSV' => 'OUT1',
-                'name' => 'in 1',
-                'cccd' => '123456783',
-                'birthday' => '2000-05-05',
-                'phone' => '0912345682',
+                'MSSV' => '22211TT1357',
+                'name' => 'Nguyễn Văn Dư',
+                'cccd' => '123456789011',
+                'birthday' => '14-09-2004',
+                'phone' => '08999999999',
                 'mail' => '22211TT1357@mail.tdc.edu.vn',
                 'nation' => 'Vietnam',
                 'gender' => 1,
                 'time' => now(),
-                'note' => 'Note E',
-                'address' => 'Address E',
+                'note' => 'Note A',
+                'address' => 'Hồ Chí Minh',
                 'type' => 2,
-                 'idphong'=>null,
-                 'job'=>'Cong Nghe Thong Tin',
-                 'course'=>'22',
-                 'class'=>'CD22TT11'
-                
+               'idphong'=>'0',
+                'job'=>'Cong Nghe Thong Tin',
+                'course'=>'22',
+                'class'=>'CD22TT11'
             ],
             [
-                'MSSV' => 'OUT2',
-                
-                'name' => 'in 2',
-                'cccd' => '123456783',
-                'birthday' => '2000-05-05',
-                'phone' => '0912345682',
-                'mail' => 'vandunguyenvan@gmail.com',
+                'MSSV' => '22211TT2661',
+                'name' => 'Nguyễn Tiến Đạt',
+                'cccd' => '123456789011',
+                'birthday' => '14-09-2004',
+                'phone' => '08999999999',
+                'mail' => '22211TT2661@mail.tdc.edu.vn',
                 'nation' => 'Vietnam',
                 'gender' => 1,
                 'time' => now(),
-                'note' => 'Note E',
-                'address' => 'Address E',
-                'type' => 2,
-                 'idphong'=>null,
-                 'job'=>'Cong Nghe Thong Tin',
-                 'course'=>'22',
-                 'class'=>'CD22TT11'
-                
+                'note' => 'Note A',
+                'address' => 'Hồ Chí Minh',
+                'type' => 1,
+                'idphong'=>'1',
+                'job'=>'Cong Nghe Thong Tin',
+                'course'=>'22',
+                'class'=>'CD22TT11'
             ],
             [
-                'MSSV' => 'OUT3',
-                
-                'name' => 'in 3',
-                'cccd' => '123456783',
-                'birthday' => '2000-05-05',
-                'phone' => '0912345682',
-                'mail' => 'dunv.57.student@fit.tdc.edu.vn',
+                'MSSV' => '22211TT4044',
+                'name' => 'Nguyễn Trọng Hiền',
+                'cccd' => '123456789011',
+                'birthday' => '14-09-2004',
+                'phone' => '08999999999',
+                'mail' => '22211TT4044@mail.tdc.edu.vn',
                 'nation' => 'Vietnam',
                 'gender' => 1,
                 'time' => now(),
-                'note' => 'Note E',
-                'address' => 'Address E',
+                'note' => 'Note A',
+                'address' => 'Hồ Chí Minh',
+                'type' => 1,
+                'idphong'=>'1',
+                'job'=>'Cong Nghe Thong Tin',
+                'course'=>'22',
+                'class'=>'CD22TT11'
+            ],
+            [
+                'MSSV' => '22211TT0253',
+                'name' => 'Trần Thị Anh Thư',
+                'cccd' => '123456789011',
+                'birthday' => '14-09-2004',
+                'phone' => '08999999999',
+                'mail' => '22211TT0253@mail.tdc.edu.vn',
+                'nation' => 'Vietnam',
+                'gender' => 0,
+                'time' => now(),
+                'note' => 'Note A',
+                'address' => 'Hồ Chí Minh',
+                'type' => 1,
+                'idphong'=>'1',
+                'job'=>'Cong Nghe Thong Tin',
+                'course'=>'22',
+                'class'=>'CD22TT11'
+            ],
+            [
+                'MSSV' => '22211TT2577',
+                'name' => 'Lê Việt Khanh',
+                'cccd' => '123456789011',
+                'birthday' => '14-09-2004',
+                'phone' => '08999999999',
+                'mail' => '22211TT2577@mail.tdc.edu.vn',
+                'nation' => 'Vietnam',
+                'gender' => 0,
+                'time' => now(),
+                'note' => 'Note A',
+                'address' => 'Hồ Chí Minh',
                 'type' => 2,
-                 'idphong'=>null,
-                 'job'=>'Cong Nghe Thong Tin',
-                 'course'=>'22',
-                 'class'=>'CD22TT11'
+                'idphong'=>'0',
+                'job'=>'Cong Nghe Thong Tin',
+                'course'=>'22',
+                'class'=>'CD22TT11'
+            ]
+            ,
+            [
+                'MSSV' => '22211TT4759',
+                'name' => 'Nguyễn Phương Nhi',
+                'cccd' => '123456789011',
+                'birthday' => '14-09-2004',
+                'phone' => '08999999999',
+                'mail' => '22211TT4759@mail.tdc.edu.vn',
+                'nation' => 'Vietnam',
+                'gender' => 0,
+                'time' => now(),
+                'note' => 'Note A',
+                'address' => 'Hồ Chí Minh',
+                'type' => 2,
+               'idphong'=>'0',
+                'job'=>'Cong Nghe Thong Tin',
+                'course'=>'22',
+                'class'=>'CD22TT11'
+            ],
+            [
+                'MSSV' => '22211TT1006',
+                'name' => 'Hà Nguyễn Bình Minh',
+                'cccd' => '123456789011',
+                'birthday' => '14-09-2004',
+                'phone' => '08999999999',
+                'mail' => '22211TT1006@mail.tdc.edu.vn',
+                'nation' => 'Vietnam',
+                'gender' => 1,
+                'time' => now(),
+                'note' => 'Note A',
+                'address' => 'Hồ Chí Minh',
+                'type' => 0,
+                'idphong'=>'1',
+                'job'=>'Cong Nghe Thong Tin',
+                'course'=>'22',
+                'class'=>'CD22TT11'
+            ]
 
-                
-            ],
-            [
-                'MSSV' => 'OUT4',
-                
-                'name' => 'in 4',
-                'cccd' => '123456783',
-                'birthday' => '2000-05-05',
-                'phone' => '0912345682',
-                'mail' => 'levietkhanh2k4@gmail.com',
-                'nation' => 'Vietnam',
-                'gender' => 1,
-                'time' => now(),
-                'note' => 'Note E',
-                'address' => 'Address E',
-                'type' => 2,
-                 'idphong'=>null,
-                 'job'=>'Cong Nghe Thong Tin',
-                 'course'=>'22',
-                 'class'=>'CD22TT11'
 
-                
-            ],
+
         ]);
         DB::table('rooms')->insert([
             [
@@ -268,7 +216,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name'=>'002',
-                'gender'=>'nam',
+                'gender'=>'nữ',
                 'note'=>'',
             ],
             [
@@ -277,130 +225,100 @@ class DatabaseSeeder extends Seeder
                 'note'=>'',
             ],
             [
-                'name'=>'001',
-                'gender'=>'nữ',
-                'note'=>'',
-            ],
-            [
-                'name'=>'002',
+                'name'=>'004',
                 'gender'=>'nam',
                 'note'=>'',
-            ],
-            [
-                'name'=>'003',
-                'gender'=>'nữ',
-                'note'=>'',
-            ],
-            [
-                'name'=>'001',
-                'gender'=>'nữ',
-                'note'=>'',
-            ],
-            [
-                'name'=>'002',
-                'gender'=>'nam',
-                'note'=>'',
-            ],
-            [
-                'name'=>'003',
-                'gender'=>'nữ',
-                'note'=>'',
-            ],
-            [
-                'name'=>'001',
-                'gender'=>'nữ',
-                'note'=>'',
-            ],
-            [
-                'name'=>'002',
-                'gender'=>'nam',
-                'note'=>'',
-            ],
-            [
-                'name'=>'003',
-                'gender'=>'nữ',
-                'note'=>'',
-            ],
-            [
-                'name'=>'001',
-                'gender'=>'nữ',
-                'note'=>'',
-            ],
-            [
-                'name'=>'002',
-                'gender'=>'nam',
-                'note'=>'',
-            ],
-            [
-                'name'=>'003',
-                'gender'=>'nữ',
-                'note'=>'',
-            ],
-            [
-                'name'=>'001',
-                'gender'=>'nữ',
-                'note'=>'',
-            ],
-            [
-                'name'=>'002',
-                'gender'=>'nam',
-                'note'=>'',
-            ],
-            [
-                'name'=>'003',
-                'gender'=>'nữ',
-                'note'=>'',
-            ],
-            [
-                'name'=>'001',
-                'gender'=>'nữ',
-                'note'=>'',
-            ],
-            [
-                'name'=>'002',
-                'gender'=>'nam',
-                'note'=>'',
-            ],
-            [
-                'name'=>'003',
-                'gender'=>'nữ',
-                'note'=>'',
-            ],
-            [
-                'name'=>'001',
-                'gender'=>'nữ',
-                'note'=>'',
-            ],
-            [
-                'name'=>'002',
-                'gender'=>'nam',
-                'note'=>'',
-            ],
-            [
-                'name'=>'003',
-                'gender'=>'nữ',
-                'note'=>'',
-            ],
+            ]
         ]);
        
         DB::table('users')->insert(
             [[
             'name' => 'khangggg',
+            'mssv'=>'',
             'email' => 'huukhang@gmail.com',
             'password' => Hash::make('12345678'),
             'permission' => 'student',
         ],
         [
-            'name' => 'vanduvandu',
-            'email' => 'vandupluss@gmail.com',
-            'password' => Hash::make('12345678'),
+            'name' => 'adminKTX',
+            'mssv'=>'',
+            'email' => 'adminKTXTDC@gmail.com',
+            'password' => Hash::make('@AdminTDC12345678'),
             'permission'=>'admin',
-        ],]
+            
+        ],
+        [
+            'name' => 'Ngô Định An',
+            'mssv'=>'22211TT3807',
+            'email' => '22211TT3807@mail.tdc.edu.vn',
+            'password' => Hash::make('22211TT3807'),
+            'permission'=>'student',
+        ],
+        [
+            'name' => 'Huỳnh Lý Đình Châu',
+            'mssv'=>'22211TT0744',
+            'email' => '22211TT0744@mail.tdc.edu.vn',
+            'password' => Hash::make('22211TT0744'),
+            'permission'=>'student',
+        ],
+        [
+            'name' => 'Trần Trung Chiến',
+            'mssv'=>'22211TT3000',
+            'email' => '22211TT3000@mail.tdc.edu.vn',
+            'password' => Hash::make('22211TT3000'),
+            'permission'=>'student',
+        ],
+        [
+            'name' => 'Nguyễn Văn Dư',
+            'mssv'=>'22211TT1357',
+            'email' => '22211TT1357@mail.tdc.edu.vn',
+            'password' => Hash::make('22211TT1357'),
+            'permission'=>'student',
+        ],
+        [
+            'name' => 'Nguyễn Tiến Đạt',
+            'mssv'=>'22211TT2661',
+            'email' => '22211TT2661@mail.tdc.edu.vn',
+            'password' => Hash::make('22211TT2661'),
+            'permission'=>'student',
+        ],
+        [
+            'name' => 'Nguyễn Trọng Hiền',
+            'mssv'=>'22211TT4044',
+            'email' => '22211TT4044@mail.tdc.edu.vn',
+            'password' => Hash::make('22211TT4044'),
+            'permission'=>'student',
+        ],
+        [
+            'name' => 'Trần Thị Anh Thư',
+            'mssv'=>'22211TT0253',
+            'email' => '22211TT0253@mail.tdc.edu.vn',
+            'password' => Hash::make('22211TT0253'),
+            'permission'=>'student',
+        ],
+        [
+            'name' => 'Hà Nguyễn Bình Minh',
+            'mssv'=>'22211TT1006',
+            'email' => '22211TT1006@mail.tdc.edu.vn',
+            'password' => Hash::make('22211TT1006'),
+            'permission'=>'student',
+        ]
+        ]
     );
 
         DB::table('events')->insert([
             'title' => '2',
             'content' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero iste accusamus, labore odio enim sint ullam corporis, nesciunt, nam minima mollitia quas natus quidem fugit ducimus distinctio cumque eveniet commodi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas quo ad blanditiis, sed similique recusandae facere optio rerum quisquam, obcaecati ipsa! Enim saepe ullam aliquam incidunt labore architecto voluptates assumenda!',
+           
+            'title' => 'Giới thiệu về Kí túc xá',
+            'content' => 'http://ktx.tdc.edu.vn/gioi-thieu.html',
+            'img' => 'banner.jpg',
+            'type' => ''
+        ]);
+        DB::table('events')->insert([
+           
+            'title' => 'Quy chế kí túc xá',
+            'content' => 'http://ktx.tdc.edu.vn/quy-che-noi-tru-ky-tuc-xa.html',
             'img' => 'banner.jpg',
             'type' => 'none'
         ]);
@@ -413,9 +331,75 @@ class DatabaseSeeder extends Seeder
         DB::table('events')->insert([
             'title' => '3',
             'content' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero iste accusamus, labore odio enim sint ullam corporis, nesciunt, nam minima mollitia quas natus quidem fugit ducimus distinctio cumque eveniet commodi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas quo ad blanditiis, sed similique recusandae facere optio rerum quisquam, obcaecati ipsa! Enim saepe ullam aliquam incidunt labore architecto voluptates assumenda!',
+        
+            'title' => 'Trang liên hệ',
+            'content' => 'http://ktx.tdc.edu.vn/lien-he/',
             'img' => 'banner.jpg',
             'type' => 'none'
         ]);
-       
+        // Schema::create('history', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('idphong');
+        //     $table->string('status');
+        //     $table->string('ngayhu');
+        //     $table->string('ngaysua')->nullable();
+        //     $table->string('type');
+        //     $table->timestamps(); // Thêm timestamps
+        // });
+
+        //type 0 la sua roi, 1 la chua
+        DB::table('histories')->insert([
+           [
+            'idphong' =>'1',
+            'status'=> "hu cua",
+            'ngayhu'=>'14-09-2004',
+           
+             'ngaysua'=>'',
+            'type'=> "0",
+           ],
+           [
+            'idphong' =>'1',
+            'status'=> "hu rem",
+            'ngayhu'=>'14-09-2004', 
+           
+             'ngaysua'=>'',
+            'type'=> "0",
+           ],
+           [
+            'idphong' =>'1',
+            'status'=> "hu cua",
+            'ngayhu'=>'14-09-2004',
+            'type'=> "0",
+             'ngaysua'=>'',
+           ],
+           [
+            'idphong' =>'1',
+            'status'=> "hu den",
+            'ngayhu'=>'14-09-2004',
+            'type'=> "0",
+             'ngaysua'=>'',
+           ],
+           [
+            'idphong' =>'3',
+            'status'=> "hu rem",
+            'ngayhu'=>'14-09-2004',
+            'type'=> "0",
+             'ngaysua'=>'',
+           ],
+           [
+            'idphong' =>'2',
+            'status'=> "hu cua",
+            'ngayhu'=>'14-09-2004',
+            'type'=> "0",
+             'ngaysua'=>'',
+           ],
+           [
+            'idphong' =>'2',
+            'status'=> "hu den",
+            'ngayhu'=>'14-09-2004',
+            'type'=> "0",
+             'ngaysua'=>'',
+           ],
+        ]);
     }
 }

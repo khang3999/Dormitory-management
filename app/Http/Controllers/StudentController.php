@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use Illuminate\Support\Carbon;
 use App\Models\Reason;
 use Illuminate\Http\Request;
 use App\Models\Student;
@@ -145,7 +146,11 @@ class StudentController extends Controller
     public function destroy($id)
     {
         $student = Student::findOrFail($id);
-        $student->delete();
+        $student->type= 4;
+       $phong= $student->idphong ;
+       $student->idphong= "đã ở: ". $phong;
+       $student->timeout=Carbon::now();
+       $student->save();
         return response()->json(['message' => 'Xoá sinh viên thành công!']);
     }
     //lay sinh vien đăng kí ở trong ktx
@@ -163,6 +168,16 @@ class StudentController extends Controller
 
         // Trả về view 'admin.student-out' với dữ liệu sinh viên và lý do
         return view('admin.student-out', compact('students','reasons'));
+    }
+    public function getStudentOuted()
+    {
+        // Lấy danh sách sinh viên có type = 0 và kèm theo thông tin phòng
+        $students = Student::where('type', 4)->with('room')->get();
+
+        $reasons = Reason::all();
+
+        // Trả về view 'admin.student-out' với dữ liệu sinh viên và lý do
+        return view('admin.student-outed', compact('students','reasons'));
     }
 
     //lay sinh vien đang  ở trong ktx

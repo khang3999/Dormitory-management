@@ -25,12 +25,15 @@ return new class extends Migration
             $table->integer('gender');
             $table->integer('course')->default(1);
             $table->string('time');
+
             $table->string('job')->nullable();//
             $table->string('note')->nullable();
             $table->string('address');
             //type 0 là sinh viên out, 2 là sinh viên đăng kí vào, 1 là sinh viên hiện ở kí túc xá
             $table->integer('type');
             $table->string('idphong')->nullable();
+            $table->string('timeout')->default(''); // Thêm giá trị mặc định
+            $table->timestamps();
     
         });
     }
