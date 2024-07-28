@@ -136,6 +136,38 @@ if (avatarPreview && fileInput) {
     console.error('Không tìm thấy các phần tử avatar trong DOM');
 }
 
+var notePre = document.getElementById('uutienPreview');
+var fileInputNote = document.getElementById('fileInputNote');
+
+if (notePre && fileInputNote) {
+    notePre.addEventListener('click', function () {
+        fileInputNote.click();
+    });
+
+    fileInputNote.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                notePre.style.backgroundImage = `url(${e.target.result})`;
+                notePre.textContent = ''; // Clear the "Chọn ảnh" text
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+} else {
+    console.error('Không tìm thấy các phần tử avatar trong DOM');
+}
+
+var initialPreview = document.getElementById('uutienPreview');
+var initialFileInput = document.getElementById('fileInputNote');
+
+if (initialPreview && initialFileInput) {
+    attachEventHandlers(initialPreview, initialFileInput);
+} else {
+    console.error('Không tìm thấy các phần tử avatar trong DOM');
+}
+
 // Image banner
 let currentImageIndex = 0;
 const images = ['/images/banner.jpg', '/images/event.jpg'];

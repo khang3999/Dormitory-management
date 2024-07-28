@@ -177,16 +177,16 @@
 
                         <div class="data d-flex justify-content-between">
                             <div class="mr-3">Em tên là: </div>
-                            <input class="input-name-second form-control" type="text" name="fullname" id="fullname" required>
+                            <input class="input-name-second form-control" type="text" name="fullname" id="fullname" value="{{ $user->name}}" readonly>
                         </div>
                         <div class="data d-flex justify-content-between">
                             <div class="mr-3">MSSV: </div>
                             <input class="input-codeStudent-second form-control" type="text" name="codeStudent"
-                                id="codeStudent" minlength="11" required>
+                                id="codeStudent" minlength="11" value="{{ $user->mssv}}" readonly>
                         </div>
                         <div class="data d-flex justify-content-between">
                             <div class="mr-3">Hiện đang lưu trú tại phòng: </div>
-                            <input class="input-idphong form-control" type="text" name="room" id="room" required >
+                            <input class="input-idphong form-control" type="text" name="room" id="room" value="{{ $roomName }}" readonly >
                         </div>
                         <div class="data d-block justify-content-between">
                             <div class="mr-3 font-italic">Nay em làm đơn này kính đề nghị Phòng Công tác Chính trị - Học sinh sinh viên cho phép em được chấm dứt hợp đồng thuê chỗ ở trước thời hạn.</div>

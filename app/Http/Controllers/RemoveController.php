@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +16,21 @@ class RemoveController extends Controller
     {
         //
         $user = Auth::user();
-        return view('registerOut', ['user' => $user]);
+        $students = Student::all();
+        $rooms = Room::all();
+        foreach ($students as $student) {
+            if ($user->mssv == $student->MSSV) {
+                $idroom = $student->idphong;
+            }
+        }
+        
+        foreach ($rooms as $room) {
+            if ($idroom == $room->id) {
+                $roomName = $room->name;
+            }
+        }
+
+        return view('registerOut', ['user' => $user, 'roomName' => $roomName]);
     }
 
     /**

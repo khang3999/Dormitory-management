@@ -48,12 +48,13 @@ class StudentController extends Controller
             'codeStudent' => 'required',
             'phoneNumber' => 'required',
             'job' => 'nullable',
-            'uutien' => 'nullable',
+            'uutien.*' => 'required|image', // Cập nhật để chấp nhận nhiều tệp hình ảnh
         ]);
 
         $student = new Student();
 
         $student->avatar = $validatedData['codeStudent'] . '.jpg';
+        $student->note = $validatedData['codeStudent'] . '_uutien' . '.jpg';
         $student->name = $validatedData['fullname'];
         $student->mail = $validatedData['mail'];
         $student->cccd = $validatedData['cccd'];
@@ -66,18 +67,26 @@ class StudentController extends Controller
         $student->MSSV = $validatedData['codeStudent'];
         $student->phone = $validatedData['phoneNumber'];
         $student->job = $validatedData['job'];
-        $student->note = $validatedData['uutien'];
         $student->type = '2';
         $student->time = now();
         $student->idphong = '0';
 
+        // Lưu ảnh avatar
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
             $filename = $validatedData['codeStudent'] . '.jpg';
             $avatar->move(public_path('images/avatar/'), $filename);
         }
 
+        // Lưu ảnh avatar
+        if ($request->hasFile('note')) {
+            $note = $request->file('note');
+            $filename = $validatedData['codeStudent'] . '_uutien'. '.jpg';
+            $note->move(public_path('images/note/'), $filename);
+        }
+
         $student->save();
+
         // Sau khi lưu thành công, có thể chuyển hướng người dùng về trang khác hoặc hiển thị thông báo thành công
         return redirect()->route('students.store')->with('success', 'Đăng kí thành công');
     }
@@ -133,7 +142,7 @@ class StudentController extends Controller
     {
         $student = Student::findOrFail($request->student_id);
 
-        $student->type= 1;
+        $student->type = 1;
         $student->idphong = $request->phong;
 
         $student->save();
@@ -167,7 +176,7 @@ class StudentController extends Controller
         $reasons = Reason::all();
 
         // Trả về view 'admin.student-out' với dữ liệu sinh viên và lý do
-        return view('admin.student-out', compact('students','reasons'));
+        return view('admin.student-out', compact('students', 'reasons'));
     }
     public function getStudentOuted()
     {
