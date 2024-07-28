@@ -302,8 +302,10 @@
                         </div>
                         <div class="data">
                             <div class="mr-3">Đối tượng ưu tiên (nếu có): </div>
-                            <div id="avatarPreview" class="text-center box-uutien-3x4">Chọn ảnh</div>
-                            <input type="file" id="fileInput" name="avatar" required style="display: none;">
+                            <div id="uutienBox" class="d-flex">
+                                <div id="uutienPreview" class="text-center box-uutien-3x4">Chọn ảnh</div>
+                                <input type="file" id="fileInputNote" name="note" multiple style="display: none;">
+                            </div>
                         </div>
                         <div class="data d-block justify-content-between">
                             <div class="mr-3 font-italic">Đề nghị nhà trường xem xét, tiếp nhận tôi được nội trú Kí túc
