@@ -12,9 +12,11 @@
                             <div class="room-logo text-center text-white font-weight-bold">Kí túc xá TDC</div>
                             <div class="room-infor row">
                                 @if ($room->gender == 'nam')
-                                    <div class="styleComponentOfRoom col-4 py-1 text-primary font-weight-bold"><i class="bi bi-gender-male"></i></div>
+                                    <div class="styleComponentOfRoom col-4 py-1 text-primary font-weight-bold"><i
+                                            class="bi bi-gender-male"></i></div>
                                 @else
-                                    <div class="styleComponentOfRoom col-4 py-1 text-danger font-weight-bold"><i class="bi bi-gender-female"></i></div>
+                                    <div class="styleComponentOfRoom col-4 py-1 text-danger font-weight-bold"><i
+                                            class="bi bi-gender-female"></i></div>
                                 @endif
                                 <div class="styleComponentOfRoom col-4 py-1">{{ $room->students_count }}/15</div>
                                 @if (!empty($room->note))
@@ -31,10 +33,11 @@
                                     <i class="styleComponentOfRoom col-4 bi bi-app"></i>
                                 </div>
                                 <div class="col-4">
-                                    <div class="room-door-active" data-toggle="modal"
-                                        data-target="#exampleModalRoom" data-room-id="{{ $room->id }}"
-                                        data-room-name="{{ $room->name }}" data-room-gender="{{ $room->gender }}"
-                                        data-room-status="{{ $room->students_count }}" data-room-note="{{ $room->note }}">
+                                    <div class="room-door-active" data-toggle="modal" data-target="#exampleModalRoom"
+                                        data-room-id="{{ $room->id }}" data-room-name="{{ $room->name }}"
+                                        data-room-gender="{{ $room->gender }}"
+                                        data-room-status="{{ $room->students_count }}"
+                                        data-room-note="{{ $room->note }}">
                                         <div class="room-name-active">{{ $room->name }}</div>
                                     </div>
                                 </div>
@@ -42,7 +45,8 @@
                                     <i class="styleComponentOfRoom col-4  bi bi-pen" data-toggle="modal"
                                         data-target="#editModalRoom" data-room-id="{{ $room->id }}"
                                         data-room-name="{{ $room->name }}" data-room-gender="{{ $room->gender }}"
-                                        data-room-status="{{ $room->status }}" data-room-note="{{ $room->note }}"></i>
+                                        data-room-status="{{ $room->status }}"
+                                        data-room-note="{{ $room->note }}"></i>
                                 </div>
                             </div>
                         </div>
@@ -51,8 +55,8 @@
             </div>
         </div>
         <div class="groupbutton">
-            <a href="{{route('export.rooms')}}" class="btn btn-outline-primary">Xuất file</a>
-            <button  class="btn btn-outline-primary">Nhập file</button>
+            <a href="{{ route('export.rooms') }}" class="btn btn-outline-primary">Xuất file</a>
+            <button class="btn btn-outline-primary">Nhập file</button>
         </div>
     </div>
 
@@ -94,6 +98,7 @@
                             <!-- Danh sách sinh viên sẽ được hiển thị ở đây -->
                         </tbody>
                     </table>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -110,13 +115,12 @@
             <div class="modal-content modalsinhvien">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalStudentTitle">Thông tin sinh viên</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                   
                 </div>
                 <div class="modal-body row">
                     <div class="form-group col-md-12 text-center">
-                        <img  class="student-image " id="student-image" src="" alt="Student Image" class="img-fluid rounded">
+                        <img class="student-image " id="student-image" src="" alt="Student Image"
+                            class="img-fluid rounded">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="student-name">Tên:</label>
@@ -167,28 +171,20 @@
                         <input type="text" class="form-control" id="student-phong" readonly>
                     </div>
                 </div>
-                {{-- <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-warning" data-dismiss="modal">Edit</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div> --}}
             </div>
         </div>
     </div>
     <div class="modal fade" id="editModalRoom" tabindex="-1" role="dialog" aria-labelledby="editModalRoomTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-lg-custom modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Chỉnh sửa phòng</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    
                 </div>
                 <div class="modal-body">
                     <form id="editRoomForm">
-                        <input type="hidden" id="room-id"> <!-- Hidden input to store room ID -->
+                        <input type="hidden" id="room-id">
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="room-name">Tên:</label>
@@ -202,12 +198,52 @@
                                 <label for="room-note">Ghi chú:</label>
                                 <input type="text" class="form-control" id="room-note">
                             </div>
+                            <label for="history-container">Lịch sử sửa chữa</label>
+                            <div class="form-group col-md-12">
+                                @csrf
+                                <label for="room-history">Thêm tình trạng phòng:</label>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <input type="text" class="form-control" id="room-history">
+                                    </div>
+                                    <div class="col-2">
+                                        <button type="button" class="btn btn-success " id="addhistory">add</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Container to show history -->
+                            <div id="history-container" class="col-md-12 mt-3">
+                                <!-- Lịch sử sẽ xuất hiện ở đây -->
+                            </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
+
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
                     <button type="button" class="btn btn-primary" id="saveUpdateRoom">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal để hiển thị chi tiết lịch sử -->
+    <div class="modal fade" id="modalHistory" tabindex="-1" role="dialog" aria-labelledby="modalHistoryLabel"
+        aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalHistoryLabel">Chi Tiết Lịch Sử</h5>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Tình trạng:</strong> <span id="history-status"></span></p>
+                    <p><strong>Ngày hư:</strong> <span id="history-ngayhu"></span></p>
+                    <p><strong>Ngày sửa:</strong> <span id="history-ngaysua"></span></p>
+                    <p><strong>Trạng thái:</strong> <span id="history-type"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-da-sua" data-id="">Đã sửa</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                 </div>
             </div>
         </div>
@@ -307,9 +343,9 @@
             var studentTime = button.data('student-time');
             var studentPhong = button.data('student-phong');
             var studentImage = button.data('student-image');
-                // modal.find('#student-image').attr('src', studentImage ? studentImage :
-                //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxdYCUFoUPaFmn2NytlDMr6_kj2c3bq_3jkA&s'
-                //     );
+            // modal.find('#student-image').attr('src', studentImage ? studentImage :
+            //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxdYCUFoUPaFmn2NytlDMr6_kj2c3bq_3jkA&s'
+            //     );
 
             console.log(studentName, studentMSSV, studentMail, studentGender, studentPhone, studentCCCD,
                 studentBirthday, studentAddress, studentNation, studentNote, studentTime, studentPhong);
@@ -335,12 +371,125 @@
             var roomName = button.data('room-name');
             var roomGender = button.data('room-gender');
             var roomNote = button.data('room-note');
-
             var modal = $(this);
-            modal.find('#room-id').val(roomId); // Hidden input to store room ID
+            modal.find('#room-id').val(roomId);
             modal.find('#room-name').val(roomName);
             modal.find('#room-gender').val(roomGender);
             modal.find('#room-note').val(roomNote);
+
+            // Gọi API để lấy lịch sử sửa chữa
+            $.ajax({
+                url: '{{ url('history') }}/' + roomId,
+                type: 'GET',
+                dataType: 'json',
+                success: function(histories) {
+                    var historyHtml = '';
+                    console.log('Histories:', histories); // Log để gỡ lỗi
+                    if (histories.length > 0) {
+                        historyHtml += `
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Trạng thái</th>
+                            <th>Ngày hư</th>
+                            <th>Ngày sửa</th>
+                            <th>Loại</th>
+                             <th>công cụ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+                        histories.forEach(function(history) {
+                            let mau = "";
+                            let buttonHtml =
+                                `<button type="button" class="btn btn-primary btn-view" value="${history.id}" data-toggle="modal" data-target="#modalHistory">xem </button>`;
+                            if (history.type == 0) {
+                                type = "Chưa sửa";
+                                mau = "bg-warning text-white";
+                            } else {
+                                type = "Đã sửa"
+                                mau = "bg-success text-white";
+
+                            }
+                            historyHtml += `
+                    <tr >
+                        <td class="${mau}">${history.status}</td>
+                        <td>${history.ngayhu}</td>
+                        <td>${history.ngaysua}</td>
+                        <td>${type}</td>
+                        <td>${buttonHtml}</td>
+                    </tr>
+                `;
+                        });
+                        historyHtml += `
+                    </tbody>
+                </table>
+            `;
+                    } else {
+                        historyHtml = '<p>Không có lịch sử sửa chữa cho phòng này.</p>';
+                    }
+                    modal.find('#history-container').html(historyHtml);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Lỗi khi lấy lịch sử:', error); // Log lỗi để gỡ lỗi
+                    toastr.error('Không thể tải lịch sử. Vui lòng thử lại.');
+                }
+            });
+        });
+        // Xử lý sự kiện nhấn nút "Xem"
+        $(document).on('click', '.btn-view', function() {
+            var historyId = this.value;
+            // console.log(this.value);
+
+            // Gọi API để lấy thông tin chi tiết của lịch sử
+            $.ajax({
+                url: 'historys/' + historyId,
+                type: 'GET',
+                dataType: 'json',
+                success: function(history) {
+                    console.log(history);
+                    $('#modalHistory #history-status').text(history.status);
+                    $('#modalHistory #history-ngayhu').text(history.ngayhu);
+                    $('#modalHistory #history-ngaysua').text(history.ngaysua);
+                    $('#modalHistory #history-type').text(history.type == 0 ? 'Chưa sửa' : 'Đã sửa');
+                    $('#modalHistory .btn-da-sua').data('id', history.id);
+                    $('#modalHistory').modal('show');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Lỗi khi lấy chi tiết lịch sử:', error);
+                    toastr.error('Không thể tải chi tiết lịch sử. Vui lòng thử lại.');
+                }
+            });
+        });
+
+
+
+        $(document).on('click', '.btn-da-sua', function() {
+            var historyId = $(this).data('id');
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '{{ url('history/da-sua') }}/' + historyId,
+                type: 'POST',
+                dataType: 'json',
+                success: function(response) {
+                    toastr.success(response.message);
+                    $('#modalHistory').modal('hide');
+                    location.reload();
+                    
+                    // Tùy chọn: Làm mới danh sách lịch sử hoặc cập nhật trực tiếp trên giao diện
+                },
+                error: function(xhr, status, error) {
+                    if (xhr.status === 404) {
+                        toastr.error('Không tìm thấy lịch sử với ID: ' + historyId);
+                    } else {
+                        toastr.error('Không thể cập nhật. Vui lòng thử lại.');
+                    }
+                    console.error('Lỗi khi cập nhật:', error);
+                }
+            });
         });
 
         $('#saveUpdateRoom').click(function() {
@@ -348,8 +497,9 @@
                 room_id: $('#room-id').val(),
                 room_name: $('#room-name').val(),
                 room_gender: $('#room-gender').val(),
-                room_note: $('#room-note').val(), // Đảm bảo gửi dữ liệu của trường note
-                _token: '{{ csrf_token() }}' // CSRF token để bảo mật
+                room_note: $('#room-note').val(),
+                room_status: $('#room-status').val(), // Thêm status vào dữ liệu gửi đi
+                _token: '{{ csrf_token() }}'
             };
 
             // Kiểm tra nếu room_note là rỗng thì gán giá trị null
@@ -358,32 +508,23 @@
             }
 
             $.ajax({
-                url: '{{ route("update-room") }}',
-                type: 'POST', // Đảm bảo phương thức POST ở đây
+                url: '{{ route('update-room') }}',
+                type: 'POST',
                 data: formData,
                 dataType: 'json',
                 success: function(response) {
                     if (response.status === 'success') {
-                        // Show success notification
                         toastr.success(response.message);
                     } else {
-                        // Show error notification
                         toastr.error(response.message);
                     }
 
-                    $('#editModalRoom').modal('hide'); // Đóng modal sau khi cập nhật thành công
-                    // Cập nhật giao diện nếu cần thiết
+                    $('#editModalRoom').modal('hide');
                 },
                 error: function(xhr, status, error) {
-                    // Xử lý lỗi
                     console.error(error);
-                    toastr.error('Cập nhật thất bại. Vui lòng thử lại.'); // Show error notification
+                    toastr.error('Cập nhật thất bại. Vui lòng thử lại.');
                 }
-            });
-        });
-        $(document).ready(function() {
-            $('.check').change(function() {
-                filterRooms();
             });
         });
 
@@ -432,5 +573,107 @@
                 }
             });
         }
+        $(document).ready(function() {
+            // Cấu hình CSRF token cho tất cả các yêu cầu AJAX
+            var token = $('meta[name="csrf-token"]').attr('content');
+            // Thêm sự kiện khi nhấn nút add
+            $('#addhistory').click(function() {
+                var roomId = $('#room-id').val(); // Lấy ID phòng từ input ẩn
+                var historyText = $('#room-history').val(); // Lấy nội dung lịch sử từ input
+
+                if (historyText.trim() === '') {
+                    toastr.error('Vui lòng nhập tình trạng phòng.');
+                    return;
+                }
+
+                $.ajax({
+                    url: '{{ route('add-room-history') }}', // URL đến route trong Laravel
+                    type: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': token // Thêm mã thông báo CSRF vào tiêu đề
+                    },
+                    data: {
+                        room_id: roomId,
+                        history: historyText
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            toastr.success('Thêm lịch sử thành công.');
+                            $('#room-history').val(''); // Xóa input sau khi thêm
+                            loadHistory(roomId); // Tải lại lịch sử phòng
+                        } else {
+                            toastr.error(response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Lỗi khi thêm lịch sử:', error);
+                        toastr.error('Không thể thêm lịch sử. Vui lòng thử lại.');
+                    }
+                });
+            });
+
+
+            // Hàm tải lại lịch sử phòng
+            function loadHistory(roomId) {
+                $.ajax({
+                    url: '{{ url('history') }}/' + roomId,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(histories) {
+                        var historyHtml = '';
+                        console.log('Histories:', histories); // Log để gỡ lỗi
+                        if (histories.length > 0) {
+                            historyHtml += `
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Trạng thái</th>
+                                <th>Ngày hư</th>
+                                <th>Ngày sửa</th>
+                                <th>Loại</th>
+                                <th>Công cụ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+                            histories.forEach(function(history) {
+                                let mau = "";
+                                let buttonHtml =
+                                    `<button type="button" class="btn btn-primary btn-view" value="${history.id}" data-toggle="modal" data-target="#modalHistory">xem</button>`;
+                                if (history.type == 0) {
+                                    type = "Chưa sửa";
+                                    mau = "bg-warning text-white";
+                                } else {
+                                    type = "Đã sửa";
+                                    mau = "bg-success text-white";
+                                }
+                                historyHtml += `
+                        <tr>
+                            <td class="${mau}">${history.status}</td>
+                            <td>${history.ngayhu}</td>
+                            <td>${history.ngaysua}</td>
+                            <td>${type}</td>
+                            <td>${buttonHtml}</td>
+                        </tr>
+                    `;
+                            });
+                            historyHtml += `
+                        </tbody>
+                    </table>
+                `;
+                        } else {
+                            historyHtml = '<p>Không có lịch sử sửa chữa cho phòng này.</p>';
+                        }
+                        $('#history-container').html(historyHtml);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Lỗi khi lấy lịch sử:', error); // Log lỗi để gỡ lỗi
+                        toastr.error('Không thể tải lịch sử. Vui lòng thử lại.');
+                    }
+                });
+            }
+
+        });
     </script>
 </x-admin-layout>

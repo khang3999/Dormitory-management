@@ -13,7 +13,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RulesController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\HistoryController;
 
 Route::get('/', [
     HomeController::class, 'index'          
@@ -58,6 +58,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('students', [StudentController::class, 'getStudentInRightNow'])->name('admin.students');
     //lay sinh vien ra khoi ktx
     Route::get('student-out', [StudentController::class, 'getstudentOut'])->name('admin.student-out');
+    //sinh viên đã rời khỏi kí túc xá
+    Route::get('student-outed', [StudentController::class, 'getstudentOuted'])->name('admin.student-outed');
 
     Route::get('statistical', [StudentController::class, 'statistical'])->name('admin.statistical');
 
@@ -89,4 +91,12 @@ Route::put('/posts/{post}', [EventController::class, 'update'])->name('events.up
 // For deleting the post
 Route::delete('/posts/{id}', [EventController::class, 'destroy']);
 Route::post('/send-email', [YourController::class, 'sendEmail'])->name('send.email');
+//history
+Route::get('history/{roomId}', [HistoryController::class, 'index'])->name('history.index');
+Route::get('history', [HistoryController::class, 'getall'])->name('history.getall');
+Route::post('/room-history/add', [HistoryController::class, 'store'])->name('add-room-history');
+Route::post('/history/{id}/dasua', [HistoryController::class, 'daSua'])->name('history.dasua');
+Route::get('/historys/{history}', [HistoryController::class, 'show']);
+Route::post('/history/da-sua/{id}', [HistoryController::class, 'daSua']);
+
 

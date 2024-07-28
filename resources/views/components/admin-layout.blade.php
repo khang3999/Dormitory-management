@@ -65,7 +65,7 @@
         <a href="{{route('admin.students')}}"><i class="bi bi-people-fill"></i></a>
       </div>
       <div class="typeOfStudentManagerment btnGhiChu">
-        <a href="#ghichu"><i class="bi bi-card-checklist"></i></a>
+        <a href="{{route('admin.student-outed')}}"><i class="bi bi-card-checklist"></i></a>
       </div>
 
       <div class="typeOfStudentManagerment btnGhiChu">
